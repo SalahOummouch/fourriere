@@ -1,0 +1,34 @@
+
+.iq-media-group {
+	.iq-media {
+		margin-left: -20px;
+		position: relative;
+		z-index: 0;
+		@if $enable-transitions == true {
+			@include transition-mixin(all 0.3s ease-in-out);
+		}
+		&:hover {
+			z-index: 9;
+		}
+		img {
+			border: 2px solid $border-color;
+		}
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+	.iq-media.border {
+		border: 2px solid $border-color;
+	}
+}
+.iq-media {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	&:hover {
+		text-decoration: none;
+	}
+}

@@ -1,0 +1,130 @@
+
+
+
+.prc-box {
+	background: var(--bs-primary-bg-subtle);
+	padding: 1rem;
+	position: relative;
+	border-radius: var(--bs-border-radius);
+}
+.type {
+	position: absolute;
+	background: $primary;
+	padding: 9px 25px;
+	color: $white;
+	top: -15px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-weight: 500;
+	&:before {
+		position: absolute;
+		content: '';
+		width: 0;
+		height: 0;
+		right: -15px;
+		top: 0px;
+		border-left: 15px solid #002162;
+		border-top: 15px solid transparent;
+	}
+	&:after {
+		position: absolute;
+		content: '';
+		width: 0;
+		height: 0;
+		left: -15px;
+		top: 0px;
+		border-right: 15px solid #002162;
+		border-top: 15px solid transparent;
+	}
+}
+.prc-box.active {
+	background: $primary;
+	.h3{
+		color: $white;
+	}
+	.type {
+		background: $primary-bg-subtle;
+		color: $dark;
+		&:before {
+			border-left: 16px solid #002162;
+			right: -16px;
+		}
+		&:after {
+			border-right: 16px solid #002162;
+			left: -16px;
+		}
+	}
+}
+.prc-wrap {
+	border-bottom: none !important;
+}
+.i_close {
+	font-size: 22px;
+}
+.p-image {
+	position: absolute;
+	top: auto;
+	right: 6px;
+	bottom: 10px;
+	transition: all .3s ease;
+	background: $primary;
+	color: $white;
+	border-radius: var(--bs-border-radius-pill);
+	height: 30px;
+	width: 30px;
+	line-height: 28px;
+	text-align: center;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.file-upload {
+	display: none;
+}
+.upload_profile {
+	position: relative;
+}
+.child-cell.active {
+	color: $primary;
+}
+.iq-social {
+	ul {
+		li {
+			a {
+				display: block;
+				text-align: center;
+				font-size: 16px;
+				line-height: 43px;
+			}
+		}
+	}
+}
+.card {
+	.pricing-radius-box {
+		@if $enable-rounded == true {
+			@include radius-mixin(60px 0 60px 0);
+		}
+	}
+}
+.pricing-header {
+	padding: 20px 0;
+	background: #f5f6f9;
+	@if $enable-rounded == true {
+		@include radius-mixin(10px 10px 50% 50%);
+	}
+	@if $enable-transitions == true {
+		@include transition-mixin(all 0.3s ease-in-out);
+	}
+	margin-bottom: 20px;
+}
+.pricing-details {
+	.icon-data {
+		font-size: 50px;
+	}
+}
+
+.nav-pills {
+    li {
+		position: relative;
+	}
+}

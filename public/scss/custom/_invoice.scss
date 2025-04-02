@@ -1,0 +1,80 @@
+.logo-invoice {
+	height: 55px;
+}
+
+.print {
+	.card-title {
+		color: $white;
+	}
+
+	.table {
+		thead {
+			background: $body-bg;
+
+			th {
+				border: 0;
+			}
+		}
+
+		th {
+			border: 0;
+		}
+
+		td {
+			border-top: 0;
+		}
+
+		tr {
+			border-top: 1px solid #dee2e6;
+
+			&:first-child {
+				border-top: 0;
+			}
+		}
+	}
+}
+
+.or-detail {
+	background: $body-bg;
+	border: 1px solid rgba(210, 201, 255, 0.4);
+
+	p {
+		margin-bottom: 0;
+	}
+}
+
+.ttl-amt {
+	border-top: 1px solid rgba(210, 201, 255, 0.4);
+}
+
+#scroll1 {
+	position: relative;
+	width: 600px;
+	height: 250px;
+}
+
+// #invoice,
+// .iq-customer-table,
+// .iq-tabel-data,
+// .iq-invoice-table,
+// .iq-order-table {
+// 	.row {
+// 		align-items: center;
+// 	}
+
+// 	.dataTables_wrapper {
+// 		margin-top: 0.5em !important;
+// 	}
+// }
+
+.dataTables_wrapper {
+	:first-child {
+		align-items: center !important;
+	}
+}
+
+.iq-product-table {
+	.dataTables_wrapper {
+		margin-top: 0.5em !important;
+	}
+}

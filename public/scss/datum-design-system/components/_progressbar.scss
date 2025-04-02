@@ -1,0 +1,236 @@
+.iq-progress-bar {
+	background: $light;
+	box-shadow: 0 0 0;
+	height: 6px;
+	margin: 0;
+	position: relative;
+	width: 100%;
+	@if $enable-rounded == true {
+		@include radius-mixin($border-radius);
+	}
+	>span {
+		background: $primary none repeat scroll 0 0;
+		position: relative;
+		display: block;
+		height: 100%;
+		width: 0;
+		@if $enable-rounded == true {
+			@include radius-mixin($border-radius);
+		}
+	}
+	.progress-text {
+		position: absolute;
+		right: -10px;
+		top: -25px;
+		font-size: 13px;
+		font-weight: 500;
+	}
+}
+.iq-progress-bar.iq-progress-bar-icon {
+	>span {
+		&:after {
+			content: "";
+			width: 12px;
+			height: 12px;
+			@if $enable-rounded == true {
+				@include radius-mixin($border-radius-pill);
+			}
+			background: var(--bs-gray-900);
+			border: 3px solid transparent;
+			position: absolute;
+			bottom: -3px;
+			right: 0;
+			z-index: 1;
+		}
+	}
+	>span.bg-primary {
+		&:after {
+			border-color: var(--bs-primary);
+		}
+	}
+	>span.bg-danger {
+		&:after {
+			border-color: $danger;
+		}
+	}
+	>span.bg-success {
+		&:after {
+			border-color: $success;
+		}
+	}
+	>span.bg-warning {
+		&:after {
+			border-color: $warning;
+		}
+	}
+	>span.bg-info {
+		&:after {
+			border-color: $info;
+		}
+	}
+	>span.bg-dark {
+		&:after {
+			border-color: $dark;
+		}
+	}
+}
+.iq-progress-bar {
+	.progress-text-one {
+		position: absolute;
+		right: -20px;
+		top: -27px;
+		font-size: 13px;
+		font-weight: 500;
+		background: $danger;
+		color: $white;
+		padding: 0px 5px;
+	}
+	>span.bg-primary {
+		.progress-text-one {
+			&:after {
+				border-color: $primary transparent transparent transparent;
+			}
+		}
+	}
+	>span.bg-success {
+		.progress-text-one {
+			&:after {
+				border-color: $success transparent transparent transparent;
+			}
+		}
+	}
+	>span.bg-warning {
+		.progress-text-one {
+			&:after {
+				border-color: $warning transparent transparent transparent;
+			}
+		}
+	}
+		>span.bg-orange {
+		.progress-text-one {
+			&:after {
+				border-color: $orange transparent transparent transparent;
+			}
+		}
+	}
+	>span.bg-danger {
+		.progress-text-one {
+			&:after {
+				border-color: $danger transparent transparent transparent;
+			}
+		}
+	}
+	>span.bg-dark {
+		.progress-text-one {
+			&:after {
+				border-color: $dark transparent transparent transparent;
+			}
+		}
+	}
+	>span.bg-info {
+		.progress-text-one {
+			&:after {
+				border-color: $info transparent transparent transparent;
+			}
+		}
+	}
+	// >span.bg-skyblue {
+	// 	.progress-text-one {
+	// 		&:after {
+	// 			border-color: $skyblue transparent transparent transparent;
+	// 		}
+	// 	}
+	// }
+}
+.progress-text-one {
+	position: relative;
+	&:after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+	}
+}
+
+.iq-circle-progressbar {
+	.percent {
+		font-size: 1.3rem !important;
+	}
+	svg {
+		width: 100px !important;
+		height: 100px !important;
+	}
+	margin: 0 auto;
+	width: 100px !important;
+	height: 100px !important;
+}
+// circle progressbar
+
+@keyframes progress-loading-1 {
+	0% {
+		@include transform-mixin( rotate(0deg));
+	}
+	100% {
+		@include transform-mixin( rotate(180deg));
+	}
+}
+@keyframes progress-loading-2 {
+	0% {
+		@include transform-mixin( rotate(0deg));
+	}
+	100% {
+		@include transform-mixin( rotate(80deg));
+	}
+}
+
+.progress.danger {
+	.progress-bar {
+		border-color: $danger;
+	}
+}
+.progress.warning {
+	.progress-bar {
+		border-color: $warning;
+	}
+}
+.progress.success {
+	.progress-bar {
+		border-color: $success;
+	}
+}
+.progress.info {
+	.progress-bar {
+		border-color: $info;
+	}
+}
+.progress.primary {
+	.progress-bar {
+		border-color: $primary;
+	}
+}
+.progress.orange {
+	.progress-bar {
+		border-color: $orange;
+	}
+}
+
+// Circle Progress
+
+.circle-progress-value {
+	stroke-width: 8px;
+}
+.circle-progress-circle {
+	stroke-width: 8px;
+}
+.circle-progress {
+	& > svg {
+		height: 75px;
+		width: 75px;
+	}
+}
+@each $color, $value in $theme-colors {
+	@include circle-progress-varient(".circle-progress-#{$color}", $value);
+}

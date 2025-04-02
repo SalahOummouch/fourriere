@@ -1,0 +1,58 @@
+/*!
+* Version: 1.0.0
+* Qompac Ui
+* Author: iqonic.design
+* Design and Developed by: iqonic.design
+* NOTE: This file contains the styling for Template.
+*
+*/
+
+// Configuration
+@import "./bootstrap/functions";
+// Variables
+@import "./datum-design-system/variables";
+@import "./datum-design-system/variables-dark";
+@import "./datum-design-system/variables/index";
+@import "./bootstrap/variables";
+@import "./bootstrap/variables-dark";
+@import "./bootstrap/maps";
+@import "./bootstrap/mixins";
+@import "./bootstrap/utilities";
+
+
+// qompac-ui Design System Mixin And Helper
+// @import "./qompac-ui-design-system/helper/functions";
+@import "./datum-design-system/helper/mixins";
+
+@import "./custom/page-content/common-css";
+@import "./custom/page-content/page-content";
+@import "./custom/page-content/form-data";
+
+@import "./custom/authentication";
+@import "./custom/avatars";
+@import "./custom/contact";
+@import "./custom/error";
+@import "./custom/faq";
+@import "./custom/icon";
+@import "./custom/invoice";
+@import "./custom/loding";
+@import "./custom/map";
+@import "./custom/pricing";
+@import "./custom/profile";
+// @import "./custom/subscribers";
+@import "./custom/table-treeview";
+@import "./custom/timeline";
+@import "./custom-style.scss";
+
+
+
+@import "./custom/apps/chat";
+@import "./custom/apps/todo";
+@import "./custom/apps/email";
+
+@import "./custom/dark/dark-custom";
+@import "../custom/custom";
+
+
+
+

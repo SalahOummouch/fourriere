@@ -1,0 +1,153 @@
+[data-bs-theme=dark] {
+    .text-dark {
+        color: var(--bs-white) !important;
+    }
+
+    .border-white {
+        border-color: var(--bs-border-color) !important;
+    }
+
+    .bg-white {
+        background: var(--bs-body-bg) !important;
+    }
+
+    .text-dark {
+        color: var(--bs-white) !important;
+    }
+
+    hr.hr-horizontal {
+        background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    }
+
+    .bg-light {
+        color: var(--bs-gray-900);
+        background-color: var(--bs-body-bg) !important;
+    }
+
+    .text-gray {
+        color: var(--bs-white) !important;
+    }
+
+    .dropdown-menu {
+        background-color: var(--bs-body-bg) !important;
+    }
+
+    .toast {
+        background-color: var(--bs-card-bg);
+
+        .toast-header {
+            background-color: var(--bs-body-bg);
+        }
+    }
+
+    .iq-nav-menu {
+        li {
+            .nav-link {
+                &:hover {
+                    color: var(--bs-white);
+                }
+            }
+        }
+    }
+
+    .iq-sidebar {
+        background-color: var(--bs-gray-900);
+    }
+
+    .change-mode {
+        .custom-switch.custom-switch-icon {
+            label.form-check-label {
+                .switch-icon-right {
+                    color: var(--bs-body-color);
+                    z-index: 9;
+                }
+
+                &:after {
+                    border-radius: 0 4px 5px 0;
+                    left: 10px;
+                }
+            }
+
+        }
+    }
+}
+
+
+
+////////////////////////////......D A R K   C U S T O M......////////////////////////////
+
+// homepage chart
+.apexcharts-xaxistooltip-bottom {
+    background-color: var(--bs-gray-900) !important;
+    color: var(--bs-card-color) !important;
+}
+
+// ui group-list
+[data-bs-theme=dark] .list-group-item-action:hover {
+    background-color: #0000 !important;
+    color: #fff !important;
+}
+
+[data-bs-theme=dark] .fc-unthemed .fc-list-empty {
+    background-color: gray !important;
+    color: var(--bs-card-color) !important;
+}
+
+// breadcrumb
+[data-bs-theme=dark] nav[aria-label="breadcrumb"] {
+    .breadcrumb-item::before {
+        filter: invert(1);
+    }
+}
+
+.choices[data-type*=select-one]:after {
+    filter: invert(1);
+}
+
+[data-bs-theme=dark] button.choices__button {
+    filter: invert(1);
+}
+
+[data-bs-theme=dark] .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+    background-color: var(--bs-gray-900) !important;
+}
+
+[data-bs-theme=dark] {
+
+    #apex-basic,
+    #apex-candlestick-chart,
+    #apex-bubble-chart,
+    #radar-multiple-chart {
+
+        .apexcharts-title-text,
+        .apexcharts-yaxis {
+            fill: #ffffff !important;
+        }
+    }
+}
+
+.apexcharts-toolbar .apexcharts-menu {
+    background: var(--bs-gray-900) !important;
+    color: var(--bs-body-color) !important;
+    border-color: var(--bs-body-color) !important;
+}
+
+[data-bs-theme=dark] .apexcharts-menu .apexcharts-menu-item:hover {
+    // color: #000 !important;
+}
+
+[data-bs-theme=dark] .basic-table-text {
+
+    th,
+    td {
+        color: #ffffff !important;
+    }
+}
+
+.custom-dropdown-item:focus {
+    background-color: rgba(51, 120, 255, .1) !important;
+}
+
+.dropdown-menu {
+    box-shadow: 0 0px 15px -6px var(--bs-body-color) !important;
+}

@@ -1,0 +1,252 @@
+.scroller {
+	overflow-y: auto;
+	scrollbar-color: $primary rgba(var(--bs-primary-rgb), 0.1);
+	scrollbar-width: thin;
+	&::-webkit-scrollbar-thumb {
+		background-color: $primary;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: rgba(var(--bs-primary-rgb), 0.1) ;
+	}
+	&::-moz-scrollbar-thumb {
+		background-color: $primary;
+	}
+	&::-moz-scrollbar-track {
+		background-color: rgba(var(--bs-primary-rgb), 0.1) ;
+	}
+}
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+	border-radius: 20px;
+}
+::-moz-scrollbar {
+	width: 4px;
+	height: 4px;
+	border-radius: 20px;
+}
+::-webkit-scrollbar-track {
+	background: $border-color;
+	border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+	background: $secondary;
+	border-radius: 20px;
+	&:hover {
+		background: $dark;
+		border-radius: 20px;
+	}
+}
+::-moz-scrollbar-thumb {
+	background: $secondary;
+	border-radius: 20px;
+	&:hover {
+		background: $dark;
+		border-radius: 20px;
+	}
+}
+::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+	@if $enable-rounded == true {
+		@include radius-mixin($border-radius);
+	}
+}
+::-moz-scrollbar {
+	width: 4px;
+	height: 4px;
+	@if $enable-rounded == true {
+		@include radius-mixin($border-radius);
+	}
+}
+.scrollbar-thumb {
+	width: 4px !important;
+}
+.scrollbar-track-y {
+	width: 4px !important;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+button:focus{
+	outline: none;
+}
+.line-height {
+    line-height: normal;
+}
+
+:focus{
+	outline: none;
+}
+.text-break{
+	word-break: break-all;
+}
+.border-none{
+	border:none!important;
+}
+
+code{
+	color: var(--bs-danger);
+}
+
+
+.change-mode{
+	margin-right: 2.5rem;
+	.custom-switch.custom-switch-icon{
+		position: relative;
+		.form-check-input {
+			&:checked{
+				background-color: transparent;
+				border-color: transparent;
+			}
+			&:checked + .form-check-label {
+				&:after {
+					transform: translateX(1.6rem);
+					position: absolute;
+					content: "";
+				}
+				&:before{
+					background-color: var(--bs-card-bg);
+					position: absolute;
+					content: "";
+				}
+			}
+			height: 100%;			
+		}
+		label.form-check-label{
+			height: 24px;
+			&:after{
+				top: 0;
+				left: 0;
+				width: 35px;
+				height: 30px;
+				@if $enable-rounded == true {
+					@include radius-mixin(5px 0 0 5px);
+				}
+				background-color: #0c2556;
+				border-color: #0c2556;
+				z-index: 0;
+				position: absolute;
+				content: "";
+			}
+			&:before{
+				width: 70px;
+				height: 30px;
+				top:0;
+				left:0;
+				position: absolute;
+				content: "";
+				background-color: var(--bs-gray-900);
+				border: 1px solid #0c2556;
+				@include radius-mixin($border-radius);				
+			}
+			.switch-icon-left{
+				top:3px;
+				z-index: 1;
+				left: 8px;
+				position: absolute;
+				i{
+					font-size: 12px;
+				}
+				color: var(--bs-white);
+			}
+			.switch-icon-right{
+				color: #0c2556;
+				right:-23px;
+				top:3px;
+				position: absolute;
+				i{
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}
+
+
+.scroll{
+    max-height: 200px; 
+    overflow-y: auto;
+
+}
+.search-bar{
+    height: 2rem;
+    width: 100%;
+    outline: none; 
+    border: none; 
+    font-size: 14px; 
+    color: #324253;
+}
+
+g[aria-describedby="id-22-description"] {
+    stroke: none;
+}
+
+@media (min-width:1400px) {
+	.container {
+		max-width: 1300px;
+	}
+	.container-lg {
+		max-width: 1300px;
+	}
+	.container-md {
+		max-width: 1300px;
+	}
+	.container-sm {
+		max-width: 1300px;
+	}
+	.container-xl {
+		max-width: 1300px;
+	}
+}
+
+@media (max-width: 767px){
+	.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    display: block;
+    overflow-x: auto;
+}
+.tree{
+	display: inline-table;
+}
+
+}
+
+
+.svg-white {
+	fill: $white;
+}
+.svg-danger {
+	fill: rgba($danger, .4);
+}
+.svg-success {
+	fill: rgba($success, .4);
+}
+.svg-primary {
+	fill: rgba($primary , .4);
+}
+.svg-blue {
+	fill: rgba($blue-300, .4);
+}
+.svg-warning {
+	fill: rgba($warning, .4);
+}
+.svg-info {
+	fill: rgba($info, .4);
+}
+.fill-none {
+	fill: none !important;
+}
+
+.header-action{
+	i{
+		cursor: pointer;
+	}
+}
+a{
+    color: var(--#{$variable-prefix}primary);
+}

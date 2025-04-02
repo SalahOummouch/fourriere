@@ -1,0 +1,42 @@
+.iq-login{
+    padding: 0 2px;
+}
+
+.datepicker-cell.focused:not(.selected){
+    background-color:rgb(184.72,189.74,199.78) !important;
+}
+.datepicker-cell:not(.disabled):hover{
+    background:#3378ff !important;
+    color: #fff !important;
+}
+
+[data-bs-theme="dark"]{
+	select option{
+		background: #6c757d !important;
+	}
+
+    .apexcharts-yaxistooltip{
+        border: 1px solid #90a4ae !important;
+        background-color: var(--bs-gray-900) !important;
+        color: white !important;
+    }
+
+}
+
+
+    .datepicker-grid {
+        width: 17.75rem !important;
+    }
+
+
+[data-bs-theme=dark] .custom-text-dark{
+    color: var(--bs-white) !important;
+    }
+
+.iq-arrow.sorting_asc:before ,.iq-arrow.sorting_asc:after, .iq-arrow.sorting_desc:after,.iq-arrow.sorting_desc:before{
+	left: 9.6rem !important;
+}
+.needs-validation.was-validated .col-12 {
+    margin-top: 45px !important;
+}
+

@@ -1,0 +1,28 @@
+
+
+.fc-unthemed {
+	.fc-divider {
+		 background:var(--bs-gray-900);
+	}
+	.fc-popover {
+		.fc-header {
+			 background:var(--bs-gray-900);
+		}
+	}
+	.fc-list-heading {
+		td {
+			 background:var(--bs-gray-900);
+		}
+	}
+    td.fc-today {
+        background:var(--bs-gray-900);
+    }
+    .fc-list-item {
+		&:hover {
+			td {
+                background:var(--bs-gray-900);
+			}
+		}
+	}
+}
+

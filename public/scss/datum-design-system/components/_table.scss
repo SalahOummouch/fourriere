@@ -1,0 +1,107 @@
+.table {
+    thead {
+        white-space: nowrap;
+        tr {
+            background-color: var(--bs-body-bg);
+            th {
+                text-transform: capitalize;
+                letter-spacing: $table-th-letter-spacing;
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+               vertical-align: middle;
+                .iq-sub-label{
+                    margin-bottom: 0.125rem;
+                }
+            }
+        }
+    }
+    &.table-dark{
+        tbody {
+            tr {
+                td {
+                   color: var(--bs-body-bg);
+                   vertical-align: middle;
+                }
+            }
+        }
+    }
+    overflow: hidden; 
+}
+.table{
+    .table-color-heading {
+        background-color: var(--bs-primary-bg-subtle);
+    }
+} 
+
+
+
+.table-primary{
+    --bs-table-bg: var(--bs-primary-bg-subtle);
+}
+
+.table-responsive{
+     /* Scroll Track */
+     &::-webkit-scrollbar-track {
+        background: $body-bg;
+        border-radius: 20px;
+    }
+
+    /* Scroll Handle */
+    &::-webkit-scrollbar-thumb {
+        background: rgba($dark, 0.2);
+        border-radius: 20px;
+        transition: all 400ms ease;
+        cursor: pointer;
+    }
+
+    /* Scroll Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgba($dark, 0.2);
+        border-radius: 20px;
+        transition: all 400ms ease;
+        cursor: pointer;
+    }
+    .dataTables_wrapper{
+        .row{
+            .dataTables_length{
+                padding-left: $spacer * 1.5;
+            }
+            .dataTables_filter, .dataTables_paginate{
+                padding-right: $spacer * 1.5;
+                margin-bottom: $spacer;
+                padding-top:.85em;
+            }
+            .dataTables_info{
+                padding-left: $spacer * 1.5;
+            }
+        }
+    }
+    @include media-breakpoint-down(md) {
+        .dataTables_wrapper{
+            .row{
+                .dataTables_length{
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    }
+}
+
+.table-dark{
+    td {
+        color: $body-bg !important;
+        vertical-align: middle;
+    }
+}
+
+thead, tbody, tfoot, tr, td, th{
+    white-space: nowrap;
+}
+
+.dataTables_wrapper {
+		margin-top: 1.5em;
+}

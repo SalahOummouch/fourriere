@@ -1,0 +1,14 @@
+.ql-snow {
+	.ql-stroke {
+		stroke: var(--bs-body-color);
+	}
+	.ql-picker.ql-expanded {
+		.ql-picker-label {
+			color:  var(--bs-body-color);
+		}
+	}
+    .ql-picker{
+        color:  var(--bs-body-color);
+
+    }
+}

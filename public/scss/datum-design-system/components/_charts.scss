@@ -1,0 +1,85 @@
+.apexcharts-legend.position-bottom .apexcharts-legend-series,
+foreignObject {
+	display: none !important;
+}
+
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	z-index: 2;
+}
+
+.apexcharts-tooltip.apexcharts-theme-light {
+	background: var(--bs-gray-900) !important;
+}
+
+.apexcharts-svg {
+	.apexcharts-yaxis-texts-g {
+		text {
+			fill: $secondary;
+		}
+	}
+
+	.apexcharts-xaxis-texts-g {
+		text {
+			fill: $secondary;
+		}
+	}
+}
+
+
+@media (max-width: 1024px) {
+	#chart-map-column-04 {
+		height: 385px !important;
+	}
+
+	#chart-apex-column-02 {
+		height: 150px !important;
+	}
+
+	// #chart-apex-column-03 {
+	// 	height: 300px !important;
+	// }
+}
+
+// @media (max-width: 768px) {
+// 	#chart-apex-column-02 {
+// 		height: 205px !important;
+// 	}
+// }
+
+#chart-map-column-04 {
+	height: 400px;
+}
+
+#chart-apex-column-02 {
+	min-height: 50px !important;
+}
+
+#chart-apex-column-03 {
+	min-height: 250px !important;
+}
+
+#chart-apex-column-01 {
+	height: 280px
+}
+
+#chart-apex-column-01 .apexcharts-svg {
+
+	.apexcharts-yaxis-texts-g,
+	.apexcharts-xaxis-texts-g {
+		text {
+			fill: unset !important;
+		}
+	}
+}
+
+[data-bs-theme="dark"] {
+	#chart-apex-column-01 .apexcharts-svg {
+
+		.apexcharts-yaxis-texts-g,
+		.apexcharts-xaxis-texts-g {
+			text {
+				fill: white !important;
+			}
+		}
+	}
+}
