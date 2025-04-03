@@ -53,7 +53,7 @@ class ChercherEnFouriere extends Command
                         $plaque->update([
                             'status' => !empty($data['en_fouriere']) ? "en_fouriere" : "libre",
                             'adresse' => !empty($data['en_fouriere']) ? $data->adresse : "",
-                            'adresse' => !empty($data['en_fouriere']) ? $data->telephone : "",
+                            'phone_number' => !empty($data['en_fouriere']) ? $data->telephone : "",
                             'date_recherche' => now() // Met à jour la date de la dernière recherche
                         ]);
                     } else {

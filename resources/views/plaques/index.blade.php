@@ -109,7 +109,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ $plaque->date_recherche != null ? \Carbon\Carbon::parse($plaque->date_recherche)->format('d M Y') : "" }}</td>
+                                                    <td>{{ $plaque->date_recherche != null ? \Carbon\Carbon::parse($plaque->date_recherche)->format('d M Y (H:i:s)') : "" }}</td>
                                                     <td>
                                                         <p class="mb-0 text-{{ $plaque->status === 'en_fourrière' ? 'danger' : ($plaque->status === 'en_cours' ? 'warning' : 'success' ) }} fw-bold d-flex justify-content-start align-items-center">
 
