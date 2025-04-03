@@ -48,10 +48,7 @@
                                     <h5 class="mb-0 fw-bold">336</h5>
                                     <p class="mb-0 ms-3 text-danger fw-bold">-19%</p>
                                 </div>
-                                <div class="mt-3">
-                                    <p class="text-secondary">Alertes récentes :</p>
-
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -69,7 +66,7 @@
                                     <h5 class="mb-0 fw-bold">45</h5>
                                     <p class="mb-0 ms-3 text-danger fw-bold">-10.8%</p>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
