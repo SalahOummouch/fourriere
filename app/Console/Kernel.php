@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Exécuter la commande chaque heure
-        $schedule->command('app:chercher-en-fouriere')->everyFiveMinutes();
+        $schedule->command('app:chercher-en-fouriere')->everyMinute()->withoutOverlapping();
     }
 
     /**

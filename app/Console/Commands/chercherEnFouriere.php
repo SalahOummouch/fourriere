@@ -28,7 +28,7 @@ class ChercherEnFouriere extends Command
      */
     public function handle()
     {
-        $plaques = Plaque::all();
+        $plaques = Plaque::orderByRaw('date_recherche IS NOT NULL, date_recherche ASC')->get();
 
         foreach ($plaques as $plaque) {
             // Vérifie si date_recherche est NULL ou si l'intervalle est respecté
@@ -52,6 +52,8 @@ class ChercherEnFouriere extends Command
                         $data = $response->json();
                         $plaque->update([
                             'status' => !empty($data['en_fouriere']) ? "en_fouriere" : "libre",
+                            'adresse' => !empty($data['en_fouriere']) ? $data->adresse : "",
+                            'adresse' => !empty($data['en_fouriere']) ? $data->telephone : "",
                             'date_recherche' => now() // Met à jour la date de la dernière recherche
                         ]);
                     } else {
