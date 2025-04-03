@@ -36,7 +36,7 @@ class ChercherEnFouriere extends Command
 
             if (!$plaque->date_recherche) {
                 $doVerification = true;
-            } elseif (!empty($plaque->frequence_verification_status) &&
+            } elseif (empty($plaque->frequence_verification_status) &&
                       now()->diffInMinutes($plaque->date_recherche) >= $plaque->frequence_verification_status) {
                 $doVerification = true;
             }
