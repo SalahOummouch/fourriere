@@ -34,9 +34,9 @@ class ChercherEnFouriere extends Command
             // Vérifie si date_recherche est NULL ou si l'intervalle est respecté
             $doVerification = false;
 
-            if (!$plaque->date_recherche) {
+            if ($plaque->date_recherche == NULL) {
                 $doVerification = true;
-            } elseif (empty($plaque->frequence_verification_status) &&
+            } elseif (!empty($plaque->frequence_verification_status) &&
                       now()->diffInMinutes($plaque->date_recherche) >= $plaque->frequence_verification_status) {
                 $doVerification = true;
             }
