@@ -30,7 +30,10 @@ Route::get('historiques/{plaque}', [HistoriqueController::class, 'index']);
 Route::get('plaques/relance/{plaque}', [PlaqueController::class, 'relance']);
 
 Route::get('/accounts', [AccountController::class, 'index'])->name('accounts.index');
-
+Route::put('/accounts/{user}/toggle-status', [AccountController::class, 'toggleStatus'])->name('accounts.toggleStatus');
+Route::get('/accounts/{user}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
+Route::put('/accounts/{user}', [AccountController::class, 'update'])->name('accounts.update');
+Route::delete('/accounts/{user}', [AccountController::class, 'destroy'])->name('accounts.destroy');
 
 
 

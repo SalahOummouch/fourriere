@@ -134,21 +134,22 @@
                                                     </td>
                                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                                      <td>
-                                                        <form action="" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="btn btn-sm {{ $user->status == 'active' ? 'btn-danger' : 'btn-success' }}">
-                                                                {{ $user->status == 'active' ? 'Désactiver' : 'Activer' }}
-                                                            </button>
-                                                        </form>
+                                                       <form action="{{ route('accounts.toggleStatus', $user->id) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button type="submit" class="btn btn-sm {{ $user->status == 'active' ? 'btn-danger' : 'btn-success' }}">
+                                                            {{ $user->status == 'active' ? 'Désactiver' : 'Activer' }}
+                                                        </button>
+                                                    </form>
 
-                                                        <a href="{" class="btn btn-sm btn-primary">Modifier</a>
+                                                    <a href="{{ route('accounts.edit', $user->id) }}" class="btn btn-sm btn-primary">Modifier</a>
 
-                                                        <form action="" method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
-                                                        </form>
+                                                    <form action="{{ route('accounts.destroy', $user->id) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
+                                                    </form>
+
                                                     </td>
                                                 </tr>
                                             @endforeach
