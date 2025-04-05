@@ -23,8 +23,6 @@ class CreateUserProfilesTable extends Migration
             $table->string('country')->nullable();
             $table->string('state')->nullable();
             $table->string('city')->nullable();
-            $table->bigInteger('pin_code')->nullable();
-            $table->string('facebook_url')->nullable();
 
             $table->foreignId('user_id')->cascade('delete');
             $table->timestamps();

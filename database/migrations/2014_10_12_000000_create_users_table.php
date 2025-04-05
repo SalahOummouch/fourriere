@@ -27,6 +27,8 @@ class CreateUsersTable extends Migration
             $table->integer('frequence_verification_status')->default(1440);
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('company_id')->nullable(); 
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
         });
     }
 
