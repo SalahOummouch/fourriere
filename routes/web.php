@@ -34,7 +34,7 @@ Route::put('/accounts/{user}/toggle-status', [AccountController::class, 'toggleS
 Route::get('/accounts/{user}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
 Route::put('/accounts/{user}', [AccountController::class, 'update'])->name('accounts.update');
 Route::delete('/accounts/{user}', [AccountController::class, 'destroy'])->name('accounts.destroy');
-Route::put('/users/{user}/update-frequence', [UserController::class, 'updateFrequence'])->name('accounts.update.frequence');
+Route::put('/users/{user}/update-frequence', [AccountController::class, 'updateFrequence'])->name('accounts.update.frequence');
 
 
 
