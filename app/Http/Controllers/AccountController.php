@@ -46,16 +46,19 @@ class AccountController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Utilisateur supprimé.');
     }
     public function updateFrequence(Request $request, User $user)
-{
-    $request->validate([
-        'frequence_verification_status' => 'required|in:60,120,300,720,1440,10080',
-    ]);
+    {
+        // Validation de la fréquence
+        $request->validate([
+            'frequence_verification_status' => 'required|in:60,120,300,720,1440,10080',
+        ]);
 
+        // Conversion de la fréquence en entier et mise à jour
+        $user->frequence_verification_status = (int) $request->frequence_verification_status;
+        $user->save();
 
-    $user->frequence_verification_status =(int) $request->frequence_verification_status;
-    $user->save();
+        // Redirection vers la page des comptes
+        return redirect()->route('accounts.index')->with('success', 'Fréquence de vérification mise à jour avec succès.');
+    }
 
-    return redirect()->route('users.index')->with('success', 'Fréquence de vérification mise à jour avec succès.');
-}
 
 }
