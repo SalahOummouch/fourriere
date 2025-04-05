@@ -48,10 +48,11 @@ class AccountController extends Controller
     public function updateFrequence(Request $request, User $user)
 {
     $request->validate([
-        'frequence_verification_status' => 'required|in:60,120,300,720,1440,10080',  // validation des valeurs possibles
+        'frequence_verification_status' => 'required|in:60,120,300,720,1440,10080',
     ]);
 
-    $user->frequence_verification_status = $request->frequence_verification_status;
+
+    $user->frequence_verification_status =(int) $request->frequence_verification_status;
     $user->save();
 
     return redirect()->route('users.index')->with('success', 'Fréquence de vérification mise à jour avec succès.');
