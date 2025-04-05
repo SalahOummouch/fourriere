@@ -52,7 +52,7 @@ class AccountController extends Controller
             'frequence_verification_status' => 'required|in:60,120,300,720,1440,10080',
         ]);
 
-        $user->update($request->all());
+        $user->update($request->frequence_verification_status);
 
         // Redirection vers la page des comptes
         return redirect()->route('accounts.index')->with('success', 'Fréquence de vérification mise à jour avec succès.');
