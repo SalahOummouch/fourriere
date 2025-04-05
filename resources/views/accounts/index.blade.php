@@ -91,6 +91,9 @@
                                                     <label class="text-muted mb-0">Status</label>
                                                 </th>
                                                 <th scope="col">
+                                                    <label class="text-muted mb-0">frequence de recherche</label>
+                                                </th>
+                                                <th scope="col">
                                                     <label class="text-muted mb-0">Date de création</label>
                                                 </th>
                                                 <th scope="col" class="text-start">
@@ -131,6 +134,23 @@
                                                                 </svg></small>Désactivé
                                                             </p>
                                                         @endif
+                                                    </td>
+                                                                                                        <td>
+                                                        <form action="{{ route('accounts.update.frequence', $user->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="d-flex flex-column">
+                                                                <select class="form-select" name="frequence_verification_status">
+                                                                    <option value="60" {{ $user->frequence_verification_status == 60 ? 'selected' : '' }}>1 Heure</option>
+                                                                    <option value="120" {{ $user->frequence_verification_status == 120 ? 'selected' : '' }}>2 Heures</option>
+                                                                    <option value="300" {{ $user->frequence_verification_status == 300 ? 'selected' : '' }}>5 Heures</option>
+                                                                    <option value="720" {{ $user->frequence_verification_status == 720 ? 'selected' : '' }}>12 Heures</option>
+                                                                    <option value="1440" {{ $user->frequence_verification_status == 1440 ? 'selected' : '' }}>1 Jour</option>
+                                                                    <option value="10080" {{ $user->frequence_verification_status == 10080 ? 'selected' : '' }}>1 Semaine</option>
+                                                                </select>
+                                                                <button type="submit" class="btn btn-warning mt-2">Modifier</button>
+                                                            </div>
+                                                        </form>
                                                     </td>
                                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                                      <td>
