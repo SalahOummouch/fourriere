@@ -1,4 +1,3 @@
-@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -11,4 +10,3 @@
             <button type="submit" class="btn btn-danger">Déconnexion</button>
         </form>
     </div>
-@endsection
