@@ -35,7 +35,7 @@ class ChercherEnFouriere extends Command
 
         foreach ($plaques as $plaque) {
             // Vérifie si date_recherche est NULL ou si l'intervalle est respecté
-            $doVerification = true;
+            $doVerification = false;
 
             if ($plaque->date_recherche == NULL) {
                 $doVerification = true;
