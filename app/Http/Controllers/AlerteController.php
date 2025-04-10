@@ -12,7 +12,17 @@ class AlerteController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        if ($user->user_type !== 'admin') {
+            $alertes = Alerte::where('user_id', $user->id)
+                ->with(['user', 'plaque'])
+                ->get();
+        } else {
+            $alertes = Alerte::with(['user', 'plaque'])->get();
+        }
+
+        return view('alerte.index', compact('alertes'));
     }
 
     /**

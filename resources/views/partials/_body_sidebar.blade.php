@@ -47,7 +47,7 @@
                     <span class="text-uppercase small fw-bold">Alerts & Notifications</span>
                 </li>
                 <li class="sidebar-layout">
-                    <a href="/" class="svg-icon">
+                    <a href="/alerte" class="svg-icon">
                         <i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -57,7 +57,7 @@
                         <span class="ms-2">Historique des alertes</span>
                     </a>
                 </li>
-                <li class="sidebar-layout">
+                {{-- <li class="sidebar-layout">
                     <a href="/" class="svg-icon">
                         <i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
@@ -67,9 +67,9 @@
                         </i>
                         <span class="ms-2">Paramètres des alertes</span>
                     </a>
-                </li>
+                </li> --}}
                 
-                @if(auth()->user() && auth()->user()->role === 'admin')
+            @if(auth()->check() && auth()->user()->user_type == 'admin')
 
                 <li class="px-3 pt-3 pb-2">
                     <span class="text-uppercase small fw-bold">Gestion des utilisateurs</span>

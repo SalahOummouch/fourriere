@@ -1,5 +1,4 @@
 <x-app-layout>
-@if(auth()->user() && auth()->user()->role === 'admin')
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -32,7 +31,7 @@
                     <div class="create-workform">
                         <div class="d-flex flex-wrap align-items-center justify-content-between">
                             <div class="modal-product-search d-flex flex-wrap">
-                                <form class="me-3 position-relative" method="GET" action="">
+                                <form class="me-3 position-relative" method="GET" action="{{ route('accounts.index') }}">
                                     <div class="form-group mb-0 d-flex">
                                         <input type="text" class="form-control me-2" name="search" placeholder="Chercher un utilisateur">
                                         <select class="form-select me-2" name="status">
@@ -44,7 +43,7 @@
                                         <select class="form-select" name="user_type">
                                             <option value="">Tous les types</option>
                                             <option value="admin">Admin</option>
-                                            <option value="editor">Éditeur</option>
+                                            <option value="editor">Entreprise</option>
                                             <option value="user">Utilisateur</option>
                                         </select>
                                         <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
@@ -143,6 +142,7 @@
                                                             @method('PUT')
                                                             <div class="d-flex flex-column">
                                                                 <select class="form-select" name="frequence_verification_status">
+                                                                    <option value="30" {{ $user->frequence_verification_status == 30 ? 'selected' : '' }}>30 min</option>
                                                                     <option value="60" {{ $user->frequence_verification_status == 60 ? 'selected' : '' }}>1 Heure</option>
                                                                     <option value="120" {{ $user->frequence_verification_status == 120 ? 'selected' : '' }}>2 Heures</option>
                                                                     <option value="300" {{ $user->frequence_verification_status == 300 ? 'selected' : '' }}>5 Heures</option>
@@ -185,5 +185,5 @@
             </div>
         </div>
     </div>
-@endif
+
 </x-app-layout>

@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaqueController;
 use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AlerteController;
 use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\Security\RolePermission;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-
+Route::resource('/alerte', AlerteController::class);
 
 Route::get('/scrape-and-solve/{license_plate}', [CaptchaController::class, 'scrapeAndSolve']);
 Route::resource('plaques', PlaqueController::class);

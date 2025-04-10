@@ -10,24 +10,44 @@ use Illuminate\Support\Str;
 
 class AccountController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('username', 'like', '%' . $request->search . '%')
+                ->orWhere('email', 'like', '%' . $request->search . '%')
+                ->orWhere('first_name', 'like', '%' . $request->search . '%')
+                ->orWhere('last_name', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->filled('user_type')) {
+            $query->where('user_type', $request->user_type);
+        }
+
+        $users = $query->orderBy('created_at', 'desc')->get();
+
         return view('accounts.index', compact('users'));
-    }
-    public function create()
-    {
+        }
+        public function create()
+        {
 
-        return view('accounts.create');
-    }
+            return view('accounts.create');
+        }
 
-    public function toggleStatus(User $user)
-    {
-        $user->status = $user->status === 'active' ? 'inactive' : 'active';
-        $user->save();
+        public function toggleStatus(User $user)
+        {
+            $user->status = $user->status === 'active' ? 'inactive' : 'active';
+            $user->save();
 
-        return redirect()->route('accounts.index')->with('success', 'Statut mis à jour avec succès.');
-    }
+            return redirect()->route('accounts.index')->with('success', 'Statut mis à jour avec succès.');
+        }
 
     public function edit(User $user)
     {
@@ -57,7 +77,7 @@ class AccountController extends Controller
     {
         // Validation de la fréquence
         $request->validate([
-            'frequence_verification_status' => 'required|in:60,120,300,720,1440,10080',
+            'frequence_verification_status' => 'required|in:30, 60,120,300,720,1440,10080',
         ]);
 
         $user->update($request->all());
