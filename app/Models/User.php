@@ -65,4 +65,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $this->belongsTo(Company::class);
     }
+    // In app/Models/User.php
+
+public function alertes()
+{
+    return $this->hasMany(Alerte::class);
+}
+
 }

@@ -17,4 +17,11 @@ class Alerte extends Model
     public function plaque() {
         return $this->belongsTo(Plaque::class);
     }
+    // In app/Models/Alerte.php
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
