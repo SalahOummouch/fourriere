@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use App\Models\Plaque;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VehiculeEnFourriereNotification;
+use App\Models\Alerte; // Assurez-vous d'ajouter cette importation
 
 class ChercherEnFouriere extends Command
 {
@@ -50,11 +53,35 @@ class ChercherEnFouriere extends Command
 
                     if ($response->successful()) {
                         $data = $response->json();
+                        $isInFourriere = !empty($data['en_fouriere']);
+                        
+                        // Si le véhicule était hors fourrière et devient en fourrière
+                        if ($isInFourriere && $plaque->status != 'en_fouriere') {
+                            // Enregistrer l'alerte même si l'e-mail échoue
+                            Alerte::create([
+                                'plaque_id' => $plaque->id,
+                                'user_id' => $plaque->user_id,
+                                'message' => 'Votre véhicule avec la plaque ' . $plaque->numero_plaque . ' est maintenant en fourrière. Adresse : ' . $plaque->adresse . ' Téléphone : ' . $plaque->phone_number . '.'
+                            ]);
+
+                            // Envoi du mail à l'utilisateur pour notifier que le véhicule est en fourrière
+                            if ($plaque->user && filter_var($plaque->user->email, FILTER_VALIDATE_EMAIL)) {
+                                try {
+                                    Mail::to($plaque->user->email)->send(new VehiculeEnFourriereNotification($plaque));
+                                } catch (\Exception $e) {
+                                    Log::error('Erreur lors de l\'envoi de l\'email', [
+                                        'plaque' => $plaque->numero_plaque,
+                                        'error' => $e->getMessage()
+                                    ]);
+                                }
+                            }
+                        }
+
                         $plaque->update([
-                            'status' => !empty($data['en_fouriere']) ? "en_fouriere" : "libre",
-                            'adresse' => !empty($data['en_fouriere']) ? $data->adresse : "",
-                            'phone_number' => !empty($data['en_fouriere']) ? $data->telephone : "",
-                            'date_recherche' => now() // Met à jour la date de la dernière recherche
+                            'status' => $isInFourriere ? "en_fouriere" : "libre",
+                            'adresse' => $isInFourriere ? $data['adresse'] : "",
+                            'phone_number' => $isInFourriere ? $data['telephone'] : "",
+                            'date_recherche' => now() 
                         ]);
                     } else {
                         Log::error('Échec de la requête HTTP', [

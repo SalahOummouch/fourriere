@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\HomeController;
@@ -37,6 +38,8 @@ Route::put('/accounts/{user}', [AccountController::class, 'update'])->name('acco
 Route::delete('/accounts/{user}', [AccountController::class, 'destroy'])->name('accounts.destroy');
 Route::put('/users/{user}/update-frequence', [AccountController::class, 'updateFrequence'])->name('accounts.update.frequence');
 Route::post('/accounts', [AccountController::class, 'store'])->name('accounts.store');
+
+Route::get('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
 
 
 

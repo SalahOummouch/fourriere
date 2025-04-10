@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('alertes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('plaque_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->text('message');
             $table->timestamps();
         });
