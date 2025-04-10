@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\AccountController;
@@ -7,36 +8,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PlaqueController;
 use App\Http\Controllers\HistoriqueController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application.
-| These routes are loaded by the RouteServiceProvider within a group
-| which contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Include authentication routes
-require __DIR__ . '/auth.php';
-
-// General routes accessible without authentication
-Route::get('/scrape-and-solve/{license_plate}', [CaptchaController::class, 'scrapeAndSolve']);
-
-// Routes that require authentication
-Route::middleware('auth')->group(function () {
+// Routes qui nécessitent une authentification
+Route::middleware(['auth', 'check_status'])->group(function () {
     
-    // Check user status and redirect if inactive
-    $user = Auth::user();
-    if ($user && $user->status !== 'active') {
-        Route::any('/{any}', function () {
-            return view("inactive");
-        });
-    }
-
     // Plaque routes
     Route::resource('plaques', PlaqueController::class);
     Route::get('historiques/{plaque}', [HistoriqueController::class, 'index']);
@@ -54,9 +29,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [AccountController::class, 'store'])->name('store');
     });
 
-    // Email sending route
-    Route::get('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
-
     // Dashboard route
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -71,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });
 
-// Auth pages routes (No authentication required)
+// Routes publiques (authentification non requise)
 Route::prefix('auth')->group(function () {
     Route::get('logins', [HomeController::class, 'login'])->name('logins');
     Route::get('registers', [HomeController::class, 'registers'])->name('registers');
