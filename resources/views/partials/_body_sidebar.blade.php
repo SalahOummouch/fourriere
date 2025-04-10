@@ -71,6 +71,7 @@
                 <li class="px-3 pt-3 pb-2">
                     <span class="text-uppercase small fw-bold">Gestion des utilisateurs</span>
                 </li>
+                @if(auth()->user() && auth()->user()->role === 'admin')
                 <li class="sidebar-layout">
                     <a href="/accounts" class="svg-icon">
                         <i>
@@ -82,6 +83,7 @@
                         <span class="ms-2">Clients & entreprises</span>
                     </a>
                 </li>
+            @endif
             </ul>
         </nav>
     </div>
