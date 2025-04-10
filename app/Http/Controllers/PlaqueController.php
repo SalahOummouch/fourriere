@@ -41,18 +41,25 @@ class PlaqueController extends Controller
      */
     public function store(Request $request)
     {
-        $numero_plaque = $request->plaqueNumber;
+        $request->validate([
+            'plaqueNumbers' => 'required|array',
+            'plaqueNumbers.*' => 'required|string|max:255'
+        ]);
+    
         $user_id = Auth::id(); // Récupère l'ID de l'utilisateur connecté
         $adresse = "";
-
-        Plaque::create([
-            'numero_plaque' => $numero_plaque,
-            'user_id' => $user_id,
-            'adresse' => $adresse,
-        ]);
-
-        return redirect()->route('plaques.index')->with('success', 'Plaque ajoutée avec succès.');
+    
+        foreach ($request->plaqueNumbers as $numero_plaque) {
+            Plaque::create([
+                'numero_plaque' => $numero_plaque,
+                'user_id' => $user_id,
+                'adresse' => $adresse,
+            ]);
+        }
+    
+        return redirect()->route('plaques.index')->with('success', 'Plaques ajoutées avec succès.');
     }
+    
 
 
     /**
