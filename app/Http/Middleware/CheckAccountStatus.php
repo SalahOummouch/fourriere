@@ -21,7 +21,7 @@ class CheckAccountStatus
 
         // Si l'utilisateur n'est pas actif, redirige vers la page inactive
         if ($user && $user->status !== 'active') {
-            return view('inactive'); // Vue inactive si compte désactivé
+            return response()->view('inactive'); // Vue inactive si compte désactivé
         }
 
         return $next($request);
