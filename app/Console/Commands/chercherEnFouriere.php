@@ -67,7 +67,7 @@ class ChercherEnFouriere extends Command
                             // Envoi du mail à l'utilisateur pour notifier que le véhicule est en fourrière
                             if ($plaque->user && filter_var($plaque->user->email, FILTER_VALIDATE_EMAIL)) {
                                 try {
-                                    Mail::to($plaque->user->email)->send(new VehiculeEnFourriereNotification($plaque));
+                                    // Mail::to($plaque->user->email)->send(new VehiculeEnFourriereNotification($plaque));
                                 } catch (\Exception $e) {
                                     Log::error('Erreur lors de l\'envoi de l\'email', [
                                         'plaque' => $plaque->numero_plaque,
