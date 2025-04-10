@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     // Check user status and redirect if inactive
     $user = Auth::user();
     if ($user && $user->status !== 'active') {
-        Route::get('/', function () {
+        Route::any('/{any}', function () {
             return view("inactive");
         });
     }
