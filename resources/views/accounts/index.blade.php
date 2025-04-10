@@ -1,4 +1,6 @@
 <x-app-layout>
+@if(auth()->user() && auth()->user()->role === 'admin')
+
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -183,4 +185,5 @@
             </div>
         </div>
     </div>
+@endif
 </x-app-layout>
