@@ -54,6 +54,12 @@ class ChercherEnFouriere extends Command
                     if ($response->successful()) {
                         $data = $response->json();
                         $isInFourriere = !empty($data['en_fouriere']);
+                        $plaque->update([
+                            'status' => $isInFourriere ? "en_fouriere" : "libre",
+                            'adresse' => $isInFourriere ? $data['adresse'] : "",
+                            'phone_number' => $isInFourriere ? $data['telephone'] : "",
+                            'date_recherche' => now() 
+                        ]);
                         
                         // Si le véhicule était hors fourrière et devient en fourrière
                         if ($isInFourriere && $plaque->status != 'en_fouriere') {
