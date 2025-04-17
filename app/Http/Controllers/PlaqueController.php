@@ -13,19 +13,43 @@ class PlaqueController extends Controller
      */
     public function index()
     {
-        // Récupérer l'utilisateur connecté
         $user = Auth::user();
-
-        // Si l'utilisateur n'est pas un admin, afficher ses propres plaques
+    
         if ($user->user_type !== 'admin') {
-            $plaques = Plaque::where('user_id', $user->id)->with('user')->get();
+            // Plaques non archivées de l'utilisateur connecté
+            $plaques = Plaque::where('user_id', $user->id)
+                             ->where('archived', false)
+                             ->with('user')
+                             ->get();
         } else {
-            // Si l'utilisateur est un admin, afficher toutes les plaques
-            $plaques = Plaque::with('user')->get();
+            // Toutes les plaques non archivées
+            $plaques = Plaque::where('archived', false)
+                             ->with('user')
+                             ->get();
         }
-
+    
         return view('plaques.index', compact('plaques'));
     }
+    public function archives()
+    {
+        $user = Auth::user();
+
+        if ($user->user_type !== 'admin') {
+            // Plaques archivées de l'utilisateur connecté
+            $plaques = Plaque::where('user_id', $user->id)
+                            ->where('archived', true)
+                            ->with('user')
+                            ->get();
+        } else {
+            // Toutes les plaques archivées
+            $plaques = Plaque::where('archived', true)
+                            ->with('user')
+                            ->get();
+        }
+
+        return view('plaques.archive', compact('plaques'));
+    }
+
 
 
     /**
@@ -97,12 +121,24 @@ class PlaqueController extends Controller
     public function relance(Plaque $plaque)
     {
         $plaque->update([
+            'archived' => false,
             'adresse' => "",
             'status' => "en_cours",
             'date_recherche' => null,
         ]);
 
         return redirect()->route('plaques.index')->with('info', 'Plaque relancée avec succès.');
+    }
+    public function archive(Plaque $plaque)
+    {
+        // dd($plaque);
+
+        $plaque->update([
+            'archived' => true,
+
+        ]);
+
+        return redirect()->route('plaques.index')->with('info', 'Plaque archivé avec succès.');
     }
     public function historique(){
 

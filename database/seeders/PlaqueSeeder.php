@@ -36,7 +36,8 @@ class PlaqueSeeder extends Seeder
                 'user_id' => $user->id,
                 'numero_plaque' => strtoupper(Str::random(7)), // Exemple : ABC1234
                 'status' => $status, // Sélectionne un statut valide
-                'adresse' => $status === 'en_fourrière' ? $faker->address() : '', // Adresse uniquement si "en_fourrière", sinon chaîne vide
+                'adresse' => $status === 'en_fourrière' ? $faker->address() : '', 
+                'phone_number' => $status === 'en_fourrière' ? $faker->phoneNumber() : '', 
                 'date_recherche' =>($status === 'en_fourrière' || $status === 'libre')  ? $faker->date(): null,
             ]);
         }

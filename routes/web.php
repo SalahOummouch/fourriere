@@ -29,9 +29,12 @@ require __DIR__ . '/auth.php';
 Route::resource('/alerte', AlerteController::class);
 
 Route::get('/scrape-and-solve/{license_plate}', [CaptchaController::class, 'scrapeAndSolve']);
+Route::get('plaques/archives', [PlaqueController::class, 'archives'])->name('plaques.archives');
+Route::get('plaques/archive/{plaque}', [PlaqueController::class, 'archive'])->name('plaques.archive');;
 Route::resource('plaques', PlaqueController::class);
+Route::get('plaques/relance/{plaque}', [PlaqueController::class, 'relance'])->name('plaques.relance');;;
+
 Route::get('historiques/{plaque}', [HistoriqueController::class, 'index']);
-Route::get('plaques/relance/{plaque}', [PlaqueController::class, 'relance']);
 
 Route::get('/accounts', [AccountController::class, 'index'])->name('accounts.index');
 Route::get('/accounts/create', [AccountController::class, 'create'])->name('accounts.create');

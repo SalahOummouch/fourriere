@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('numero_plaque')->unique();
             $table->enum('status', ['en_fourrière', 'libre', "en_cours"])->default('en_cours');
             $table->string('adresse');
+            $table->string('phone_number');
+            $table->boolean('archived')->default(false);
             $table->dateTime('date_recherche')->nullable();
             $table->timestamps();
         });

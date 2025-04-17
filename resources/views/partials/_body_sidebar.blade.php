@@ -33,6 +33,17 @@
                     </a>
                 </li>
                 <li class="sidebar-layout">
+                    <a href="{{ route('plaques.archives') }}" class="svg-icon">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 4h16v4H4V4zm1 6h14v10H5V10zm3 2v6m8-6v6"/>
+                            </svg>
+                        </i>
+                        <span class="ms-2">Plaques archivées</span>
+                    </a>
+                </li>
+                <li class="sidebar-layout">
                     <a href="/plaques/create" class="svg-icon">
                         <i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">

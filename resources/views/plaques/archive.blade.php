@@ -78,12 +78,10 @@
                                                 <label class="text-muted mb-0">Ajouter par</label>
                                             </th>
                                             <th scope="col" class="text-start">
-                                                <label class="text-muted mb-0">Date de recherche</label>
+                                                <label class="text-muted mb-0">Date d'archivée'</label>
                                             </th>
                                             @endif
-                                            <th scope="col">
-                                                <label class="text-muted mb-0">Status</label>
-                                            </th>
+
                                             <th scope="col" class="text-start">
                                                 <span class="text-muted">Action</span>
                                             </th>
@@ -113,30 +111,7 @@
                                             </td>
                                             <td>{{ $plaque->date_recherche != null ? \Carbon\Carbon::parse($plaque->date_recherche)->format('d M Y (H:i:s)') : "" }}</td>
                                             @endif
-                                            <td>
-                                                <p class="mb-0 text-{{ $plaque->status === 'en_fourrière' ? 'danger' : ($plaque->status === 'en_cours' ? 'warning' : 'success' ) }} fw-bold d-flex justify-content-start align-items-center">
-                                                    @if($plaque->status == "en_fourrière")
-                                                        <small>
-                                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
-                                                            <circle cx="12" cy="12" r="8" fill="{{ $plaque->status === 'en_fourrière' ? 'red' : ($plaque->status === 'en_cours' ? 'orange' : 'green') }}"></circle>
-                                                        </svg>
-                                                    </small>
-                                                    <p class="mb-0 text-danger fw-bold">En fourrière</p>
-                                                    @elseif($plaque->status == "en_cours")
-                                                        <div class="spinner-grow spinner-grow-sm" role="status">
-                                                            <span class="visually-hidden">Loading...</span>
-                                                        </div>
-                                                    @else
-                                                    <small>
-                                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
-                                                            <circle cx="12" cy="12" r="8" fill="{{ $plaque->status === 'en_fourrière' ? 'red' : ($plaque->status === 'en_cours' ? 'orange' : 'grey') }}"></circle>
-                                                        </svg>
-                                                    </small>
-                                                        <p class="mb-0 text-secondary fw-bold">Le véhicule n'est pas en fourrière en France</p>
-                                                    @endif
-                                                </p>
-                                                <p class="m-0 text-secondary small">{{ $plaque->adresse }}</p>
-                                            </td>
+                                            
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center">
                                                     <!-- Icône Afficher -->
@@ -147,7 +122,7 @@
                                                         </svg>
                                                     </a>
                                                     <!-- Icône Archiver avec Confirmation -->
-                                                    <a href="{{ route('plaques.archive', $plaque->id) }}"  class="archiver" data-id="{{ $plaque->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Archiver">
+                                                    <a href="{{ route('plaques.relance', $plaque->id) }}"  class="archiver" data-id="{{ $plaque->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Archiver">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-warning me-3" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7M4 7h16M4 7a2 2 0 012-2h12a2 2 0 012 2M10 11h4" />
                                                         </svg>
