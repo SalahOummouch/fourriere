@@ -60,6 +60,7 @@ class HomeController extends Controller
             $platesFree = 0;
             $alertsSent = 0;
             $inactivePlatesRemoved = 0;
+            $inactivePlatesRemoved = 0;
             $platesInTowPercentage = 0;
             $platesFreePercentage = 0;
             $platesInProgressPercentage = 0;
