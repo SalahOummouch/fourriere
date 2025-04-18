@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Models\Plaque;
 
 class HomeController extends Controller
 {
@@ -18,11 +19,73 @@ class HomeController extends Controller
     }
 
 
-
-    public function index(Request $request)
+    public function index()
     {
-        return view('dashboards.index');
+        // Nombre de plaques enregistrées
+        $platesCount = Plaque::count();
+
+        // Nombre de plaques en fourrière
+        $platesInTow = Plaque::where('status', 'en_fourrière')->count();
+        
+        // Pourcentage de plaques en fourrière
+        $platesInTowPercentage = ($platesInTow / $platesCount) * 100;
+
+        // Nombre de véhicules retrouvés (Plaques libres)
+        $platesFree = Plaque::where('status', 'libre')->count();
+        
+        // Pourcentage de plaques retrouvées
+        $platesFreePercentage = ($platesFree / $platesCount) * 100;
+
+        // Nombre de plaques en cours de recherche
+        $platesInProgress = Plaque::where('status', 'en_cours')->count();
+        
+        // Pourcentage de plaques en cours de recherche
+        $platesInProgressPercentage = ($platesInProgress / $platesCount) * 100;
+
+        // Historique des alertes envoyées : Compter les plaques ayant une recherche effectuée
+        $alertsSent = Plaque::whereNotNull('date_recherche')->count();
+        
+        // Pourcentage des alertes envoyées
+        $alertsSentPercentage = ($alertsSent / $platesCount) * 100;
+
+        // Suppression des plaques inactives : Plaques archivées
+        $inactivePlatesRemoved = Plaque::where('archived', true)->count();
+        
+        // Pourcentage des plaques supprimées
+        $inactivePlatesPercentage = ($inactivePlatesRemoved / $platesCount) * 100;
+
+        // Données pour le graphique
+        $chartData = [
+            'labels' => ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+            'datasets' => [
+                [
+                    'label' => 'Véhicules en fourrière',
+                    'data' => [120, 150, 170, 200, 180, 220], // Remplacez avec des données réelles
+                    'borderColor' => 'rgba(75, 192, 192, 1)',
+                    'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
+                    'tension' => 0.4
+                ],
+                [
+                    'label' => 'Autres en fourrière',
+                    'data' => [60, 90, 70, 110, 95, 130], // Remplacez avec des données réelles
+                    'borderColor' => 'rgba(153, 102, 255, 1)',
+                    'backgroundColor' => 'rgba(153, 102, 255, 0.2)',
+                    'tension' => 0.4
+                ]
+            ]
+        ];
+
+        return view('dashboards.index', compact(
+            'platesCount', 'platesInTowPercentage', 'platesFreePercentage','platesFree', 
+            'platesInProgressPercentage', 'alertsSentPercentage',
+            'inactivePlatesPercentage', 'chartData', 'alertsSent', 'inactivePlatesRemoved'
+        ));
     }
+
+    // public function index(Request $request)
+    // {
+    //     return view('dashboards.index');
+    // }
     public function customer(Request $request)
     {
         return view('dashboards.customer');

@@ -1,7 +1,6 @@
 <x-app-layout>
     <div class="container-fluid">
         <div class="row">
-
             <!-- Nombre de plaques enregistrées -->
             <div class="col-md-3">
                 <div class="card">
@@ -10,8 +9,8 @@
                             <div>
                                 <p class="mb-2 text-secondary">Nombre de plaques enregistrées</p>
                                 <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                    <h5 class="mb-0 fw-bold">530</h5>
-                                    <p class="mb-0 ms-3 text-success fw-bold">+28.05%</p>
+                                    <h5 class="mb-0 fw-bold">{{ $platesCount }}</h5>
+                                    <p class="mb-0 ms-3 text-success fw-bold">+{{ $platesInTowPercentage }}%</p>
                                 </div>
                             </div>
                         </div>
@@ -27,8 +26,8 @@
                             <div>
                                 <p class="mb-2 text-secondary">Véhicules retrouvés</p>
                                 <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                    <h5 class="mb-0 fw-bold">320</h5>
-                                    <p class="mb-0 ms-3 text-success fw-bold">+30.5%</p>
+                                    <h5 class="mb-0 fw-bold">{{ $platesFree }}</h5>
+                                    <p class="mb-0 ms-3 text-success fw-bold">+{{ $platesFreePercentage }}%</p>
                                 </div>
                             </div>
                         </div>
@@ -44,8 +43,8 @@
                             <div>
                                 <p class="mb-2 text-secondary">Historique des alertes envoyées</p>
                                 <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                    <h5 class="mb-0 fw-bold">336</h5>
-                                    <p class="mb-0 ms-3 text-danger fw-bold">-19%</p>
+                                    <h5 class="mb-0 fw-bold">{{ $alertsSent }}</h5>
+                                    <p class="mb-0 ms-3 text-danger fw-bold">{{ $alertsSentPercentage }}%</p>
                                 </div>
                             </div>
                         </div>
@@ -61,15 +60,14 @@
                             <div>
                                 <p class="mb-2 text-secondary">Suppression de plaques inactives</p>
                                 <div class="d-flex flex-wrap justify-content-start align-items-center">
-                                    <h5 class="mb-0 fw-bold">45</h5>
-                                    <p class="mb-0 ms-3 text-danger fw-bold">-10.8%</p>
+                                    <h5 class="mb-0 fw-bold">{{ $inactivePlatesRemoved }}</h5>
+                                    <p class="mb-0 ms-3 text-danger fw-bold">{{ $inactivePlatesPercentage }}%</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <!-- Courbe des véhicules en fourrière -->
@@ -93,25 +91,7 @@
         const ctx = document.getElementById('fourriereChart').getContext('2d');
         const chart = new Chart(ctx, {
             type: 'line',
-            data: {
-                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
-                datasets: [
-                    {
-                        label: 'Véhicules en fourrière',
-                        data: [120, 150, 170, 200, 180, 220],
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        tension: 0.4
-                    },
-                    {
-                        label: 'Autres en fourrière',
-                        data: [60, 90, 70, 110, 95, 130],
-                        borderColor: 'rgba(153, 102, 255, 1)',
-                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                        tension: 0.4
-                    }
-                ]
-            },
+            data: @json($chartData),
             options: {
                 responsive: true,
                 plugins: {
