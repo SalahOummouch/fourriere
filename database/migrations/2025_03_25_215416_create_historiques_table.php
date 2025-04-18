@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('historiques', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Référence à users
-            $table->foreignId('plaque_id')->constrained('plaques')->onDelete('cascade'); // Référence à plaques
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->foreignId('plaque_id')->constrained('plaques')->onDelete('cascade'); 
             $table->enum('status', ['en_fourrière', 'libre', 'en_cours'])->default('en_cours');
             $table->string('adresse');
-            $table->string('telephone'); // Nouveau champ pour stocker le téléphone de l'utilisateur
+            $table->string('telephone'); 
+            $table->boolean('archived')->default(false);
             $table->date('date_recherche')->nullable();
             $table->timestamps();
         });

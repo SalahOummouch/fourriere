@@ -12,7 +12,15 @@ class PlaqueObserver
      */
     public function created(Plaque $plaque): void
     {
-        //
+        Historique::create([
+            'user_id' => $plaque->user_id,
+            'plaque_id' => $plaque->id,
+            'status' => $plaque->status,
+            'adresse' => $plaque->adresse,
+            'archived' => $plaque->archived,
+            'telephone' => $plaque->user->phone_number ?? 'N/A',
+            'date_recherche' => $plaque->date_recherche,
+        ]);
     }
 
     /**
@@ -25,7 +33,8 @@ class PlaqueObserver
             'plaque_id' => $plaque->id,
             'status' => $plaque->status,
             'adresse' => $plaque->adresse,
-            'telephone' => $plaque->user->telephone ?? 'N/A',
+            'archived' => $plaque->archived,
+            'telephone' => $plaque->user->phone_number ?? 'N/A',
             'date_recherche' => $plaque->date_recherche,
         ]);
     }

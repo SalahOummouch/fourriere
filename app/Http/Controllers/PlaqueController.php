@@ -72,12 +72,14 @@ class PlaqueController extends Controller
     
         $user_id = Auth::id(); // Récupère l'ID de l'utilisateur connecté
         $adresse = "";
+        $phone_number = "";
     
         foreach ($request->plaqueNumbers as $numero_plaque) {
             Plaque::create([
                 'numero_plaque' => $numero_plaque,
                 'user_id' => $user_id,
                 'adresse' => $adresse,
+                'phone_number' => $phone_number,
             ]);
         }
     

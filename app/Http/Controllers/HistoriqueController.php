@@ -25,19 +25,15 @@ class HistoriqueController extends Controller
 
         // Si l'utilisateur n'est pas un admin, afficher ses propres historiques de plaques
         if ($user->user_type !== 'admin') {
-            // Afficher uniquement les historiques associés à l'utilisateur et la plaque
             $historiques = Historique::where('user_id', $user->id)
                                     ->where('plaque_id', $plaque->id)
                                     ->get();
         } else {
-            // Si l'utilisateur est un admin, afficher tous les historiques associés à la plaque
             $historiques = Historique::where('plaque_id', $plaque->id)->get();
         }
-        $historiques = $historiques->reverse();
+        $historiques = $historiques;
 
 
-        // Retourner la vue avec les historiques récupérés
-        // dd($historiques);
 
         return view('plaques.historique', compact('historiques'));
     }

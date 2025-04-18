@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 use App\Models\Plaque;
 
 class VehiculeEnFourriereNotification extends Mailable
@@ -32,7 +33,16 @@ class VehiculeEnFourriereNotification extends Mailable
      */
     public function envelope(): Envelope
     {
+        // Récupérer les variables d'environnement ou utiliser des valeurs par défaut
+        $fromAddress = env('MAIL_FROM_ADDRESS', 'admin@alerte-fourriere.com'); // Adresse par défaut si vide
+        $fromAddress = 'admin@alerte-fourriere.com'; // Adresse par défaut si vide
+        $fromName = env('MAIL_FROM_NAME', 'SocialV'); // Nom par défaut si vide
+
+        // Debugging output - Pour vérifier que les valeurs sont bien récupérées
+        // dd($fromAddress, $fromName);
+
         return new Envelope(
+            from: new Address($fromAddress, $fromName),
             subject: 'Véhicule en Fourrière - Notification',
         );
     }

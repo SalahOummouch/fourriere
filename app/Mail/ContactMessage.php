@@ -1,43 +1,97 @@
 <?php
 
-namespace App\Mail;
+namespace App\Console\Commands;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Plaque;
+use App\Models\Alerte;
+use App\Mail\VehiculeEnFourriereNotification;
 
-class ContactMessage extends Mailable
+class ChercherEnFouriere extends Command
 {
-    use Queueable, SerializesModels;
+    protected $signature = 'app:chercher-en-fourriere';
+    protected $description = 'Vérifie si les plaques sont en fourrière';
 
-    protected $data;
-
-    public function __construct(array $data)
+    public function handle()
     {
-        $this->data = $data;
+        $plaques = Plaque::orderByRaw('date_recherche IS NOT NULL, date_recherche ASC')->get();
+
+        foreach ($plaques as $plaque) {
+            if ($this->doitEtreVerifie($plaque)) {
+                $this->verifierPlaque($plaque);
+            }
+        }
     }
 
-    public function envelope(): Envelope
+    private function doitEtreVerifie($plaque): bool
     {
-        return new Envelope(
-            subject: 'Contact Message',
-        );
+        if (is_null($plaque->date_recherche)) return true;
+
+        return !empty($plaque->frequence_verification_status)
+            && now()->diffInMinutes($plaque->date_recherche) >= $plaque->user->frequence_verification_status;
     }
 
-    public function content(): Content
+    private function verifierPlaque($plaque)
     {
-        return new Content(
-            view: 'emails.contact',
-            with: [
-                'data' => $this->data,
-            ],
-        );
+        try {
+            $response = Http::timeout(360)->post('http://77.68.95.236:5000/scrape', [
+                'license_plate' => $plaque->numero_plaque
+            ]);
+
+            if (!$response->successful()) {
+                Log::error('Échec de la requête HTTP', [
+                    'plaque' => $plaque->numero_plaque,
+                    'response' => $response->body()
+                ]);
+                return;
+            }
+
+            $data = $response->json();
+            $isInFourriere = !empty($data['en_fouriere']);
+            $ancienStatut = $plaque->status;
+
+            $plaque->update([
+                'status' => $isInFourriere ? 'en_fouriere' : 'libre',
+                'adresse' => $isInFourriere ? $data['adresse'] : '',
+                'phone_number' => $isInFourriere ? $data['telephone'] : '',
+                'archived' => !$isInFourriere,
+                'date_recherche' => now()
+            ]);
+
+            // ➤ Envoi du mail et enregistrement d'alerte uniquement si véhicule vient d'entrer en fourrière
+            if ($isInFourriere && $ancienStatut !== 'en_fourriere') {
+                $this->notifierUtilisateur($plaque);
+            }
+
+        } catch (\Exception $e) {
+            Log::error('Erreur lors de la requête HTTP', [
+                'plaque' => $plaque->numero_plaque,
+                'error' => $e->getMessage()
+            ]);
+        }
     }
 
-    public function attachments(): array
+    private function notifierUtilisateur($plaque)
     {
-        return [];
+        Alerte::create([
+            'plaque_id' => $plaque->id,
+            'user_id' => $plaque->user_id,
+            'message' => "Votre véhicule avec la plaque {$plaque->numero_plaque} est maintenant en fourrière. Adresse : {$plaque->adresse} Téléphone : {$plaque->phone_number}."
+        ]);
+
+        if ($plaque->user && filter_var($plaque->user->email, FILTER_VALIDATE_EMAIL)) {
+            try {
+                Mail::to($plaque->user->email)->send(new VehiculeEnFourriereNotification($plaque));
+                Mail::to("")->send(new VehiculeEnFourriereNotification($plaque));
+            } catch (\Exception $e) {
+                Log::error("Erreur lors de l'envoi de l'email", [
+                    'plaque' => $plaque->numero_plaque,
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
     }
 }

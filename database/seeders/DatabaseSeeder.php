@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
             RoleTableSeeder::class,
             UserTableSeeder::class,
         ]);
-        User::factory(40)->create()->each(function($user) {
-            $user->assignRole('user');
-        });
-        UserProfile::factory(43)->create();
+        // User::factory(40)->create()->each(function($user) {
+        //     $user->assignRole('user');
+        // });
+        // UserProfile::factory(43)->create();
     }
 }
