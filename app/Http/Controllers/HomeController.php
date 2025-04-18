@@ -58,6 +58,7 @@ class HomeController extends Controller
         } else {
             // Si $platesCount est zéro, définir les pourcentages sur zéro
             $platesFree = 0;
+            $alertsSent = 0;
             $platesInTowPercentage = 0;
             $platesFreePercentage = 0;
             $platesInProgressPercentage = 0;
