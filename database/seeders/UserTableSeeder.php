@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
                 'first_name' => 'Salah',
                 'last_name' => 'Oummouch',
                 'username' => 'user',
-                'email' => 'oummouch.salah',
+                'email' => 'oummouch.salah@gmail.com',
                 'password' => bcrypt('password'),
                 'phone_number' => '+12398190255',
                 'email_verified_at' => now(),
