@@ -92,8 +92,9 @@
                                                     <label class="text-muted mb-0">Status</label>
                                                 </th>
                                                 <th scope="col">
-                                                    <label class="text-muted mb-0">frequence de recherche</label>
+                                                    <label class="text-muted mb-0">Planning de recherche</label>
                                                 </th>
+
                                                 <th scope="col">
                                                     <label class="text-muted mb-0">Date de création</label>
                                                 </th>
@@ -135,7 +136,7 @@
                                                                 </svg></small>Désactivé
                                                             </p>
                                                         @endif
-                                                    </td>
+                                                    <!-- </td>
                                                                                                         <td>
                                                         <form action="{{ route('accounts.update.frequence', $user->id) }}" method="POST" class="d-inline">
                                                             @csrf
@@ -153,7 +154,56 @@
                                                                 <button type="submit" class="btn btn-warning mt-2">Modifier</button>
                                                             </div>
                                                         </form>
-                                                    </td>
+                                                    </td> -->
+                                                    <td>
+    <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#planningModal{{ $user->id }}">
+        Voir / Modifier
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="planningModal{{ $user->id }}" tabindex="-1" aria-labelledby="planningModalLabel{{ $user->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form action="" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="planningModalLabel{{ $user->id }}">Planning de recherche - {{ $user->username }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+                    </div>
+                    <div class="modal-body">
+                        @php
+                            $jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+                            $plannings = $user->plaqueRecherches ?? [];
+                        @endphp
+
+                        @foreach($jours as $jour)
+                            @php
+                                $planningJour = $plannings->firstWhere('jour', $jour);
+                            @endphp
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label class="form-label">{{ ucfirst($jour) }}</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="time" name="planning[{{ $jour }}][heure_debut]" class="form-control" value="{{ $planningJour->heure_debut ?? '' }}">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="time" name="planning[{{ $jour }}][heure_fin]" class="form-control" value="{{ $planningJour->heure_fin ?? '' }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</td>
+
                                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                                      <td>
                                                        <form action="{{ route('accounts.toggleStatus', $user->id) }}" method="POST" class="d-inline">
