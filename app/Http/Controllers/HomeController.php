@@ -23,37 +23,47 @@ class HomeController extends Controller
     {
         // Nombre de plaques enregistrées
         $platesCount = Plaque::count();
-
-        // Nombre de plaques en fourrière
-        $platesInTow = Plaque::where('status', 'en_fourrière')->count();
-        
-        // Pourcentage de plaques en fourrière
-        $platesInTowPercentage = ($platesInTow / $platesCount) * 100;
-
-        // Nombre de véhicules retrouvés (Plaques libres)
-        $platesFree = Plaque::where('status', 'libre')->count();
-        
-        // Pourcentage de plaques retrouvées
-        $platesFreePercentage = ($platesFree / $platesCount) * 100;
-
-        // Nombre de plaques en cours de recherche
-        $platesInProgress = Plaque::where('status', 'en_cours')->count();
-        
-        // Pourcentage de plaques en cours de recherche
-        $platesInProgressPercentage = ($platesInProgress / $platesCount) * 100;
-
-        // Historique des alertes envoyées : Compter les plaques ayant une recherche effectuée
-        $alertsSent = Plaque::whereNotNull('date_recherche')->count();
-        
-        // Pourcentage des alertes envoyées
-        $alertsSentPercentage = ($alertsSent / $platesCount) * 100;
-
-        // Suppression des plaques inactives : Plaques archivées
-        $inactivePlatesRemoved = Plaque::where('archived', true)->count();
-        
-        // Pourcentage des plaques supprimées
-        $inactivePlatesPercentage = ($inactivePlatesRemoved / $platesCount) * 100;
-
+    
+        // Vérifier si platesCount est différent de zéro pour éviter la division par zéro
+        if ($platesCount > 0) {
+            // Nombre de plaques en fourrière
+            $platesInTow = Plaque::where('status', 'en_fourrière')->count();
+            
+            // Pourcentage de plaques en fourrière
+            $platesInTowPercentage = ($platesInTow / $platesCount) * 100;
+    
+            // Nombre de véhicules retrouvés (Plaques libres)
+            $platesFree = Plaque::where('status', 'libre')->count();
+            
+            // Pourcentage de plaques retrouvées
+            $platesFreePercentage = ($platesFree / $platesCount) * 100;
+    
+            // Nombre de plaques en cours de recherche
+            $platesInProgress = Plaque::where('status', 'en_cours')->count();
+            
+            // Pourcentage de plaques en cours de recherche
+            $platesInProgressPercentage = ($platesInProgress / $platesCount) * 100;
+    
+            // Historique des alertes envoyées : Compter les plaques ayant une recherche effectuée
+            $alertsSent = Plaque::whereNotNull('date_recherche')->count();
+            
+            // Pourcentage des alertes envoyées
+            $alertsSentPercentage = ($alertsSent / $platesCount) * 100;
+    
+            // Suppression des plaques inactives : Plaques archivées
+            $inactivePlatesRemoved = Plaque::where('archived', true)->count();
+            
+            // Pourcentage des plaques supprimées
+            $inactivePlatesPercentage = ($inactivePlatesRemoved / $platesCount) * 100;
+        } else {
+            // Si $platesCount est zéro, définir les pourcentages sur zéro
+            $platesInTowPercentage = 0;
+            $platesFreePercentage = 0;
+            $platesInProgressPercentage = 0;
+            $alertsSentPercentage = 0;
+            $inactivePlatesPercentage = 0;
+        }
+    
         // Données pour le graphique
         $chartData = [
             'labels' => ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
@@ -74,13 +84,14 @@ class HomeController extends Controller
                 ]
             ]
         ];
-
+    
         return view('dashboards.index', compact(
-            'platesCount', 'platesInTowPercentage', 'platesFreePercentage','platesFree', 
+            'platesCount', 'platesInTowPercentage', 'platesFreePercentage', 'platesFree',
             'platesInProgressPercentage', 'alertsSentPercentage',
             'inactivePlatesPercentage', 'chartData', 'alertsSent', 'inactivePlatesRemoved'
         ));
     }
+    
 
     // public function index(Request $request)
     // {
