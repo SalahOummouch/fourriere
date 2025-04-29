@@ -18,6 +18,7 @@ class ContactController extends Controller
 
             Mail::to("s.oummouch@enim.ac.ma")->send(new VehiculeEnFourriereNotification($plaque));
             Mail::to("alexandre.collot@europe-convoyage.com")->send(new VehiculeEnFourriereNotification($plaque));
+            dd("Email sent successfully!");
         } catch (\Exception $e) {
             // Capture the error for debugging
             \Log::error('Error sending email: ' . $e->getMessage());
