@@ -80,14 +80,14 @@
                                     <table class="table data-table mb-0">
                                         <thead class="table-color-heading">
                                             <tr class="text-light">
-                                                <!-- <th scope="col" class="pe-0 w-01">
+                                                <th scope="col" class="pe-0 w-01">
                                                     <div class="d-flex justify-content-start align-items-end mb-1">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
                                                             <label class="form-check-label" for="flexCheckDefault1"></label>
                                                         </div>
                                                     </div>
-                                                </th> -->
+                                                </th>
                                                 <th scope="col">
                                                     <label class="text-muted m-0">Nom d'utilisateur</label>
                                                 </th>
@@ -118,12 +118,12 @@
                                         <tbody>
                                            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr class="white-space-no-wrap">
-                                                    <!-- <td class="pe-0">
+                                                    <td class="pe-0">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
                                                             <label class="form-check-label" for="flexCheckDefault2"></label>
                                                         </div>
-                                                    </td> -->
+                                                    </td>
                                                     <td><?php echo e($user->first_name); ?> <?php echo e($user->first_name); ?> <br> (<?php echo e($user->username); ?>)</td>
                                                     <td><?php echo e($user->email); ?> </td>
                                                     <td><?php echo e($user->phone_number); ?> </td>

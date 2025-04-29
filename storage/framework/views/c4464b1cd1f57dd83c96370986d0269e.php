@@ -290,7 +290,7 @@
                             id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                                 <!-- Utilisation d'une image de profil par défaut ou de l'avatar de l'utilisateur -->
-                                <img src="<?php echo e(asset(Auth::user()->avatar ?? 'images/user/1.jpg')); ?>" class="img-fluid avatar-rounded" alt="user">
+                                <!-- <img src="<?php echo e(asset(Auth::user()->avatar ?? 'images/user/1.jpg')); ?>" class="img-fluid avatar-rounded" alt="user"> -->
                                 <!-- Affichage du nom de l'utilisateur connecté -->
                                 <span class="mb-0 ms-2 user-name"><?php echo e(Auth::user()->username); ?></span>
                             </a>
@@ -304,7 +304,7 @@
                                     </svg>
                                     <a href="<?php echo e(route('accounts.edit', ['user' => Auth::user()->id])); ?>">Mon profil</a>
                                 </li>
-                                <li class="dropdown-item d-flex svg-icon">
+                                <!-- <li class="dropdown-item d-flex svg-icon">
                                     <svg class="svg-icon me-0 text-secondary" id="h-02-p" width="20"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -312,8 +312,8 @@
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
                                     <a href="<?php echo e(route('userprofileedit')); ?>">Modifier Profil</a>
-                                </li>
-                                <li class="dropdown-item d-flex svg-icon">
+                                </li> -->
+                                <!-- <li class="dropdown-item d-flex svg-icon">
                                     <svg class="svg-icon me-0 text-secondary" id="h-03-p" width="20"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -323,8 +323,8 @@
                                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     </svg>
                                     <a href="<?php echo e(route('useraccountsetting')); ?>">Paramètre de compte</a>
-                                </li>
-                                <li class="dropdown-item d-flex svg-icon">
+                                </li> -->
+                                <!-- <li class="dropdown-item d-flex svg-icon">
                                     <svg class="svg-icon me-0 text-secondary" id="h-04-p" width="20"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -332,7 +332,7 @@
                                             d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                     </svg>
                                     <a href="<?php echo e(route('userprivacysetting')); ?>">Paramètre privé</a>
-                                </li>
+                                </li> -->
                                 <li class="dropdown-item  d-flex svg-icon border-top">
                                     <svg class="svg-icon me-0 text-secondary" id="h-05-p" width="20"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
