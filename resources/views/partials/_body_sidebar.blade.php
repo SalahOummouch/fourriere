@@ -86,6 +86,18 @@
                     <span class="text-uppercase small fw-bold">Gestion des utilisateurs</span>
                 </li>
                 <li class="sidebar-layout">
+                        <a href="/companies" class="svg-icon">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                        d="M3 21h18M9 8h1m-1 4h1m-1 4h1m4-8h1m-1 4h1m-1 4h1M6 3h12a1 1 0 011 1v17H5V4a1 1 0 011-1z"/>
+                                </svg>
+                            </i>
+                            <span class="ms-2">Clients  entreprises</span>
+                        </a>
+                 </li>
+
+                <li class="sidebar-layout">
                     <a href="/accounts" class="svg-icon">
                         <i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
@@ -93,7 +105,7 @@
                                     d="M20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87M16 3.13a4 4 0 110 7.75m-8 0a4 4 0 110-7.75"/>
                             </svg>
                         </i>
-                        <span class="ms-2">Clients & entreprises</span>
+                        <span class="ms-2">Utilisateurs</span>
                     </a>
                 </li>
             @endif

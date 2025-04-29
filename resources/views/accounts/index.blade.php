@@ -68,14 +68,14 @@
                                     <table class="table data-table mb-0">
                                         <thead class="table-color-heading">
                                             <tr class="text-light">
-                                                <th scope="col" class="pe-0 w-01">
+                                                <!-- <th scope="col" class="pe-0 w-01">
                                                     <div class="d-flex justify-content-start align-items-end mb-1">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
                                                             <label class="form-check-label" for="flexCheckDefault1"></label>
                                                         </div>
                                                     </div>
-                                                </th>
+                                                </th> -->
                                                 <th scope="col">
                                                     <label class="text-muted m-0">Nom d'utilisateur</label>
                                                 </th>
@@ -106,16 +106,15 @@
                                         <tbody>
                                            @foreach($users as $user)
                                                 <tr class="white-space-no-wrap">
-                                                    <td class="pe-0">
+                                                    <!-- <td class="pe-0">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
                                                             <label class="form-check-label" for="flexCheckDefault2"></label>
                                                         </div>
-                                                    </td>
+                                                    </td> -->
                                                     <td>{{ $user->first_name }} {{ $user->first_name }} <br> ({{ $user->username }})</td>
                                                     <td>{{ $user->email }} </td>
                                                     <td>{{ $user->phone_number }} </td>
-                                                    <td>{{ ucfirst($user->user_type) }}</td>
                                                     <td>
                                                         @if($user->status == 'pending')
                                                             <p class="mb-0 text-warning d-flex justify-content-start align-items-center">

@@ -12,6 +12,8 @@ use App\Http\Controllers\Security\RoleController;
 use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\Security\RolePermission;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,10 @@ Route::put('/users/{user}/update-frequence', [AccountController::class, 'updateF
 Route::post('/accounts', [AccountController::class, 'store'])->name('accounts.store');
 
 Route::get('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
+
+
+Route::resource('companies', CompanyController::class);
+
 
 
 
