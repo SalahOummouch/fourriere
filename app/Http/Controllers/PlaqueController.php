@@ -59,6 +59,15 @@ class PlaqueController extends Controller
     {
         return view('plaques.create');
     }
+    // Fonction pour nettoyer et normaliser la plaque
+    private function normalizePlateNumber($plateNumber)
+        {
+            // Retirer tout ce qui n'est pas une lettre ou un chiffre
+            $plateNumber = preg_replace('/[^A-Za-z0-9]/', '', $plateNumber);
+            
+            // Retourner la plaque formatée
+            return strtoupper($plateNumber);
+        }
 
     /**
      * Store a newly created resource in storage.
@@ -70,11 +79,13 @@ class PlaqueController extends Controller
             'plaqueNumbers.*' => 'required|string|max:255'
         ]);
     
-        $user_id = Auth::id(); // Récupère l'ID de l'utilisateur connecté
+        $user_id = Auth::id(); 
         $adresse = "";
         $phone_number = "";
     
         foreach ($request->plaqueNumbers as $numero_plaque) {
+            $numero_plaque = $this->normalizePlateNumber($numero_plaque);
+
             Plaque::create([
                 'numero_plaque' => $numero_plaque,
                 'user_id' => $user_id,

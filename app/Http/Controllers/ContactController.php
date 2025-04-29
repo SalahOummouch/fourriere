@@ -13,12 +13,15 @@ class ContactController extends Controller
 {
     public function sendEmail()
     {
-        $plaque = Plaque::find(1);
-        Mail::to("s.oummouch@enim.ac.ma")->send(new VehiculeEnFourriereNotification($plaque));
-        Mail::to("alexandre.collot@europe-convoyage.com")->send(new VehiculeEnFourriereNotification($plaque));
-        
+        try {
+            $plaque = Plaque::find(1);
 
-
+            Mail::to("s.oummouch@enim.ac.ma")->send(new VehiculeEnFourriereNotification($plaque));
+            Mail::to("alexandre.collot@europe-convoyage.com")->send(new VehiculeEnFourriereNotification($plaque));
+        } catch (\Exception $e) {
+            // Capture the error for debugging
+            \Log::error('Error sending email: ' . $e->getMessage());
+        }
         
     }
 }

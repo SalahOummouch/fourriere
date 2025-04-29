@@ -132,7 +132,7 @@
                                                             <circle cx="12" cy="12" r="8" fill="{{ $plaque->status === 'en_fourrière' ? 'red' : ($plaque->status === 'en_cours' ? 'orange' : 'grey') }}"></circle>
                                                         </svg>
                                                     </small>
-                                                        <p class="mb-0 text-secondary fw-bold">Le véhicule n'est pas en fourrière en France</p>
+                                                        <p class="mb-0 text-secondary fw-bold">aucune information</p>
                                                     @endif
                                                 </p>
                                                 <p class="m-0 text-secondary small">{{ $plaque->adresse }}</p>

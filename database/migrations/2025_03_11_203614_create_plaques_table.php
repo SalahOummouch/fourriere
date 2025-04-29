@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plaques', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('numero_plaque')->unique();
+            $table->string('numero_plaque');
             $table->enum('status', ['en_fourrière', 'libre', "en_cours"])->default('en_cours');
             $table->string('adresse');
             $table->string('phone_number');

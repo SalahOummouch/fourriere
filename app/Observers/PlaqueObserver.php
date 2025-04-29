@@ -15,7 +15,7 @@ class PlaqueObserver
         Historique::create([
             'user_id' => $plaque->user_id,
             'plaque_id' => $plaque->id,
-            'status' => $plaque->status,
+            'status' => "en_cours",
             'adresse' => $plaque->adresse,
             'archived' => $plaque->archived,
             'telephone' => $plaque->user->phone_number ?? 'N/A',
