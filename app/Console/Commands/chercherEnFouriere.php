@@ -58,7 +58,7 @@ class ChercherEnFouriere extends Command
                             'status' => $isInFourriere ? "en_fouriere" : "libre",
                             'adresse' => $isInFourriere ? $data['adresse'] : "",
                             'phone_number' => $isInFourriere ? $data['telephone'] : "",
-                            'archived' => $isInFourriere ?  True : FALSE, 
+                            'archived' => $isInFourriere ?  True : FALSE , 
                             'date_recherche' => now() 
                         ]);
                         

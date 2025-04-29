@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('plaque_recherches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->enum('jour', ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']);
             $table->time('heure_debut');
             $table->time('heure_fin');

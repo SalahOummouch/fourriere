@@ -17,4 +17,8 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function plaqueRecherches()
+    {
+        return $this->hasMany(\App\Models\PlaqueRecherche::class);
+    }
 }

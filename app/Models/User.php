@@ -71,10 +71,7 @@ public function alertes()
 {
     return $this->hasMany(Alerte::class);
 }
-public function plaqueRecherches()
-{
-    return $this->hasMany(\App\Models\PlaqueRecherche::class);
-}
+
 
 
 }

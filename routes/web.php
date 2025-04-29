@@ -28,7 +28,24 @@ use App\Http\Controllers\CompanyController;
 
 require __DIR__ . '/auth.php';
 
-Route::resource('/alerte', AlerteController::class);
+
+
+
+
+
+
+
+
+
+// Route::get('/user_list',[HomeController::class, 'user_list'])->name('userlist');
+
+Route::get('/dashboard', function () {
+  return view('dashboard');
+})->middleware(['auth'])->name('index');
+
+Route::get('userlist', [HomeController::class, 'userlist'])->name('userlist');
+Route::group(['middleware' => 'auth'], function () {
+  Route::resource('/alerte', AlerteController::class);
 
 Route::get('/scrape-and-solve/{license_plate}', [CaptchaController::class, 'scrapeAndSolve']);
 Route::get('plaques/archives', [PlaqueController::class, 'archives'])->name('plaques.archives');
@@ -51,23 +68,6 @@ Route::get('/send-email', [ContactController::class, 'sendEmail'])->name('send.e
 
 
 Route::resource('companies', CompanyController::class);
-
-
-
-
-
-
-
-
-// Route::get('/user_list',[HomeController::class, 'user_list'])->name('userlist');
-
-Route::get('/dashboard', function () {
-  return view('dashboard');
-})->middleware(['auth'])->name('index');
-
-Route::get('userlist', [HomeController::class, 'userlist'])->name('userlist');
-Route::group(['middleware' => 'auth'], function () {
-
   // Permission Module
   Route::get('/permission-role', [RolePermission::class, 'index'])->name('permission-role.list');
   Route::post('/permission-role/store', [RolePermission::class, 'store'])->name('permission-role.store');

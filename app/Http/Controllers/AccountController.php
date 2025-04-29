@@ -12,7 +12,7 @@ class AccountController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::with('plaqueRecherches');
+        $query = User::all();
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('username', 'like', '%' . $request->search . '%')
