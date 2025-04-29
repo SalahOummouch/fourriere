@@ -33,7 +33,7 @@ class CompanyController extends Controller
 
     public function edit(Company $company)
     {
-        return view('companies.edit', compact('company'));
+        return view('companies.create', compact('company'));
     }
 
     public function update(Request $request, Company $company)

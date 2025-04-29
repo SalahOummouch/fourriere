@@ -49,7 +49,7 @@
                                         <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
                                     </div>
                                 </form> -->
-                                <a href="/accounts/create" class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
+                                <a href="{{ route('companies.create') }}" class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                     </svg>
@@ -110,8 +110,8 @@
                                                         </div>
                                                     </td> -->
                                                     <td>{{ $user->name }} </td>
-                                                    <td>{{ $user->email }} </td>
-                                                    <td>{{ $user->phone_number }} </td>
+                                                    <td>{{ $user->address }} </td>
+                                                    <td>{{ $user->phone }} </td>
                                                     <td>
                                                         @if($user->status == 'pending')
                                                             <p class="mb-0 text-warning d-flex justify-content-start align-items-center">
@@ -157,47 +157,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="planningModal{{ $user->id }}" tabindex="-1" aria-labelledby="planningModalLabel{{ $user->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form action="" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="planningModalLabel{{ $user->id }}">Planning de recherche - {{ $user->username }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                    </div>
-                    <div class="modal-body">
-                        @php
-                            $jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
-                            $plannings = $user->plaqueRecherches ?? [];
-                        @endphp
-
-                        @foreach($jours as $jour)
-                            @php
-                                $planningJour = $plannings->firstWhere('jour', $jour);
-                            @endphp
-                            <div class="row mb-2">
-                                <div class="col-md-3">
-                                    <label class="form-label">{{ ucfirst($jour) }}</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="time" name="planning[{{ $jour }}][heure_debut]" class="form-control" value="{{ $planningJour->heure_debut ?? '' }}">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="time" name="planning[{{ $jour }}][heure_fin]" class="form-control" value="{{ $planningJour->heure_fin ?? '' }}">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+  test
 </td>
 
                                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
@@ -210,9 +170,9 @@
                                                     </button>
                                                 </form>
 
-                                                <a href="{{ route('accounts.edit', $user->id) }}" class="btn btn-sm btn-primary">Modifier</a>
+                                                <a href="{{ route('companies.edit', $user->id) }}" class="btn btn-sm btn-primary">Modifier</a>
 
-                                                <form action="{{ route('accounts.destroy', $user->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('companies.destroy', $user->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>

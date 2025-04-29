@@ -53,7 +53,7 @@ class ChercherEnFouriere extends Command
 
                     if ($response->successful()) {
                         $data = $response->json();
-                        $isInFourriere = !empty($data['en_fouriere']);
+                        $isInFourriere = $data['en_fouriere'];
                         $plaque->update([
                             'status' => $isInFourriere ? "en_fouriere" : "libre",
                             'adresse' => $isInFourriere ? $data['adresse'] : "",
@@ -71,7 +71,6 @@ class ChercherEnFouriere extends Command
                                 'message' => 'Votre véhicule avec la plaque ' . $plaque->numero_plaque . ' est maintenant en fourrière. Adresse : ' . $plaque->adresse . ' Téléphone : ' . $plaque->phone_number . '.'
                             ]);
 
-                            // Envoi du mail à l'utilisateur pour notifier que le véhicule est en fourrière
                             if ($plaque->user && filter_var($plaque->user->email, FILTER_VALIDATE_EMAIL)) {
                                 try {
                                     Mail::to($plaque->user->email)->send(new VehiculeEnFourriereNotification($plaque));
