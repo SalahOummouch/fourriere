@@ -46,7 +46,7 @@ class ChercherEnFouriere extends Command
 
             if ($doVerification) {
                 try {
-                    $response = Http::timeout(360) // Timeout de 6 minutes
+                    $response = Http::timeout(360) 
                         ->post('http://77.68.95.236:5000/scrape', [
                             'license_plate' => $plaque->numero_plaque
                         ]);
