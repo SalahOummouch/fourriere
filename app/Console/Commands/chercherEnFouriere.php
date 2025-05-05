@@ -60,7 +60,7 @@ class ChercherEnFouriere extends Command
                         $data = $response->json();
                         $isInFourriere = $data['en_fouriere'];
                         $plaque->update([
-                            'status' => $isInFourriere ? "en_fouriere" : "libre",
+                            'status' => $isInFourriere ? "en_fourrière" : "libre",
                             'adresse' => $isInFourriere ? $data['adresse'] : "",
                             'phone_number' => $isInFourriere ? $data['telephone'] : "",
                             'archived' => $isInFourriere ?  True : FALSE , 
@@ -80,7 +80,7 @@ class ChercherEnFouriere extends Command
                             // Mise à jour supplémentaire selon la réponse de 'scrape1'
                             if ($isInFourriereFromScrape1) {
                                 $plaque->update([
-                                    'status' => "en_fouriere",
+                                    'status' => "en_fourrière",
                                     'adresse' => $scrape1Data['adresse'] ?? $plaque->adresse,
                                     'phone_number' => $scrape1Data['telephone'] ?? $plaque->phone_number,
                                     'date_recherche' => now()
