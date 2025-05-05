@@ -10,7 +10,7 @@ class Plaque extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'numero_plaque', 'status', 'adresse','phone_number','archived', 'date_recherche'];
+    protected $fillable = ['user_id','company_id', 'numero_plaque', 'status', 'adresse','phone_number','archived', 'date_recherche'];
 
     public function user()
     {

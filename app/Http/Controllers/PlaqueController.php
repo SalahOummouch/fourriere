@@ -80,6 +80,7 @@ class PlaqueController extends Controller
         ]);
     
         $user_id = Auth::id(); 
+        $company_id = Auth::user()->company_id;
         $adresse = "";
         $phone_number = "";
     
@@ -89,6 +90,7 @@ class PlaqueController extends Controller
             Plaque::create([
                 'numero_plaque' => $numero_plaque,
                 'user_id' => $user_id,
+                'company_id' => $company_id,
                 'adresse' => $adresse,
                 'phone_number' => $phone_number,
             ]);

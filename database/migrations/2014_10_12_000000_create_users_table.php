@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('user_type')->default('user');
             $table->string('password');
             $table->string('status')->default('pending');
-            $table->integer('frequence_verification_status')->default(1440);
+            $table->integer('frequence_verification_status')->default(30);
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('company_id')->nullable(); 

@@ -4,11 +4,12 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Plaque;
+use App\Models\PlaqueRecherche;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VehiculeEnFourriereNotification;
-use App\Models\Alerte; // Assurez-vous d'ajouter cette importation
+use App\Models\Alerte;
 
 class ChercherEnFouriere extends Command
 {
@@ -34,6 +35,22 @@ class ChercherEnFouriere extends Command
         $plaques = Plaque::orderByRaw('date_recherche IS NOT NULL, date_recherche ASC')->get();
 
         foreach ($plaques as $plaque) {
+            // Vérifier le planning de recherche
+            $now = now();
+            $companyId = $plaque->company_id;
+            $day = strtolower($now->locale('fr')->dayName); // ex: lundi
+            $time = $now->format('H:i:s');
+
+            $planningDisponible = PlaqueRecherche::where('company_id', $companyId)
+                ->where('jour', $day)
+                ->where('heure_debut', '<=', $time)
+                ->where('heure_fin', '>=', $time)
+                ->exists();
+
+            if (!$planningDisponible) {
+                continue; // Ignore cette plaque si elle est hors planning
+            }
+
             // Vérifie si date_recherche est NULL ou si l'intervalle est respecté
             $doVerification = false;
 
@@ -46,15 +63,11 @@ class ChercherEnFouriere extends Command
 
             if ($doVerification) {
                 try {
-                    // Première requête à l'API 'scrape'
-                    $response = Http::timeout(360) 
+                    // Requête à l'API 'scrape'
+                    $response = Http::timeout(360)
                         ->post('http://77.68.95.236:5000/scrape', [
                             'license_plate' => $plaque->numero_plaque
                         ]);
-                    // $response = Http::timeout(360) 
-                    //     ->post('http://77.68.95.236:5000/scrapetest', [
-                    //         'license_plate' => $plaque->numero_plaque
-                    //     ]);
 
                     if ($response->successful()) {
                         $data = $response->json();
@@ -63,11 +76,11 @@ class ChercherEnFouriere extends Command
                             'status' => $isInFourriere ? "en_fourrière" : "libre",
                             'adresse' => $isInFourriere ? $data['adresse'] : "",
                             'phone_number' => $isInFourriere ? $data['telephone'] : "",
-                            'archived' => $isInFourriere ?  True : FALSE , 
-                            'date_recherche' => now() 
+                            'archived' => $isInFourriere ? true : false,
+                            'date_recherche' => now()
                         ]);
 
-                        // Vérifier avec l'API 'scrape1' si le véhicule est en fourrière
+                        // Requête à l'API 'scrape1'
                         $scrape1Response = Http::timeout(360)
                             ->post('http://77.68.95.236:5000/scrape1', [
                                 'license_plate' => $plaque->numero_plaque
@@ -76,8 +89,7 @@ class ChercherEnFouriere extends Command
                         if ($scrape1Response->successful()) {
                             $scrape1Data = $scrape1Response->json();
                             $isInFourriereFromScrape1 = $scrape1Data['en_fouriere'];
-                            
-                            // Mise à jour supplémentaire selon la réponse de 'scrape1'
+
                             if ($isInFourriereFromScrape1) {
                                 $plaque->update([
                                     'status' => "en_fourrière",
@@ -86,7 +98,6 @@ class ChercherEnFouriere extends Command
                                     'date_recherche' => now()
                                 ]);
                             } else {
-                                // Si 'scrape1' ne retourne pas 'en_fouriere', on peut considérer qu'il n'est pas en fourrière
                                 $plaque->update([
                                     'status' => "libre",
                                     'date_recherche' => now()
@@ -94,9 +105,8 @@ class ChercherEnFouriere extends Command
                             }
                         }
 
-                        // Si le véhicule était hors fourrière et devient en fourrière
-                        if ($isInFourriere && $plaque->status != 'en_fouriere') {
-                            // Enregistrer l'alerte même si l'e-mail échoue
+                        // Notification si le véhicule entre en fourrière
+                        if ($isInFourriere && $plaque->status != 'en_fourrière') {
                             Alerte::create([
                                 'plaque_id' => $plaque->id,
                                 'user_id' => $plaque->user_id,
