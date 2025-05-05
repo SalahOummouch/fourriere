@@ -47,7 +47,7 @@ class ChercherEnFouriere extends Command
                 ->where('heure_fin', '>=', $time)
                 ->exists();
 
-            if (!$planningDisponible) {
+            if (!$planningDisponible && $plaque->date_recherche == NULL) {
                 continue; // Ignore cette plaque si elle est hors planning
             }
 
