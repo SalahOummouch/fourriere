@@ -72,35 +72,16 @@
                                                     <div class="d-flex justify-content-start align-items-end mb-1">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-                                                            <label class="form-check-label" for="flexCheckDefault1"></label>
                                                         </div>
                                                     </div>
                                                 </th>
-                                                <th scope="col">
-                                                    <label class="text-muted m-0">Nom d'utilisateur</label>
-                                                </th>
-                                                <th scope="col" class="dates">
-                                                    <label class="text-muted mb-0">Email</label>
-                                                </th>
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Téléphone</label>
-                                                </th>
-                                                <th scope="col" class="text-start">
-                                                    <label class="text-muted mb-0">Type d'utilisateur</label>
-                                                </th>
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Status</label>
-                                                </th>
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Planning de recherche</label>
-                                                </th>
-
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Date de création</label>
-                                                </th>
-                                                <th scope="col" class="text-start">
-                                                    <span class="text-muted">Action</span>
-                                                </th>
+                                                <th>Nom d'utilisateur</th>
+                                                <th>Email</th>
+                                                <th>Téléphone</th>
+                                                <th>Type d'utilisateur</th>
+                                                <th>Status</th>
+                                                <th>Date de création</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -109,119 +90,54 @@
                                                     <td class="pe-0">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-                                                            <label class="form-check-label" for="flexCheckDefault2"></label>
                                                         </div>
                                                     </td>
-                                                    <td>{{ $user->first_name }} {{ $user->first_name }} <br> ({{ $user->username }})</td>
-                                                    <td>{{ $user->email }} </td>
-                                                    <td>{{ $user->phone_number }} </td>
+                                                    <td>{{ $user->first_name }} {{ $user->last_name }} <br> ({{ $user->username }})</td>
+                                                    <td>{{ $user->email }}</td>
+                                                    <td>{{ $user->phone_number }}</td>
                                                     <td>{{ ucfirst($user->user_type) }}</td>
                                                     <td>
                                                         @if($user->status == 'pending')
-                                                            <p class="mb-0 text-warning d-flex justify-content-start align-items-center">
+                                                            <p class="mb-0 text-warning d-flex align-items-center">
                                                                 <small><svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
                                                                     <circle cx="12" cy="12" r="8" fill="#db7e06"></circle>
                                                                 </svg></small>En attente ...
                                                             </p>
                                                         @elseif($user->status == 'active')
-                                                            <p class="mb-0 text-success d-flex justify-content-start align-items-center">
+                                                            <p class="mb-0 text-success d-flex align-items-center">
                                                                 <small><svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
                                                                     <circle cx="12" cy="12" r="8" fill="#3cb72c"></circle>
                                                                 </svg></small> Active
                                                             </p>
                                                         @else
-                                                            <p class="mb-0 text-danger d-flex justify-content-start align-items-center">
+                                                            <p class="mb-0 text-danger d-flex align-items-center">
                                                                 <small><svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
                                                                     <circle cx="12" cy="12" r="8" fill="#F42B3D"></circle>
                                                                 </svg></small>Désactivé
                                                             </p>
                                                         @endif
-                                                    <!-- </td>
-                                                                                                        <td>
-                                                        <form action="{{ route('accounts.update.frequence', $user->id) }}" method="POST" class="d-inline">
+                                                    </td>
+                                                    <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-outline-info btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#planningModal{{ $user->id }}">
+                                                            Voir / Modifier
+                                                        </button>
+
+                                                        <form action="{{ route('accounts.toggleStatus', $user->id) }}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('PUT')
-                                                            <div class="d-flex flex-column">
-                                                                <select class="form-select" name="frequence_verification_status">
-                                                                    <option value="30" {{ $user->frequence_verification_status == 30 ? 'selected' : '' }}>30 min</option>
-                                                                    <option value="60" {{ $user->frequence_verification_status == 60 ? 'selected' : '' }}>1 Heure</option>
-                                                                    <option value="120" {{ $user->frequence_verification_status == 120 ? 'selected' : '' }}>2 Heures</option>
-                                                                    <option value="300" {{ $user->frequence_verification_status == 300 ? 'selected' : '' }}>5 Heures</option>
-                                                                    <option value="720" {{ $user->frequence_verification_status == 720 ? 'selected' : '' }}>12 Heures</option>
-                                                                    <option value="1440" {{ $user->frequence_verification_status == 1440 ? 'selected' : '' }}>1 Jour</option>
-                                                                    <option value="10080" {{ $user->frequence_verification_status == 10080 ? 'selected' : '' }}>1 Semaine</option>
-                                                                </select>
-                                                                <button type="submit" class="btn btn-warning mt-2">Modifier</button>
-                                                            </div>
+                                                            <button type="submit" class="btn btn-sm {{ $user->status == 'active' ? 'btn-danger' : 'btn-success' }}">
+                                                                {{ $user->status == 'active' ? 'Désactiver' : 'Activer' }}
+                                                            </button>
                                                         </form>
-                                                    </td> -->
-                                                    <td>
-    <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#planningModal{{ $user->id }}">
-        Voir / Modifier
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="planningModal{{ $user->id }}" tabindex="-1" aria-labelledby="planningModalLabel{{ $user->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form action="" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="planningModalLabel{{ $user->id }}">Planning de recherche - {{ $user->username }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                    </div>
-                    <div class="modal-body">
-                        @php
-                            $jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
-                            $plannings = $user->plaqueRecherches ?? [];
-                        @endphp
+                                                        <a href="{{ route('accounts.edit', $user->id) }}" class="btn btn-sm btn-primary">Modifier</a>
 
-                        @foreach($jours as $jour)
-                            @php
-                                $planningJour = $plannings->firstWhere('jour', $jour);
-                            @endphp
-                            <div class="row mb-2">
-                                <div class="col-md-3">
-                                    <label class="form-label">{{ ucfirst($jour) }}</label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="time" name="planning[{{ $jour }}][heure_debut]" class="form-control" value="{{ $planningJour->heure_debut ?? '' }}">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="time" name="planning[{{ $jour }}][heure_fin]" class="form-control" value="{{ $planningJour->heure_fin ?? '' }}">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</td>
-
-                                                    <td>{{ $user->created_at->format('d/m/Y') }}</td>
-                                                     <td>
-                                                       <form action="{{ route('accounts.toggleStatus', $user->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <button type="submit" class="btn btn-sm {{ $user->status == 'active' ? 'btn-danger' : 'btn-success' }}">
-                                                        {{ $user->status == 'active' ? 'Désactiver' : 'Activer' }}
-                                                    </button>
-                                                </form>
-
-                                                <a href="{{ route('accounts.edit', $user->id) }}" class="btn btn-sm btn-primary">Modifier</a>
-
-                                                <form action="{{ route('accounts.destroy', $user->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
-                                                </form>
-
+                                                        <form action="{{ route('accounts.destroy', $user->id) }}" method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
