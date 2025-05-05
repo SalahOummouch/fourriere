@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 use App\Models\Plaque;
+use App\Models\Company;
 use App\Observers\PlaqueObserver;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\CompanyObserver;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Plaque::observe(PlaqueObserver::class);
+        Company::observe(CompanyObserver::class);
+
 
     }
 }

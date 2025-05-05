@@ -72,6 +72,7 @@
 
                                     {{-- Conteneur pour afficher dynamiquement les formulaires utilisateurs --}}
                                     <div id="user-forms">
+                                    @if(isset($users) && $users->count() > 0)
                                         @foreach($users as $index => $user)
                                             <div class="user-form-block mb-4">
                                                 <div class="user-header bg-info text-white py-2 px-3">
@@ -98,6 +99,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                    @endif
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +118,9 @@
 </div>
 
 {{-- JS pour afficher dynamiquement les formulaires utilisateurs --}}
+<>
 <script>
-    let userIndex = {{ count($users) }}; // Démarrer l'index à la fin des utilisateurs existants
+    let userIndex = {{ isset($users) && is_countable($users) ? count($users) : 0 }}; // Assurez-vous que $users est un tableau
 
     function generateUserForm() {
         const userFormHTML = `

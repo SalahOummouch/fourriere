@@ -13,6 +13,8 @@ use App\Http\Controllers\Security\PermissionController;
 use App\Http\Controllers\Security\RolePermission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PlanningController;
+
 
 
 /*
@@ -122,6 +124,9 @@ Route::get('useraccountsetting', [HomeController::class, 'useraccountsetting'])-
 Route::get('userprivacysetting', [HomeController::class, 'userprivacysetting'])->name('userprivacysetting');
 
 
+
+
+Route::put('/companies/{company}/planning', [PlanningController::class, 'update'])->name('companies.update.planning');
 
 
 
