@@ -12,7 +12,8 @@ class AccountController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::query();
+        $query = Company::join('users', 'companies.id', '=', 'users.company_id');
+        
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('username', 'like', '%' . $request->search . '%')
@@ -30,23 +31,11 @@ class AccountController extends Controller
             $query->where('user_type', $request->user_type);
         }
 
-        $users = $query->orderBy('created_at', 'desc')->get();
+        $users = $query->orderBy('users.created_at', 'desc')->get();
+        // dd($users);
 
         return view('accounts.index', compact('users'));
-        }
-        public function create()
-        {
-
-            return view('accounts.create');
-        }
-
-        public function toggleStatus(User $user)
-        {
-            $user->status = $user->status === 'active' ? 'inactive' : 'active';
-            $user->save();
-
-            return redirect()->route('accounts.index')->with('success', 'Statut mis à jour avec succès.');
-        }
+    }
 
     public function edit(User $user)
     {
@@ -93,23 +82,13 @@ class AccountController extends Controller
             'email' => 'required|email|unique:users,email',
             'phone' => 'nullable|string|max:15',
             'user_type' => 'required|string|in:admin,user,editor',
-            'password' => 'required|string|min:8|confirmed',
-            'company_name' => 'nullable|string|max:255',
-            'company_phone' => 'nullable|string|max:15',
-            'company_address' => 'nullable|string|max:255',
+            'password' => 'required|string|min:8',
+  
         ]);
 
         // Si l'utilisateur est de type "entreprise", on associe l'entreprise
-        $company = null;
-        if ($request->user_type == 'editor') {
-            $company = Company::create([
-                'name' => $request->company_name,
-                'phone' => $request->company_phone,
-                'address' => $request->company_address,
-            ]);
-        }
-        $username = Str::slug($request->first_name . '-' . $request->last_name . '-' . $request->company_name . '-' . $request->location_code);
 
+        $username = Str::slug($request->first_name . '-' . $request->last_name . '-' . $request->company_name . '-' . $request->location_code);
 
         // Création de l'utilisateur
         $user = User::create([
@@ -120,7 +99,7 @@ class AccountController extends Controller
             'phone_number' => $request->phone,
             'user_type' => $request->user_type,
             'password' => bcrypt($request->password),
-            'company_id' => $company ? $company->id : null, // Assignation de l'entreprise si applicable
+            'company_id' => $request->company_id , // Assignation de l'entreprise si applicable
         ]);
 
         return redirect()->route('accounts.index')->with('success', 'Utilisateur ajouté avec succès!');

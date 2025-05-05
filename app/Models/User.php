@@ -30,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email',
         'password',
         'frequence_verification_status',
+        'company_id',
     ];
 
     /**
@@ -65,12 +66,12 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
     {
         return $this->belongsTo(Company::class);
     }
-    // In app/Models/User.php
 
-public function alertes()
-{
-    return $this->hasMany(Alerte::class);
-}
+
+    public function alertes()
+    {
+        return $this->hasMany(Alerte::class);
+    }
 
 
 

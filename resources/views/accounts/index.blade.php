@@ -76,6 +76,7 @@
                                                     </div>
                                                 </th>
                                                 <th>Nom d'utilisateur</th>
+                                                <th>Entreprise</th>
                                                 <th>Email</th>
                                                 <th>Téléphone</th>
                                                 <th>Type d'utilisateur</th>
@@ -93,6 +94,7 @@
                                                         </div>
                                                     </td>
                                                     <td>{{ $user->first_name }} {{ $user->last_name }} <br> ({{ $user->username }})</td>
+                                                    <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>{{ $user->phone_number }}</td>
                                                     <td>{{ ucfirst($user->user_type) }}</td>

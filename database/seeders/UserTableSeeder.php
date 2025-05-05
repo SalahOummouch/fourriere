@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -15,28 +16,35 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        $company = Company::create([
+            'name' => 'administration',
+            'address' => ' ',
+            'phone' => ' ',
+            'status' => 'active',
+        ]);
         $users = [
             [
                 'first_name' => 'Alexandre',
                 'last_name' => 'Collot',
-                'username' => 'systemadmin',
+                'username' => 'Administaration Alerte Fourriere',
                 'email' => 'alexandre.collot@europe-convoyage.com',
                 'password' => bcrypt('0UrA8HvH4X'),
                 'phone_number' => '+33 6 17 09 41 01',
+                'company_id' => $company -> id,
                 'email_verified_at' => now(),
                 'user_type' => 'admin',
                 'status' => 'active',
             ],
-            [
-                'first_name' => 'Salah',
-                'last_name' => 'Oummouch',
-                'username' => 'user',
-                'email' => 'oummouch.salah@gmail.com',
-                'password' => bcrypt('password'),
-                'phone_number' => '+12398190255',
-                'email_verified_at' => now(),
-                'user_type' => 'user',
-            ],
+            // [
+            //     'first_name' => 'Salah',
+            //     'last_name' => 'Oummouch',
+            //     'username' => 'user',
+            //     'email' => 'oummouch.salah@gmail.com',
+            //     'password' => bcrypt('password'),
+            //     'phone_number' => '+12398190255',
+            //     'email_verified_at' => now(),
+            //     'user_type' => 'user',
+            // ],
             // [
             //     'first_name' => 'John',
             //     'last_name' => 'User',

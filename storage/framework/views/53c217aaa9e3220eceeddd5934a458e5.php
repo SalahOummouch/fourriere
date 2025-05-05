@@ -84,35 +84,17 @@
                                                     <div class="d-flex justify-content-start align-items-end mb-1">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-                                                            <label class="form-check-label" for="flexCheckDefault1"></label>
                                                         </div>
                                                     </div>
                                                 </th>
-                                                <th scope="col">
-                                                    <label class="text-muted m-0">Nom d'utilisateur</label>
-                                                </th>
-                                                <th scope="col" class="dates">
-                                                    <label class="text-muted mb-0">Email</label>
-                                                </th>
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Téléphone</label>
-                                                </th>
-                                                <th scope="col" class="text-start">
-                                                    <label class="text-muted mb-0">Type d'utilisateur</label>
-                                                </th>
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Status</label>
-                                                </th>
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Planning de recherche</label>
-                                                </th>
-
-                                                <th scope="col">
-                                                    <label class="text-muted mb-0">Date de création</label>
-                                                </th>
-                                                <th scope="col" class="text-start">
-                                                    <span class="text-muted">Action</span>
-                                                </th>
+                                                <th>Nom d'utilisateur</th>
+                                                <th>Entreprise</th>
+                                                <th>Email</th>
+                                                <th>Téléphone</th>
+                                                <th>Type d'utilisateur</th>
+                                                <th>Status</th>
+                                                <th>Date de création</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -121,120 +103,56 @@
                                                     <td class="pe-0">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
-                                                            <label class="form-check-label" for="flexCheckDefault2"></label>
                                                         </div>
                                                     </td>
-                                                    <td><?php echo e($user->first_name); ?> <?php echo e($user->first_name); ?> <br> (<?php echo e($user->username); ?>)</td>
-                                                    <td><?php echo e($user->email); ?> </td>
-                                                    <td><?php echo e($user->phone_number); ?> </td>
+                                                    <td><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?> <br> (<?php echo e($user->username); ?>)</td>
+                                                    <td><?php echo e($user->name); ?></td>
+                                                    <td><?php echo e($user->email); ?></td>
+                                                    <td><?php echo e($user->phone_number); ?></td>
                                                     <td><?php echo e(ucfirst($user->user_type)); ?></td>
                                                     <td>
                                                         <?php if($user->status == 'pending'): ?>
-                                                            <p class="mb-0 text-warning d-flex justify-content-start align-items-center">
+                                                            <p class="mb-0 text-warning d-flex align-items-center">
                                                                 <small><svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
                                                                     <circle cx="12" cy="12" r="8" fill="#db7e06"></circle>
                                                                 </svg></small>En attente ...
                                                             </p>
                                                         <?php elseif($user->status == 'active'): ?>
-                                                            <p class="mb-0 text-success d-flex justify-content-start align-items-center">
+                                                            <p class="mb-0 text-success d-flex align-items-center">
                                                                 <small><svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
                                                                     <circle cx="12" cy="12" r="8" fill="#3cb72c"></circle>
                                                                 </svg></small> Active
                                                             </p>
                                                         <?php else: ?>
-                                                            <p class="mb-0 text-danger d-flex justify-content-start align-items-center">
+                                                            <p class="mb-0 text-danger d-flex align-items-center">
                                                                 <small><svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
                                                                     <circle cx="12" cy="12" r="8" fill="#F42B3D"></circle>
                                                                 </svg></small>Désactivé
                                                             </p>
                                                         <?php endif; ?>
-                                                    <!-- </td>
-                                                                                                        <td>
-                                                        <form action="<?php echo e(route('accounts.update.frequence', $user->id)); ?>" method="POST" class="d-inline">
+                                                    </td>
+                                                    <td><?php echo e($user->created_at->format('d/m/Y')); ?></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-outline-info btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#planningModal<?php echo e($user->id); ?>">
+                                                            Voir / Modifier
+                                                        </button>
+
+                                                        <form action="<?php echo e(route('accounts.toggleStatus', $user->id)); ?>" method="POST" class="d-inline">
                                                             <?php echo csrf_field(); ?>
                                                             <?php echo method_field('PUT'); ?>
-                                                            <div class="d-flex flex-column">
-                                                                <select class="form-select" name="frequence_verification_status">
-                                                                    <option value="30" <?php echo e($user->frequence_verification_status == 30 ? 'selected' : ''); ?>>30 min</option>
-                                                                    <option value="60" <?php echo e($user->frequence_verification_status == 60 ? 'selected' : ''); ?>>1 Heure</option>
-                                                                    <option value="120" <?php echo e($user->frequence_verification_status == 120 ? 'selected' : ''); ?>>2 Heures</option>
-                                                                    <option value="300" <?php echo e($user->frequence_verification_status == 300 ? 'selected' : ''); ?>>5 Heures</option>
-                                                                    <option value="720" <?php echo e($user->frequence_verification_status == 720 ? 'selected' : ''); ?>>12 Heures</option>
-                                                                    <option value="1440" <?php echo e($user->frequence_verification_status == 1440 ? 'selected' : ''); ?>>1 Jour</option>
-                                                                    <option value="10080" <?php echo e($user->frequence_verification_status == 10080 ? 'selected' : ''); ?>>1 Semaine</option>
-                                                                </select>
-                                                                <button type="submit" class="btn btn-warning mt-2">Modifier</button>
-                                                            </div>
+                                                            <button type="submit" class="btn btn-sm <?php echo e($user->status == 'active' ? 'btn-danger' : 'btn-success'); ?>">
+                                                                <?php echo e($user->status == 'active' ? 'Désactiver' : 'Activer'); ?>
+
+                                                            </button>
                                                         </form>
-                                                    </td> -->
-                                                    <td>
-    <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#planningModal<?php echo e($user->id); ?>">
-        Voir / Modifier
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="planningModal<?php echo e($user->id); ?>" tabindex="-1" aria-labelledby="planningModalLabel<?php echo e($user->id); ?>" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <form action="" method="POST">
-                    <?php echo csrf_field(); ?>
-                    <?php echo method_field('PUT'); ?>
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="planningModalLabel<?php echo e($user->id); ?>">Planning de recherche - <?php echo e($user->username); ?></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-                    </div>
-                    <div class="modal-body">
-                        <?php
-                            $jours = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
-                            $plannings = $user->plaqueRecherches ?? [];
-                        ?>
+                                                        <a href="<?php echo e(route('accounts.edit', $user->id)); ?>" class="btn btn-sm btn-primary">Modifier</a>
 
-                        <?php $__currentLoopData = $jours; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jour): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php
-                                $planningJour = $plannings->firstWhere('jour', $jour);
-                            ?>
-                            <div class="row mb-2">
-                                <div class="col-md-3">
-                                    <label class="form-label"><?php echo e(ucfirst($jour)); ?></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="time" name="planning[<?php echo e($jour); ?>][heure_debut]" class="form-control" value="<?php echo e($planningJour->heure_debut ?? ''); ?>">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="time" name="planning[<?php echo e($jour); ?>][heure_fin]" class="form-control" value="<?php echo e($planningJour->heure_fin ?? ''); ?>">
-                                </div>
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</td>
-
-                                                    <td><?php echo e($user->created_at->format('d/m/Y')); ?></td>
-                                                     <td>
-                                                       <form action="<?php echo e(route('accounts.toggleStatus', $user->id)); ?>" method="POST" class="d-inline">
-                                                    <?php echo csrf_field(); ?>
-                                                    <?php echo method_field('PUT'); ?>
-                                                    <button type="submit" class="btn btn-sm <?php echo e($user->status == 'active' ? 'btn-danger' : 'btn-success'); ?>">
-                                                        <?php echo e($user->status == 'active' ? 'Désactiver' : 'Activer'); ?>
-
-                                                    </button>
-                                                </form>
-
-                                                <a href="<?php echo e(route('accounts.edit', $user->id)); ?>" class="btn btn-sm btn-primary">Modifier</a>
-
-                                                <form action="<?php echo e(route('accounts.destroy', $user->id)); ?>" method="POST" class="d-inline">
-                                                    <?php echo csrf_field(); ?>
-                                                    <?php echo method_field('DELETE'); ?>
-                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
-                                                </form>
-
+                                                        <form action="<?php echo e(route('accounts.destroy', $user->id)); ?>" method="POST" class="d-inline">
+                                                            <?php echo csrf_field(); ?>
+                                                            <?php echo method_field('DELETE'); ?>
+                                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')">Supprimer</button>
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

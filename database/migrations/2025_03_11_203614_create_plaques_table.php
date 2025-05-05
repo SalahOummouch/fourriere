@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->boolean('archived')->default(false);
             $table->dateTime('date_recherche')->nullable();
+            $table->unsignedBigInteger('company_id')->nullable(); 
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('set null');
             $table->timestamps();
         });
     }
