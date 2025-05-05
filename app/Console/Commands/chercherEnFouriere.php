@@ -47,14 +47,14 @@ class ChercherEnFouriere extends Command
             if ($doVerification) {
                 try {
                     // Première requête à l'API 'scrape'
-                    // $response = Http::timeout(360) 
-                    //     ->post('http://77.68.95.236:5000/scrape', [
-                    //         'license_plate' => $plaque->numero_plaque
-                    //     ]);
                     $response = Http::timeout(360) 
-                        ->post('http://77.68.95.236:5000/scrapetest', [
+                        ->post('http://77.68.95.236:5000/scrape', [
                             'license_plate' => $plaque->numero_plaque
                         ]);
+                    // $response = Http::timeout(360) 
+                    //     ->post('http://77.68.95.236:5000/scrapetest', [
+                    //         'license_plate' => $plaque->numero_plaque
+                    //     ]);
 
                     if ($response->successful()) {
                         $data = $response->json();
