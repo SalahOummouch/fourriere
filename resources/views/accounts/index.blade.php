@@ -49,12 +49,7 @@
                                         <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
                                     </div>
                                 </form>
-                                <a href="/accounts/create" class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    Ajouter un utilisateur
-                                </a>
+                              
                             </div>
                         </div>
                     </div>
@@ -121,9 +116,7 @@
                                                     </td>
                                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-outline-info btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#planningModal{{ $user->id }}">
-                                                            Voir / Modifier
-                                                        </button>
+                                                        
 
                                                         <form action="{{ route('accounts.toggleStatus', $user->id) }}" method="POST" class="d-inline">
                                                             @csrf
@@ -133,7 +126,7 @@
                                                             </button>
                                                         </form>
 
-                                                        <a href="{{ route('accounts.edit', $user->id) }}" class="btn btn-sm btn-primary">Modifier</a>
+                                                        <a href="{{ route('companies.edit', $user->company_id) }}" class="btn btn-sm btn-primary">Modifier</a>
 
                                                         <form action="{{ route('accounts.destroy', $user->id) }}" method="POST" class="d-inline">
                                                             @csrf

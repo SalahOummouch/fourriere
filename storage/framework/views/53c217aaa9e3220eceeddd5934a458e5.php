@@ -61,12 +61,7 @@
                                         <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
                                     </div>
                                 </form>
-                                <a href="/accounts/create" class="btn btn-primary position-relative d-flex align-items-center justify-content-between">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    Ajouter un utilisateur
-                                </a>
+                              
                             </div>
                         </div>
                     </div>
@@ -133,9 +128,7 @@
                                                     </td>
                                                     <td><?php echo e($user->created_at->format('d/m/Y')); ?></td>
                                                     <td>
-                                                        <button type="button" class="btn btn-outline-info btn-sm mb-1" data-bs-toggle="modal" data-bs-target="#planningModal<?php echo e($user->id); ?>">
-                                                            Voir / Modifier
-                                                        </button>
+                                                        
 
                                                         <form action="<?php echo e(route('accounts.toggleStatus', $user->id)); ?>" method="POST" class="d-inline">
                                                             <?php echo csrf_field(); ?>
@@ -146,7 +139,7 @@
                                                             </button>
                                                         </form>
 
-                                                        <a href="<?php echo e(route('accounts.edit', $user->id)); ?>" class="btn btn-sm btn-primary">Modifier</a>
+                                                        <a href="<?php echo e(route('companies.edit', $user->company_id)); ?>" class="btn btn-sm btn-primary">Modifier</a>
 
                                                         <form action="<?php echo e(route('accounts.destroy', $user->id)); ?>" method="POST" class="d-inline">
                                                             <?php echo csrf_field(); ?>

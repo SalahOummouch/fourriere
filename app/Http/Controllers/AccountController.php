@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+
 
 
 class AccountController extends Controller
@@ -88,7 +90,17 @@ class AccountController extends Controller
 
         // Si l'utilisateur est de type "entreprise", on associe l'entreprise
 
-        $username = Str::slug($request->first_name . '-' . $request->last_name . '-' . $request->company_name . '-' . $request->location_code);
+    // Générer un username slug de base
+    $baseUsername = Str::slug($request->first_name . '-' . $request->last_name . '-' . $request->company_name . '-' . $request->location_code);
+
+    $username = $baseUsername;
+    $counter = 1;
+
+    // Vérifier si le username existe déjà et en générer un unique
+    while (DB::table('users')->where('username', $username)->exists()) {
+        $username = $baseUsername . '-' . $counter;
+        $counter++;
+    }
 
         // Création de l'utilisateur
         $user = User::create([
@@ -96,7 +108,7 @@ class AccountController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'phone_number' => $request->phone,
+            'phone_number' => $request->phone_number,
             'user_type' => $request->user_type,
             'password' => bcrypt($request->password),
             'company_id' => $request->company_id , // Assignation de l'entreprise si applicable

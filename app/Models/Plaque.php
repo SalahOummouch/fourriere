@@ -29,9 +29,9 @@ class Plaque extends Model
 
     protected static function booted()
     {
-        static::created(function ($plaque) {
-            $plaque->verifierEnFouriere();
-        });
+        // static::created(function ($plaque) {
+        //     $plaque->verifierEnFouriere();
+        // });
     }
 
     public function verifierEnFouriere()

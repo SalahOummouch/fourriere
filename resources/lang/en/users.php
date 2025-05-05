@@ -4,16 +4,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Password Reset Language Lines
+    | Lignes de langue pour la réinitialisation du mot de passe
     |--------------------------------------------------------------------------
     |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | has failed, such as for an invalid token or invalid new password.
+    | Les lignes suivantes sont utilisées pour afficher des messages concernant
+    | les opérations sur les utilisateurs, comme la création ou la mise à jour
+    | des informations utilisateur.
     |
     */
-    'title' => 'Users',
-    'store' => 'User info created successfully!',
-    'update' => 'User info updated successfully!',
-    'update_profile' => 'My Profile info updated successfully!',
+    'title' => 'Utilisateurs',
+    'store' => 'Les informations de l’utilisateur ont été créées avec succès !',
+    'update' => 'Les informations de l’utilisateur ont été mises à jour avec succès !',
+    'update_profile' => 'Les informations de mon profil ont été mises à jour avec succès !',
 ];
