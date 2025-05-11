@@ -17,7 +17,7 @@ class PlaqueController extends Controller
     
         if ($user->user_type !== 'admin') {
             // Plaques non archivées de l'utilisateur connecté
-            $plaques = Plaque::where('user_id', $user->id)
+            $plaques = Plaque::where('company_id', $user->company_id)
                              ->where('archived', false)
                              ->with('user')
                              ->get();
@@ -76,27 +76,61 @@ class PlaqueController extends Controller
     {
         $request->validate([
             'plaqueNumbers' => 'required|array',
-            'plaqueNumbers.*' => 'required|string|max:255'
+            'plaqueNumbers.*' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[A-Za-z0-9\-_]+$/',
+                function ($attribute, $value, $fail) {
+                    $cleaned = preg_replace('/[^A-Za-z0-9]/', '', $value);
+                    if (strlen($cleaned) < 4) {
+                        $fail('Le numéro de plaque doit contenir au moins 4 caractères alphanumériques.');
+                    }
+                },
+            ],
         ]);
     
-        $user_id = Auth::id(); 
-        $company_id = Auth::user()->company_id;
+        $user = Auth::user();
+        $user_id = $user->id;
+        $company_id = $user->company_id;
         $adresse = "";
         $phone_number = "";
     
+        $plaquesExistantes = [];
+        $plaquesAjoutees = [];
+    
         foreach ($request->plaqueNumbers as $numero_plaque) {
-            $numero_plaque = $this->normalizePlateNumber($numero_plaque);
-
-            Plaque::create([
-                'numero_plaque' => $numero_plaque,
-                'user_id' => $user_id,
-                'company_id' => $company_id,
-                'adresse' => $adresse,
-                'phone_number' => $phone_number,
-            ]);
+            $numero_normalise = $this->normalizePlateNumber($numero_plaque);
+    
+            // Vérifier si la plaque existe déjà dans la même entreprise
+            $exists = Plaque::where('numero_plaque', $numero_normalise)
+                            ->where('company_id', $company_id)
+                            ->exists();
+    
+            if ($exists) {
+                $plaquesExistantes[] = $numero_normalise;
+            } else {
+                Plaque::create([
+                    'numero_plaque' => $numero_normalise,
+                    'user_id' => $user_id,
+                    'company_id' => $company_id,
+                    'adresse' => $adresse,
+                    'phone_number' => $phone_number,
+                ]);
+                $plaquesAjoutees[] = $numero_normalise;
+            }
         }
     
-        return redirect()->route('plaques.index')->with('success', 'Plaques ajoutées avec succès.');
+        // Construire le message de retour
+        $message = '';
+        if (count($plaquesAjoutees)) {
+            $message .= 'Plaques ajoutées avec succès : ' . implode(', ', $plaquesAjoutees) . '. ';
+        }
+        if (count($plaquesExistantes)) {
+            $message .= 'Les plaques suivantes existent déjà : ' . implode(', ', $plaquesExistantes) . '.';
+        }
+    
+        return redirect()->route('plaques.index')->with('success', $message);
     }
     
 

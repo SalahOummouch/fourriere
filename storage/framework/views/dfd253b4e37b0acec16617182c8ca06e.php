@@ -28,14 +28,33 @@
                     </a>
                 </div>
             </div>
+
+            
+    <?php if($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    
+    <?php if(session('success')): ?>
+        <div class="alert alert-success">
+            <?php echo e(session('success')); ?>
+
+        </div>
+    <?php endif; ?>
             <div class="col-lg-12 mb-3 d-flex justify-content-between">
                 <h4 class="fw-bold0 d-flex align-items-center">Ajouter des plaques</h4>
             </div>
+
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            
                             <!-- Ajouter via un fichier XLS -->
                             <div class="col-md-3 mb-3">
                                 <div class="card-body rounded bg-body">
@@ -52,9 +71,11 @@
                                 <form action="/plaques" method="post" class="row g-3 date-icon-set-modal">
                                     <?php echo csrf_field(); ?>
                                     <div id="plaqueFields">
-                                        <div class="col-md-6 mb-3">
-                                            <label class="form-label fw-bold text-muted text-uppercase">Numéro de plaque</label>
-                                            <input name="plaqueNumbers[]" type="text" class="form-control" placeholder="Ex : AA-123-AA">
+                                        <div class="col-md-6 mb-3 plaque-field-wrapper">
+                                            <div class="input-group">
+                                                <input name="plaqueNumbers[]" type="text" class="form-control plaque-input" placeholder="Ex : AA-123-AA">
+                                                <button type="button" class="btn btn-outline-danger" onclick="removePlaqueField(this)">Supprimer</button>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -67,57 +88,92 @@
                                         <button type="reset" class="btn btn-danger">Annuler</button>
                                     </div>
                                 </form>
-
-                                <script>
-                                    function addPlaqueField() {
-                                        const container = document.getElementById('plaqueFields');
-                                        const newField = document.createElement('div');
-                                        newField.classList.add('col-md-6', 'mb-3');
-                                        newField.innerHTML = `
-                                            <input name="plaqueNumbers[]" type="text" class="form-control" placeholder="Ex : AA-123-AA">
-                                        `;
-                                        container.appendChild(newField);
-                                    }
-                                </script>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
                 <script>
-    document.getElementById('excelInput').addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: 'array' });
-
-            const sheet = workbook.Sheets[workbook.SheetNames[0]];
-            const sheetData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-            const container = document.getElementById('plaqueFields');
-            container.innerHTML = '';
-
-            sheetData.forEach(row => {
-                row.forEach(cell => {
-                    if (cell && typeof cell === 'string') {
-                        const input = document.createElement('input');
-                        input.name = 'plaqueNumbers[]';
-                        input.type = 'text';
-                        input.className = 'form-control mb-2';
-                        input.value = cell.trim();
-                        container.appendChild(input);
+                    function addPlaqueField() {
+                        const container = document.getElementById('plaqueFields');
+                        const wrapper = document.createElement('div');
+                        wrapper.classList.add('col-md-6', 'mb-3', 'plaque-field-wrapper');
+                        wrapper.innerHTML = `
+                            <div class="input-group">
+                                <input name="plaqueNumbers[]" type="text" class="form-control plaque-input" placeholder="Ex : AA-123-AA">
+                                <button type="button" class="btn btn-outline-danger" onclick="removePlaqueField(this)">Supprimer</button>
+                            </div>
+                        `;
+                        container.appendChild(wrapper);
                     }
-                });
-            });
-        };
-        reader.readAsArrayBuffer(file);
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
+                    function removePlaqueField(button) {
+                        button.closest('.plaque-field-wrapper').remove();
+                    }
+
+                    document.getElementById('excelInput').addEventListener('change', function (e) {
+                        const file = e.target.files[0];
+                        if (!file) return;
+
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const data = new Uint8Array(e.target.result);
+                            const workbook = XLSX.read(data, { type: 'array' });
+
+                            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                            const sheetData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                            const container = document.getElementById('plaqueFields');
+                            container.innerHTML = '';
+
+                            sheetData.forEach(row => {
+                                row.forEach(cell => {
+                                    if (cell && typeof cell === 'string') {
+                                        const wrapper = document.createElement('div');
+                                        wrapper.className = 'plaque-field-wrapper col-md-6 mb-3';
+
+                                        wrapper.innerHTML = `
+                                            <div class="input-group">
+                                                <input name="plaqueNumbers[]" type="text" class="form-control plaque-input" value="${cell.trim()}">
+                                                <button type="button" class="btn btn-outline-danger" onclick="removePlaqueField(this)">Supprimer</button>
+                                            </div>
+                                        `;
+
+                                        container.appendChild(wrapper);
+                                    }
+                                });
+                            });
+                        };
+                        reader.readAsArrayBuffer(file);
+                    });
+
+                    // Validation des plaques avant soumission
+                    document.querySelector('form').addEventListener('submit', function(e) {
+                        const inputs = document.querySelectorAll('.plaque-input');
+                        const regex = /^[A-Za-z0-9/_\- ]+$/;
+                        let isValid = true;
+                        let errorMessage = '';
+
+                        inputs.forEach(input => {
+                            const value = input.value.trim();
+                            const cleanValue = value.replace(/[-_/ ]/g, '');
+
+                            if (!regex.test(value)) {
+                                isValid = false;
+                                errorMessage = "Les plaques ne doivent contenir que des lettres, chiffres, -, _, / ou espace.";
+                            } else if (cleanValue.length <= 4) {
+                                isValid = false;
+                                errorMessage = "Chaque plaque doit contenir plus de 4 caractères (hors -, _, / et espaces).";
+                            }
+                        });
+
+                        if (!isValid) {
+                            e.preventDefault();
+                            alert(errorMessage);
+                        }
+                    });
+                </script>
             </div>
         </div>
     </div>    

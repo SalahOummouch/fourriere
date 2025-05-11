@@ -37,7 +37,7 @@ class ChercherEnFouriere extends Command
         foreach ($plaques as $plaque) {
             // Vérifier le planning de recherche
             $now = now();
-            $companyId = $plaque->company_id;
+            $companyId = $plaque->company_id; // Récupère l'ID de l'entreprise
             $day = strtolower($now->locale('fr')->dayName); // ex: lundi
             $time = $now->format('H:i:s');
 
@@ -113,14 +113,22 @@ class ChercherEnFouriere extends Command
                                 'message' => 'Votre véhicule avec la plaque ' . $plaque->numero_plaque . ' est maintenant en fourrière. Adresse : ' . $plaque->adresse . ' Téléphone : ' . $plaque->phone_number . '.'
                             ]);
 
-                            if ($plaque->user && filter_var($plaque->user->email, FILTER_VALIDATE_EMAIL)) {
-                                try {
-                                    Mail::to($plaque->user->email)->send(new VehiculeEnFourriereNotification($plaque));
-                                } catch (\Exception $e) {
-                                    Log::error('Erreur lors de l\'envoi de l\'email', [
-                                        'plaque' => $plaque->numero_plaque,
-                                        'error' => $e->getMessage()
-                                    ]);
+                            // Récupérer tous les utilisateurs de la même entreprise
+                            $users = $plaque->company->users; // Récupère tous les utilisateurs associés à cette entreprise
+
+                            // Envoi de l'email à tous les utilisateurs de l'entreprise
+                            foreach ($users as $user) {
+                                // Vérification si l'email est valide
+                                if ($user->email && filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+                                    try {
+                                        Mail::to($user->email)->send(new VehiculeEnFourriereNotification($plaque));
+                                    } catch (\Exception $e) {
+                                        Log::error('Erreur lors de l\'envoi de l\'email', [
+                                            'plaque' => $plaque->numero_plaque,
+                                            'user' => $user->email,
+                                            'error' => $e->getMessage()
+                                        ]);
+                                    }
                                 }
                             }
                         }

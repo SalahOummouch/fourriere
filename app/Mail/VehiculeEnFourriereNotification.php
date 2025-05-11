@@ -36,7 +36,7 @@ class VehiculeEnFourriereNotification extends Mailable
         // Récupérer les variables d'environnement ou utiliser des valeurs par défaut
         $fromAddress = env('MAIL_FROM_ADDRESS', 'admin@alerte-fourriere.com'); // Adresse par défaut si vide
         $fromAddress = 'admin@alerte-fourriere.com'; // Adresse par défaut si vide
-        $fromName = env('MAIL_FROM_NAME', 'SocialV'); // Nom par défaut si vide
+        $fromName = env('MAIL_FROM_NAME', 'Alerte Fourriere'); // Nom par défaut si vide
 
         // Debugging output - Pour vérifier que les valeurs sont bien récupérées
         // dd($fromAddress, $fromName);

@@ -121,12 +121,13 @@
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                         </svg>
                                                     </a>
-                                                    <!-- Icône Archiver avec Confirmation -->
-                                                    <a href="{{ route('plaques.relance', $plaque->id) }}"  class="archiver" data-id="{{ $plaque->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Archiver">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-warning me-3" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7M4 7h16M4 7a2 2 0 012-2h12a2 2 0 012 2M10 11h4" />
+                                                    <!-- Icône Relancer -->
+                                                    <a href="{{ route('plaques.relance', $plaque->id) }}" class="relancer" data-id="{{ $plaque->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Relancer">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-success me-3" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v6h6M20 20v-6h-6M4.93 19.07A10 10 0 104.93 4.93" />
                                                         </svg>
                                                     </a>
+
 
 
                                                     
