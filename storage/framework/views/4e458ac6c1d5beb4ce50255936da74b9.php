@@ -16,9 +16,9 @@
               <div class="col-md-12 col-lg-6">
                  <div class="card">
                     <div class="card-body">
-                       <a href="<?php echo e(route('index')); ?>" class="auth-logo">
+                       <!-- <a href="<?php echo e(route('index')); ?>" class="auth-logo">
                           <img src="<?php echo e(asset('images/logo-dark.png')); ?>" class="img-fluid rounded-normal" alt="logo">
-                       </a>
+                       </a> -->
                        <h3 class="mb-3 font-weight-bold text-center">Connexion</h3>
                        <p class="text-center text-secondary mb-4">Entrer votre Email et mot de passe</p>
 
@@ -79,17 +79,17 @@
                                 <div class="form-group">
                                    <div class="d-flex justify-content-between align-items-center">
                                       <label class="text-secondary form-label text-dark">Mot de passe</label>
-                                      <label class="form-label"><a href="<?php echo e(route('recovers')); ?>" class="text-primary">Mot de passe oublié?</a></label>
+                                      <!-- <label class="form-label"><a href="<?php echo e(route('recovers')); ?>" class="text-primary">Mot de passe oublié?</a></label> -->
                                    </div>
                                    <input class="form-control mb-0" type="password" placeholder="********"  name="password" value="<?php echo e(env('IS_DEMO') ? 'password' : ''); ?>" required autocomplete="current-password">
                                 </div>
                              </div>
                           </div>
                           <button type="submit" class="btn btn-primary w-100 d-block mt-2">Connexion</button>
-                          <div class="col-lg-12 mt-3">
+                          <!-- <div class="col-lg-12 mt-3">
                              <p class="mb-0 text-center text-dark">Vous êtes nouveau <a href="<?php echo e('registers'); ?>"
                                    class="text-primary">Inscription</a></p>
-                          </div>
+                          </div> -->
                        </form>
                     </div>
                  </div>
