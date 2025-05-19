@@ -14,7 +14,7 @@
         <div class="col-lg-12 mb-1">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb p-0 mb-2">
-                    <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">Entreprise</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('companies.index') }}">Entreprises</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ isset($company) ? 'Modifier' : 'Ajouter' }} une entreprise
                     </li>
@@ -36,12 +36,12 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Nom *</label>
+                                <label class="form-label">Nom de l'entreprise *</label>
                                 <input type="text" name="name" class="form-control"
                                     value="{{ old('name', $company->name ?? '') }}" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Adresse</label>
+                                <label class="form-label">Adresse email</label>
                                 <input type="text" name="address" class="form-control"
                                     value="{{ old('address', $company->address ?? '') }}">
                             </div>
@@ -53,7 +53,7 @@
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Statut</label>
                                 <select name="status" class="form-control">
-                                    <option value="pending" {{ old('status', $company->status ?? '') == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="pending" {{ old('status', $company->status ?? '') == 'pending' ? 'selected' : '' }}>En attente</option>
                                     <option value="active" {{ old('status', $company->status ?? '') == 'active' ? 'selected' : '' }}>Active</option>
                                     <option value="inactive" {{ old('status', $company->status ?? '') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                                 </select>
@@ -64,13 +64,12 @@
                         <div class="col-lg-12 mt-4">
                             <div class="card border-success">
                                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                                    <span>Ajouter des utilisateurs</span>
+                                    <span>Utilisateurs de l’entreprise</span>
                                     <button type="button" class="btn btn-light btn-sm" id="addUserBtn">+ Ajouter un utilisateur</button>
                                 </div>
                                 <div class="card-body">
                                     <input type="hidden" name="company_id" value="{{ $company->id ?? '' }}">
 
-                                    {{-- Conteneur pour afficher dynamiquement les formulaires utilisateurs --}}
                                     <div id="user-forms">
                                     @if(isset($users) && $users->count() > 0)
                                         @foreach($users as $index => $user)
@@ -95,7 +94,6 @@
                                                         <label>Email *</label>
                                                         <input type="email" name="users[{{ $index }}][email]" class="form-control" value="{{ old('users.'.$index.'.email', $user->email) }}" required>
                                                     </div>
-                                                    <!--  -->
                                                 </div>
                                             </div>
                                         @endforeach
@@ -106,8 +104,8 @@
                         </div>
 
                         <div class="d-flex justify-content-end mt-3 gap-2">
-                            <button type="submit" class="btn btn-primary">Enregistrer l’entreprise et les utilisateurs</button>
-                            <a href="{{ route('companies.index') }}" class="btn btn-danger">Annuler</a>
+                            <button type="submit" class="btn btn-primary">Enregistrer l’entreprise</button>
+                            <a href="{{ route('companies.index') }}" class="btn btn-danger">Retour</a>
                         </div>
                     </form>
                 </div>
@@ -118,12 +116,11 @@
 </div>
 
 {{-- JS pour afficher dynamiquement les formulaires utilisateurs --}}
-<>
 <script>
-    let userIndex = {{ isset($users) && is_countable($users) ? count($users) : 0 }}; // Assurez-vous que $users est un tableau
+    let userIndex = {{ isset($users) && is_countable($users) ? count($users) : 0 }};
 
     function generateUserForm() {
-        const userFormHTML = `
+        return `
             <div class="user-form-block mb-4">
                 <div class="user-header bg-info text-white py-2 px-3">
                     <h5>Utilisateur ${userIndex + 1}</h5>
@@ -152,7 +149,6 @@
                 </div>
             </div>
         `;
-        return userFormHTML;
     }
 
     document.getElementById('addUserBtn').addEventListener('click', function() {

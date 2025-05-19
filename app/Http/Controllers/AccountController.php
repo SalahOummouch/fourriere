@@ -126,4 +126,14 @@ class AccountController extends Controller
 
         return redirect()->route('accounts.index')->with('success', 'Utilisateur ajouté avec succès!');
     }
+    public function toggleStatus(User $user)
+    {
+        $this->authorizeAdmin();
+
+        $user->status = $user->status === 'active' ? 'inactive' : 'active';
+        $user->save();
+
+        return redirect()->route('accounts.index')->with('success', 'Le statut de l\'utilisateur a été mis à jour.');
+    }
+
 }

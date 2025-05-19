@@ -53,3 +53,11 @@ $response = tap($kernel->handle(
 ))->send();
 
 $kernel->terminate($request, $response);
+
+
+
+?>
+<script>
+    document.querySelector('#DataTables_Table_0_filter > label').innerHTML = 'Chercher : <input type="search">';
+
+</script>

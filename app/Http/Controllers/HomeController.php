@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\Plaque;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -19,83 +21,97 @@ class HomeController extends Controller
     }
 
 
-    public function index()
-    {
-        // Nombre de plaques enregistrées
-        $platesCount = Plaque::count();
-    
-        // Vérifier si platesCount est différent de zéro pour éviter la division par zéro
-        if ($platesCount > 0) {
-            // Nombre de plaques en fourrière
-            $platesInTow = Plaque::where('status', 'en_fourrière')->count();
-            
-            // Pourcentage de plaques en fourrière
-            $platesInTowPercentage = ($platesInTow / $platesCount) * 100;
-    
-            // Nombre de véhicules retrouvés (Plaques libres)
-            $platesFree = Plaque::where('status', 'libre')->count();
-            
-            // Pourcentage de plaques retrouvées
-            $platesFreePercentage = ($platesFree / $platesCount) * 100;
-    
-            // Nombre de plaques en cours de recherche
-            $platesInProgress = Plaque::where('status', 'en_cours')->count();
-            
-            // Pourcentage de plaques en cours de recherche
-            $platesInProgressPercentage = ($platesInProgress / $platesCount) * 100;
-    
-            // Historique des alertes envoyées : Compter les plaques ayant une recherche effectuée
-            $alertsSent = Plaque::whereNotNull('date_recherche')->count();
-            
-            // Pourcentage des alertes envoyées
-            $alertsSentPercentage = ($alertsSent / $platesCount) * 100;
-    
-            // Suppression des plaques inactives : Plaques archivées
-            $inactivePlatesRemoved = Plaque::where('archived', true)->count();
-            
-            // Pourcentage des plaques supprimées
-            $inactivePlatesPercentage = ($inactivePlatesRemoved / $platesCount) * 100;
-        } else {
-            // Si $platesCount est zéro, définir les pourcentages sur zéro
-            $platesFree = 0;
-            $alertsSent = 0;
-            $inactivePlatesRemoved = 0;
-            $inactivePlatesRemoved = 0;
-            $platesInTowPercentage = 0;
-            $platesFreePercentage = 0;
-            $platesInProgressPercentage = 0;
-            $alertsSentPercentage = 0;
-            $inactivePlatesPercentage = 0;
-        }
-    
-        // Données pour le graphique
-        $chartData = [
-            'labels' => ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
-            'datasets' => [
-                [
-                    'label' => 'Véhicules en fourrière',
-                    'data' => [120, 150, 170, 200, 180, 220], // Remplacez avec des données réelles
-                    'borderColor' => 'rgba(75, 192, 192, 1)',
-                    'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
-                    'tension' => 0.4
-                ],
-                [
-                    'label' => 'Autres en fourrière',
-                    'data' => [60, 90, 70, 110, 95, 130], // Remplacez avec des données réelles
-                    'borderColor' => 'rgba(153, 102, 255, 1)',
-                    'backgroundColor' => 'rgba(153, 102, 255, 0.2)',
-                    'tension' => 0.4
-                ]
-            ]
-        ];
-    
-        return view('dashboards.index', compact(
-            'platesCount', 'platesInTowPercentage', 'platesFreePercentage', 'platesFree',
-            'platesInProgressPercentage', 'alertsSentPercentage',
-            'inactivePlatesPercentage', 'chartData', 'alertsSent', 'inactivePlatesRemoved'
-        ));
+
+
+public function index()
+{
+    $user = Auth::user();
+
+    // Traductions des statuts
+    $statusTranslations = [
+        'inactive' => 'inactif',
+        'pending' => 'en attente',
+    ];
+
+    // Vérification du statut utilisateur
+    if (in_array($user->status, ['inactive', 'pending'])) {
+        Auth::logout();
+        return redirect()->route('login')->withErrors([
+            "Votre compte est actuellement " . ($statusTranslations[$user->status] ?? $user->status) . ". Veuillez contacter l’administrateur."
+        ]);
     }
-    
+
+    // Vérification du statut de l'entreprise
+    if ($user->company && in_array($user->company->status, ['inactive', 'pending'])) {
+        Auth::logout();
+        return redirect()->route('login')->withErrors([
+            "Votre entreprise est actuellement " . ($statusTranslations[$user->company->status] ?? $user->company->status) . ". Veuillez contacter l’administrateur."
+        ]);
+    }
+
+    // Appliquer le filtre si ce n’est pas un admin
+    $query = Plaque::query();
+    if ($user->user_type !== 'admin') {
+        $query->where('company_id', $user->company_id);
+    }
+
+    // Nombre total de plaques
+    $platesCount = (clone $query)->where('archived', false)->count();
+
+    if ($platesCount > 0) {
+        $platesInTow = (clone $query)->where('status', 'en_fourrière')->where('archived', false)->count();
+        $platesInTowPercentage = ($platesInTow / $platesCount) * 100;
+
+        $platesFree = (clone $query)->where('status', 'libre')->where('archived', false)->count();
+        $platesFreePercentage = ($platesFree / $platesCount) * 100;
+
+        $platesInProgress = (clone $query)->where('status', 'en_cours')->where('archived', false)->count();
+        $platesInProgressPercentage = ($platesInProgress / $platesCount) * 100;
+
+        $alertsSent = (clone $query)->whereNotNull('date_recherche')->where('archived', false)->count();
+        $alertsSentPercentage = ($alertsSent / $platesCount) * 100;
+
+        $inactivePlatesRemoved = (clone $query)->where('archived', true)->count();
+        $inactivePlatesPercentage = ($inactivePlatesRemoved / ($platesCount + $inactivePlatesRemoved)) * 100;
+    } else {
+        $platesFree = 0;
+        $alertsSent = 0;
+        $inactivePlatesRemoved = (clone $query)->where('archived', true)->count();
+        $platesInTowPercentage = 0;
+        $platesFreePercentage = 0;
+        $platesInProgressPercentage = 0;
+        $alertsSentPercentage = 0;
+        $inactivePlatesPercentage = 0;
+    }
+
+    // Exemple de données pour le graphique (à remplacer par vos données réelles)
+    $chartData = [
+        'labels' => ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+        'datasets' => [
+            [
+                'label' => 'Véhicules en fourrière',
+                'data' => [120, 150, 170, 200, 180, 220],
+                'borderColor' => 'rgba(75, 192, 192, 1)',
+                'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
+                'tension' => 0.4
+            ],
+            [
+                'label' => 'Véhicules retrouvés',
+                'data' => [60, 90, 70, 110, 95, 130],
+                'borderColor' => 'rgba(153, 102, 255, 1)',
+                'backgroundColor' => 'rgba(153, 102, 255, 0.2)',
+                'tension' => 0.4
+            ]
+        ]
+    ];
+
+    return view('dashboards.index', compact(
+        'platesCount', 'platesInTowPercentage', 'platesFreePercentage', 'platesFree',
+        'platesInProgressPercentage', 'alertsSentPercentage',
+        'inactivePlatesPercentage', 'chartData', 'alertsSent', 'inactivePlatesRemoved'
+    ));
+}
+
 
     // public function index(Request $request)
     // {

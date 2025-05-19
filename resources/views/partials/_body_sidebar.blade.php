@@ -1,7 +1,7 @@
 <div class="iq-sidebar sidebar-default">
     <div class="iq-sidebar-logo d-flex align-items-end justify-content-between">
         <a href="{{ route('index') }}" class="header-logo">
-            <span>Alerts Fourriere</span>
+            <span>Alertes Fourrière</span>
         </a>
     </div>
     <div class="data-scrollbar" data-scroll="1">
@@ -29,7 +29,7 @@
                                     d="M3 10h18M5 6h14m-2 8H7m2 4h6"/>
                             </svg>
                         </i>
-                        <span class="ms-2">Liste des plaques</span>
+                        <span class="ms-2">Plaques actives</span>
                     </a>
                 </li>
                 <li class="sidebar-layout">
@@ -51,11 +51,11 @@
                                     d="M12 4v16m8-8H4"/>
                             </svg>
                         </i>
-                        <span class="ms-2">Ajouter plaques</span>
+                        <span class="ms-2">Ajouter une plaque</span>
                     </a>
                 </li>
                 <li class="px-3 pt-3 pb-2">
-                    <span class="text-uppercase small fw-bold">Alerts & Notifications</span>
+                    <span class="text-uppercase small fw-bold">Alertes & Notifications</span>
                 </li>
                 <li class="sidebar-layout">
                     <a href="/alerte" class="svg-icon">
@@ -68,24 +68,12 @@
                         <span class="ms-2">Historique des alertes</span>
                     </a>
                 </li>
-                {{-- <li class="sidebar-layout">
-                    <a href="/" class="svg-icon">
-                        <i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 17a4 4 0 008 0m-4-4v-2m0-4a2 2 0 100-4 2 2 0 000 4z"/>
-                            </svg>
-                        </i>
-                        <span class="ms-2">Paramètres des alertes</span>
-                    </a>
-                </li> --}}
                 
-            @if(auth()->check() && auth()->user()->user_type == 'admin')
-
-                <li class="px-3 pt-3 pb-2">
-                    <span class="text-uppercase small fw-bold">Gestion des utilisateurs</span>
-                </li>
-                <li class="sidebar-layout">
+                @if(auth()->check() && auth()->user()->user_type == 'admin')
+                    <li class="px-3 pt-3 pb-2">
+                        <span class="text-uppercase small fw-bold">Gestion des utilisateurs</span>
+                    </li>
+                    <li class="sidebar-layout">
                         <a href="/companies" class="svg-icon">
                             <i>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -93,22 +81,21 @@
                                         d="M3 21h18M9 8h1m-1 4h1m-1 4h1m4-8h1m-1 4h1m-1 4h1M6 3h12a1 1 0 011 1v17H5V4a1 1 0 011-1z"/>
                                 </svg>
                             </i>
-                            <span class="ms-2">Clients  entreprises</span>
+                            <span class="ms-2">Entreprises clientes</span>
                         </a>
-                 </li>
-
-                <li class="sidebar-layout">
-                    <a href="/accounts" class="svg-icon">
-                        <i>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87M16 3.13a4 4 0 110 7.75m-8 0a4 4 0 110-7.75"/>
-                            </svg>
-                        </i>
-                        <span class="ms-2">Utilisateurs</span>
-                    </a>
-                </li>
-            @endif
+                    </li>
+                    <li class="sidebar-layout">
+                        <a href="/accounts" class="svg-icon">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 21v-2a4 4 0 00-3-3.87M4 21v-2a4 4 0 013-3.87M16 3.13a4 4 0 110 7.75m-8 0a4 4 0 110-7.75"/>
+                                </svg>
+                            </i>
+                            <span class="ms-2">Utilisateurs</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>

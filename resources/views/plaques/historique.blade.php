@@ -84,9 +84,12 @@
                                 @endforeach
                             </ul>
                             <!-- Affichage du nombre de recherches après la date spécifique -->
+                        @if(Auth::user()->user_type == 'admin')
+
                             <div class="alert alert-info">
                                 <p>Nombre de recherches effectuées  <strong>{{$searchCountAfterDate}}</strong></p>
                             </div>
+                        @endif
                         </div>
                     </div>
                 </div>

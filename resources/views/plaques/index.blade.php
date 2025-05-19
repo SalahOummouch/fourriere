@@ -74,9 +74,11 @@
                                             <th scope="col" class="dates">
                                                 <label class="text-muted mb-0">Date</label>
                                             </th>
+                                            @endif
                                             <th scope="col">
-                                                <label class="text-muted mb-0">Ajouter par</label>
+                                                <label class="text-muted mb-0">Ajouté par</label>
                                             </th>
+                                            @if(Auth::user()->user_type == 'admin')
                                             <th scope="col" class="text-start">
                                                 <label class="text-muted mb-0">Date de recherche</label>
                                             </th>
@@ -101,60 +103,58 @@
                                             <td>{{ $plaque->numero_plaque }}</td>
                                             @if(Auth::user()->user_type == 'admin')
                                             <td>{{ \Carbon\Carbon::parse($plaque->date_recherche)->format('d M Y') }}</td>
+                                            @endif
                                             <td>
                                                 <div class="active-project-1 d-flex align-items-center mt-0">
                                                     <div class="data-content">
                                                         <div>
-                                                            <span class="fw-bold">{{ $plaque->user->first_name }} {{ $plaque->user->last_name }} ( {{ $plaque->user->username }} ) </span>
+                                                            <span class="fw-bold">{{ $plaque->user->first_name }} {{ $plaque->user->last_name }} ({{ $plaque->user->company->name ?? '---' }})</span>
                                                         </div>
                                                         <p class="m-0 text-secondary small">{{ $plaque->user->email }}</p>
                                                     </div>
                                                 </div>
                                             </td>
+                                            @if(Auth::user()->user_type == 'admin')
                                             <td>{{ $plaque->date_recherche != null ? \Carbon\Carbon::parse($plaque->date_recherche)->format('d M Y (H:i:s)') : "" }}</td>
                                             @endif
                                             <td>
-                                                <p class="mb-0 text-{{ $plaque->status === 'en_fourrière' ? 'danger' : ($plaque->status === 'en_cours' ? 'warning' : 'success' ) }} fw-bold d-flex justify-content-start align-items-center">
+                                                <p class="mb-0 text-{{ $plaque->status === 'en_fourrière' ? 'danger' : ($plaque->status === 'en_cours' ? 'warning' : 'success') }} fw-bold d-flex justify-content-start align-items-center">
                                                     @if($plaque->status == "en_fourrière")
                                                         <small>
-                                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
-                                                            <circle cx="12" cy="12" r="8" fill="{{ $plaque->status === 'en_fourrière' ? 'red' : ($plaque->status === 'en_cours' ? 'orange' : 'green') }}"></circle>
-                                                        </svg>
-                                                    </small>
-                                                    <p class="mb-0 text-danger fw-bold">En fourrière</p>
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
+                                                                <circle cx="12" cy="12" r="8" fill="red"></circle>
+                                                            </svg>
+                                                        </small>
+                                                        <p class="mb-0 text-danger fw-bold">En fourrière</p>
                                                     @elseif($plaque->status == "en_cours")
                                                         <div class="spinner-grow spinner-grow-sm" role="status">
                                                             <span class="visually-hidden">Loading...</span>
                                                         </div>
                                                     @else
-                                                    <small>
-                                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
-                                                            <circle cx="12" cy="12" r="8" fill="{{ $plaque->status === 'en_fourrière' ? 'red' : ($plaque->status === 'en_cours' ? 'orange' : 'grey') }}"></circle>
-                                                        </svg>
-                                                    </small>
-                                                        <p class="mb-0 text-secondary fw-bold">aucune information</p>
+                                                        <small>
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none">
+                                                                <circle cx="12" cy="12" r="8" fill="grey"></circle>
+                                                            </svg>
+                                                        </small>
+                                                        <p class="mb-0 text-secondary fw-bold">Aucune information</p>
                                                     @endif
                                                 </p>
                                                 <p class="m-0 text-secondary small">{{ $plaque->adresse }}</p>
                                             </td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center">
-                                                    <!-- Icône Afficher -->
                                                     <a data-bs-toggle="tooltip" data-bs-placement="top" title="Afficher" href="/historiques/{{ $plaque->id}}">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-secondary me-3" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                         </svg>
                                                     </a>
-                                                    <!-- Icône Archiver avec Confirmation -->
-                                                    <a href="{{ route('plaques.archive', $plaque->id) }}"  class="archiver" data-id="{{ $plaque->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Archiver">
+                                                    <a href="{{ route('plaques.archive', $plaque->id) }}" class="archiver" data-id="{{ $plaque->id }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Archiver">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-warning me-3" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7M4 7h16M4 7a2 2 0 012-2h12a2 2 0 012 2M10 11h4" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2v-7" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 6H8v6h8V6z" />
                                                         </svg>
                                                     </a>
-
-
-                                                    
                                                 </div>
                                             </td>
                                         </tr>
@@ -169,4 +169,5 @@
         </div>
     </div>
 </div>
+
 </x-app-layout>

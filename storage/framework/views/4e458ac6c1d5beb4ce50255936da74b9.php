@@ -20,8 +20,7 @@
                           <img src="<?php echo e(asset('images/logo-dark.png')); ?>" class="img-fluid rounded-normal" alt="logo">
                        </a> -->
                        <h3 class="mb-3 font-weight-bold text-center">Connexion</h3>
-                       <p class="text-center text-secondary mb-4">Entrer votre Email et mot de passe</p>
-
+                       <p class="text-center text-secondary mb-4">Entrez votre adresse e-mail et votre mot de passe</p>
 
                        <?php if (isset($component)) { $__componentOriginal7c1bf3a9346f208f66ee83b06b607fb5 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal7c1bf3a9346f208f66ee83b06b607fb5 = $attributes; } ?>
@@ -44,7 +43,7 @@
 <?php unset($__componentOriginal7c1bf3a9346f208f66ee83b06b607fb5); ?>
 <?php endif; ?>
 
-                       <!-- Validation Errors -->
+                       <!-- Erreurs de validation -->
                        <?php if (isset($component)) { $__componentOriginal0ff1ee8966084a5d418f848c5e125b44 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal0ff1ee8966084a5d418f848c5e125b44 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.auth-validation-errors','data' => ['class' => 'mb-4','errors' => $errors]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -65,30 +64,30 @@
 <?php $component = $__componentOriginal0ff1ee8966084a5d418f848c5e125b44; ?>
 <?php unset($__componentOriginal0ff1ee8966084a5d418f848c5e125b44); ?>
 <?php endif; ?>
-                       <form method="POST" class="mt-5" action="<?php echo e(route('login')); ?>" data-toggle="validator" class="">
-                        <?php echo e(csrf_field()); ?>
+
+                       <form method="POST" class="mt-5" action="<?php echo e(route('login')); ?>" data-toggle="validator">
+                          <?php echo e(csrf_field()); ?>
 
                           <div class="row">
                              <div class="col-lg-12">
                                 <div class="form-group">
-                                   <label class="text-secondary form-label text-dark">Email</label>
-                                   <input id="email" type="email" name="email"  value="<?php echo e(env('IS_DEMO') ? 'admin@example.com' : old('email')); ?>"   class="form-control mb-0"  placeholder="admin@example.com" required autofocus>
+                                   <label class="text-secondary form-label text-dark">Adresse e-mail</label>
+                                   <input id="email" type="email" name="email" value="<?php echo e(env('IS_DEMO') ? 'admin@example.com' : old('email')); ?>" class="form-control mb-0" placeholder="admin@example.com" required autofocus>
                                 </div>
                              </div>
                              <div class="col-lg-12 mt-2">
                                 <div class="form-group">
                                    <div class="d-flex justify-content-between align-items-center">
                                       <label class="text-secondary form-label text-dark">Mot de passe</label>
-                                      <!-- <label class="form-label"><a href="<?php echo e(route('recovers')); ?>" class="text-primary">Mot de passe oublié?</a></label> -->
+                                      <!-- <label class="form-label"><a href="<?php echo e(route('recovers')); ?>" class="text-primary">Mot de passe oublié ?</a></label> -->
                                    </div>
-                                   <input class="form-control mb-0" type="password" placeholder="********"  name="password" value="<?php echo e(env('IS_DEMO') ? 'password' : ''); ?>" required autocomplete="current-password">
+                                   <input class="form-control mb-0" type="password" placeholder="********" name="password" value="<?php echo e(env('IS_DEMO') ? 'password' : ''); ?>" required autocomplete="current-password">
                                 </div>
                              </div>
                           </div>
-                          <button type="submit" class="btn btn-primary w-100 d-block mt-2">Connexion</button>
+                          <button type="submit" class="btn btn-primary w-100 d-block mt-2">Se connecter</button>
                           <!-- <div class="col-lg-12 mt-3">
-                             <p class="mb-0 text-center text-dark">Vous êtes nouveau <a href="<?php echo e('registers'); ?>"
-                                   class="text-primary">Inscription</a></p>
+                             <p class="mb-0 text-center text-dark">Vous êtes nouveau ? <a href="<?php echo e(route('registers')); ?>" class="text-primary">Inscrivez-vous</a></p>
                           </div> -->
                        </form>
                     </div>
