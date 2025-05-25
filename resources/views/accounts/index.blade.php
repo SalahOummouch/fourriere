@@ -1,5 +1,18 @@
 <x-app-layout>
 
+    @php
+        function format_phone_number($number) {
+            if (!$number) return '';
+            // Supprimer les caractères non numériques
+            $number = preg_replace('/\D/', '', $number);
+            // Formater si le numéro contient exactement 10 chiffres
+            if (strlen($number) === 10) {
+                return preg_replace('/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/', '$1 $2 $3 $4 $5', $number);
+            }
+            return $number;
+        }
+    @endphp
+
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -48,8 +61,7 @@
                                         </select>
                                         <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
                                     </div>
-                                </form>
-                              
+                                </form>                              
                             </div>
                         </div>
                     </div>
@@ -91,7 +103,7 @@
                                                     <td>{{ $user->first_name }} {{ $user->last_name }} <br> ({{ $user->username }})</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->phone_number }}</td>
+                                                    <td>{{ format_phone_number($user->phone_number) }}</td>
                                                     <td>{{ ucfirst($user->user_type) }}</td>
                                                     <td>
                                                         @if($user->status == 'pending')
@@ -116,8 +128,6 @@
                                                     </td>
                                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                                     <td>
-                                                        
-
                                                         <form action="{{ route('accounts.toggleStatus', $user->id) }}" method="POST" class="d-inline">
                                                             @csrf
                                                             @method('PUT')

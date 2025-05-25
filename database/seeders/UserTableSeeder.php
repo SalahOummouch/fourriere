@@ -26,10 +26,10 @@ class UserTableSeeder extends Seeder
             [
                 'first_name' => 'Alexandre',
                 'last_name' => 'Collot',
-                'username' => 'Administaration Alerte Fourriere',
+                'username' => 'Alexandre Collot',
                 'email' => 'alexandre.collot@europe-convoyage.com',
                 'password' => bcrypt('0UrA8HvH4X'),
-                'phone_number' => '+33 6 17 09 41 01',
+                'phone_number' => '+33617094101',
                 'company_id' => $company -> id,
                 'email_verified_at' => now(),
                 'user_type' => 'admin',
