@@ -102,7 +102,7 @@
                                             </td>
                                             <td>{{ $plaque->numero_plaque }}</td>
                                             @if(Auth::user()->user_type == 'admin')
-                                            <td>{{ \Carbon\Carbon::parse($plaque->date_recherche)->format('d M Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($plaque->created_at)->format('d M Y') }}</td>
                                             @endif
                                             <td>
                                                 <div class="active-project-1 d-flex align-items-center mt-0">

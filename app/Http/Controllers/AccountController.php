@@ -141,7 +141,7 @@ public function admin(Request $request)
             'company_id' => 1,
         ]);
 
-        return redirect()->route('accounts.index')->with('success', 'Utilisateur ajouté avec succès!');
+        return redirect()->route('accounts.admins')->with('success', 'Utilisateur ajouté avec succès!');
     }
     public function toggleStatus(User $user)
     {
@@ -163,7 +163,7 @@ public function changePassword(Request $request, User $user)
     $user->password = Hash::make($request->password);
     $user->save();
 
-    return redirect()->route('accounts.edit', $user)->with('success', 'Mot de passe mis à jour avec succès.');
+    return redirect()->route('accounts.index', $user)->with('success', 'Mot de passe mis à jour avec succès.');
 }
 public function create()
 {
