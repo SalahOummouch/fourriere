@@ -32,6 +32,8 @@ class ChercherEnFouriere extends Command
      */
     public function handle()
     {
+        Log::info('Début de la commande ChercherEnFouriere');
+
         $plaques = Plaque::orderByRaw('date_recherche IS NOT NULL, date_recherche ASC')->get();
 
         foreach ($plaques as $plaque) {
