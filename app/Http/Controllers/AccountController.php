@@ -47,33 +47,19 @@ class AccountController extends Controller
 
         return view('accounts.index', compact('users'));
     }
-    public function admin(Request $request)
-    {
-        $this->authorizeAdmin();
+public function admin(Request $request)
+{
+    $this->authorizeAdmin();
 
-        $query = Company::join('users', 'companies.id', '=', 'users.company_id');
+    $query = Company::join('users', 'companies.id', '=', 'users.company_id')
+                    ->where('user_type', 'admin')
+                    ->select('users.*', 'companies.name as company_name'); // facultatif, si tu veux afficher le nom de la société
 
-        if ($request->filled('search')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('username', 'like', '%' . $request->search . '%')
-                    ->orWhere('email', 'like', '%' . $request->search . '%')
-                    ->orWhere('first_name', 'like', '%' . $request->search . '%')
-                    ->orWhere('last_name', 'like', '%' . $request->search . '%');
-            });
-        }
+    $users = $query->orderBy('users.created_at', 'desc')->get();
 
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        }
+    return view('accounts.admin', compact('users'));
+}
 
-        if ($request->filled('user_type')) {
-            $query->where('user_type', $request->user_type);
-        }
-
-        $users = $query->orderBy('users.created_at', 'desc')->get();
-
-        return view('accounts.admin', compact('users'));
-    }
 
     public function edit(User $user)
     {
