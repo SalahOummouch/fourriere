@@ -144,7 +144,7 @@
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_status">Statut :</label>
-                                      <select class="form-select {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_status" {{ !$isCompanyAdmin ? 'disabled' : '' }}>
+                                      <select class="form-select bg-secondary text-muted" id="company_status" {{ !$isCompanyAdmin ? 'disabled' : '' }}>
                                          <option value="" disabled>Choisir le statut</option>
                                          <option value="active" {{ $company['status'] == 'active' ? 'selected' : '' }}>Actif</option>
                                          <option value="inactive" {{ $company['status'] == 'inactive' ? 'selected' : '' }}>Inactif</option>
