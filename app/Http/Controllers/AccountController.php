@@ -106,7 +106,7 @@ public function admin(Request $request)
 
         $user->update($request->all());
 
-        return redirect()->route('accounts.index')->with('success', 'Fréquence de vérification mise à jour avec succès.');
+        return redirect()->back()->with('success', 'Fréquence de vérification mise à jour avec succès.');
     }
 
     public function store(Request $request)
