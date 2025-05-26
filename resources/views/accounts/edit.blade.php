@@ -116,17 +116,23 @@
                                 <h4 class="card-title">Informations d'entreprises</h4>
                              </div>
                           </div>
-                          <div class="card-body">
+                          <div class="card-body {{ !$isCompanyAdmin ? 'bg-light' : '' }}">
+                             @if(!$isCompanyAdmin)
+                                <div class="alert alert-warning mb-3">
+                                   <i class="fas fa-exclamation-triangle me-2"></i>
+                                   Vous n'avez pas le droit de modifier les informations d'entreprise.
+                                </div>
+                             @endif
                              <form>
                                 <!-- Nom de l'entreprise et Adresse -->
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_name">Nom de l'entreprise :</label>
-                                      <input type="text" class="form-control" id="company_name" value="{{ $company['name'] }}" {{ !$isCompanyAdmin ? 'readonly' : '' }}>
+                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_name" value="{{ $company['name'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_address">Adresse :</label>
-                                      <input type="text" class="form-control" id="company_address" value="{{ $company['address'] }}" {{ !$isCompanyAdmin ? 'readonly' : '' }}>
+                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_address" value="{{ $company['address'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
                                 </div>
 
@@ -134,11 +140,11 @@
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_phone">Téléphone :</label>
-                                      <input type="text" class="form-control" id="company_phone" value="{{ $company['phone'] }}" {{ !$isCompanyAdmin ? 'readonly' : '' }}>
+                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_phone" value="{{ $company['phone'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_status">Statut :</label>
-                                      <select class="form-select" id="company_status" {{ !$isCompanyAdmin ? 'disabled' : '' }}>
+                                      <select class="form-select {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_status" {{ !$isCompanyAdmin ? 'disabled' : '' }}>
                                          <option value="" disabled>Choisir le statut</option>
                                          <option value="active" {{ $company['status'] == 'active' ? 'selected' : '' }}>Actif</option>
                                          <option value="inactive" {{ $company['status'] == 'inactive' ? 'selected' : '' }}>Inactif</option>
@@ -148,8 +154,8 @@
                                 </div>
 
                                
-                                <button type="reset" class="btn btn-outline-primary me-2" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Annuler</button>
-                                <button type="submit" class="btn btn-primary" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Valider</button>
+                                <button type="reset" class="btn btn-outline-secondary me-2" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Annuler</button>
+                                <button type="submit" class="btn btn-secondary" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Valider</button>
                              </form>
                           </div>
                        </div>
