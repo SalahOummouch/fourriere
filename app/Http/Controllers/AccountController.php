@@ -64,6 +64,7 @@ public function admin(Request $request)
     public function edit(User $user)
     {
         $this->authorizeAdmin();
+        dd($user);
         return view('accounts.edit', compact('user'));
     }
 
