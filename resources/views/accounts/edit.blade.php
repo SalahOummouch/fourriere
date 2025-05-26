@@ -61,14 +61,16 @@
                                       </div>
                                    </div>
                                 </div>
-                                <div class=" row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="fname">Prénom :</label>
-                                      <input type="text" class="form-control" id="fname" value="Barry">
-                                   </div>
+                                
+                                <!-- Nom, Prénom, Username - ligne 1 et 2 -->
+                                <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="lname">Nom :</label>
                                       <input type="text" class="form-control" id="lname" value="Tech">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="fname">Prénom :</label>
+                                      <input type="text" class="form-control" id="fname" value="Barry">
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="uname">Nom d'utilisateur :</label>
@@ -78,6 +80,10 @@
                                       <label class="form-label" for="cname">Ville :</label>
                                       <input type="text" class="form-control" id="cname" value="Atlanta">
                                    </div>
+                                </div>
+
+                                <!-- Genre et Date de naissance -->
+                                <div class="row align-items-center">
                                    <div class="col-sm-6">
                                       <label class="form-label" for="gender">Genre :</label><br>
                                       <div class="form-check form-check-inline">
@@ -99,6 +105,10 @@
                                       <label class="form-label" for="dob">Date de Naissance :</label>
                                       <input class="form-control" id="dob" value="1984-01-24">
                                    </div>
+                                </div>
+
+                                <!-- État Civil et Âge -->
+                                <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label">État Civil :</label>
                                       <select class="form-select" id="exampleFormControlSelect1">
@@ -119,6 +129,10 @@
                                          <option>63 et plus</option>
                                       </select>
                                    </div>
+                                </div>
+
+                                <!-- Pays et État/Région -->
+                                <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label">Pays :</label>
                                       <select class="form-select" id="exampleFormControlSelect3">
@@ -139,6 +153,10 @@
                                          <option>Louisiane</option>
                                       </select>
                                    </div>
+                                </div>
+
+                                <!-- Adresse sur toute la largeur -->
+                                <div class="row">
                                    <div class="form-group col-sm-12">
                                       <label class="form-label">Adresse :</label>
                                       <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">37 Cardinal Lane
@@ -147,6 +165,7 @@ Petersburg, VA 23803
 Code Postal : 85001</textarea>
                                    </div>
                                 </div>
+
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
@@ -192,49 +211,65 @@ Code Postal : 85001</textarea>
                           </div>
                           <div class="card-body">
                              <form>
-                                <div class="form-group">
-                                   <label class="form-label" for="company_name">Nom de l'entreprise :</label>
-                                   <input type="text" class="form-control" id="company_name" placeholder="Entrez le nom de l'entreprise">
+                                <!-- Nom de l'entreprise et Adresse email -->
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="company_name">Nom de l'entreprise :</label>
+                                      <input type="text" class="form-control" id="company_name" placeholder="Entrez le nom de l'entreprise">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="company_email">Adresse email :</label>
+                                      <input type="email" class="form-control" id="company_email" placeholder="Entrez l'adresse email">
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="company_email">Adresse email :</label>
-                                   <input type="email" class="form-control" id="company_email" placeholder="Entrez l'adresse email">
+
+                                <!-- Téléphone et Statut -->
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="company_phone">Téléphone :</label>
+                                      <input type="text" class="form-control" id="company_phone" placeholder="Entrez le numéro de téléphone">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="company_status">Statut :</label>
+                                      <select class="form-select" id="company_status">
+                                         <option value="" selected disabled>Choisir le statut</option>
+                                         <option value="actif">Actif</option>
+                                         <option value="inactif">Inactif</option>
+                                         <option value="suspendu">Suspendu</option>
+                                      </select>
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="company_phone">Téléphone :</label>
-                                   <input type="text" class="form-control" id="company_phone" placeholder="Entrez le numéro de téléphone">
+
+                                <!-- Nombre de véhicules et Type de flotte -->
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="vehicles_count">Nombre de véhicules gérés :</label>
+                                      <input type="number" class="form-control" id="vehicles_count" min="0" placeholder="Entrez le nombre de véhicules">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="fleet_type">Type de flotte :</label>
+                                      <select class="form-select" id="fleet_type">
+                                         <option value="" selected disabled>Choisir le type de flotte</option>
+                                         <option value="légère">Légère</option>
+                                         <option value="lourde">Lourde</option>
+                                         <option value="mixte">Mixte</option>
+                                      </select>
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="company_status">Statut :</label>
-                                   <select class="form-select" id="company_status">
-                                      <option value="" selected disabled>Choisir le statut</option>
-                                      <option value="actif">Actif</option>
-                                      <option value="inactif">Inactif</option>
-                                      <option value="suspendu">Suspendu</option>
-                                   </select>
+
+                                <!-- Type de démo (centré ou sur toute la largeur) -->
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="demo_type">Type de démo souhaitée :</label>
+                                      <select class="form-select" id="demo_type">
+                                         <option value="" selected disabled>Choisir le type de démo</option>
+                                         <option value="en ligne">En ligne</option>
+                                         <option value="sur site">Sur site</option>
+                                         <option value="autre">Autre</option>
+                                      </select>
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="vehicles_count">Nombre de véhicules gérés :</label>
-                                   <input type="number" class="form-control" id="vehicles_count" min="0" placeholder="Entrez le nombre de véhicules">
-                                </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="fleet_type">Type de flotte :</label>
-                                   <select class="form-select" id="fleet_type">
-                                      <option value="" selected disabled>Choisir le type de flotte</option>
-                                      <option value="légère">Légère</option>
-                                      <option value="lourde">Lourde</option>
-                                      <option value="mixte">Mixte</option>
-                                   </select>
-                                </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="demo_type">Type de démo souhaitée :</label>
-                                   <select class="form-select" id="demo_type">
-                                      <option value="" selected disabled>Choisir le type de démo</option>
-                                      <option value="en ligne">En ligne</option>
-                                      <option value="sur site">Sur site</option>
-                                      <option value="autre">Autre</option>
-                                   </select>
-                                </div>
+
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
@@ -251,18 +286,38 @@ Code Postal : 85001</textarea>
                           </div>
                           <div class="card-body">
                              <form>
-                                <div class="form-group">
-                                   <label class="form-label" for="cemail">Email :</label>
-                                   <input type="email" class="form-control" id="cemail" value="barrytech@example.com">
+                                <!-- Téléphone et Email -->
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="cphone">Téléphone :</label>
+                                      <input type="text" class="form-control" id="cphone" value="+1 987 654 3210">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="cemail">Email :</label>
+                                      <input type="email" class="form-control" id="cemail" value="barrytech@example.com">
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="cphone">Numéro de Téléphone :</label>
-                                   <input type="text" class="form-control" id="cphone" value="+1 987 654 3210">
+
+                                <!-- Email entreprise et Téléphone entreprise -->
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="company_email_contact">Email entreprise :</label>
+                                      <input type="email" class="form-control" id="company_email_contact" placeholder="Email professionnel">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="company_phone_contact">Téléphone entreprise :</label>
+                                      <input type="text" class="form-control" id="company_phone_contact" placeholder="Téléphone professionnel">
+                                   </div>
                                 </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="cwebsite">Site Web :</label>
-                                   <input type="text" class="form-control" id="cwebsite" value="https://www.barrytech.com">
+
+                                <!-- Site Web (sur toute la largeur) -->
+                                <div class="row">
+                                   <div class="form-group col-sm-12">
+                                      <label class="form-label" for="cwebsite">Site Web :</label>
+                                      <input type="text" class="form-control" id="cwebsite" value="https://www.barrytech.com">
+                                   </div>
                                 </div>
+
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
