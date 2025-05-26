@@ -65,7 +65,7 @@ public function admin(Request $request)
     {
         $this->authorizeAdmin();
         $user = Auth::user();
-        $company = Company::where('id', $user->company_id);
+        $company = Company::where('id', $user->company_id)->first();
         dd($company);
         return view('accounts.edit', compact('user', 'company'));
     }
