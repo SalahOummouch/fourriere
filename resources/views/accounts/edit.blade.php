@@ -62,7 +62,7 @@
                                    </div>
                                 </div>
                                 
-                                <!-- Nom, Prénom, Username - ligne 1 et 2 -->
+                                <!-- Nom, Prénom, Username -->
                                 <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="lname">Nom :</label>
@@ -72,6 +72,8 @@
                                       <label class="form-label" for="fname">Prénom :</label>
                                       <input type="text" class="form-control" id="fname" value="Barry">
                                    </div>
+                                </div>
+                                <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="uname">Nom d'utilisateur :</label>
                                       <input type="text" class="form-control" id="uname" value="Barry@01">
@@ -240,36 +242,7 @@ Code Postal : 85001</textarea>
                                    </div>
                                 </div>
 
-                                <!-- Nombre de véhicules et Type de flotte -->
-                                <div class="row">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="vehicles_count">Nombre de véhicules gérés :</label>
-                                      <input type="number" class="form-control" id="vehicles_count" min="0" placeholder="Entrez le nombre de véhicules">
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="fleet_type">Type de flotte :</label>
-                                      <select class="form-select" id="fleet_type">
-                                         <option value="" selected disabled>Choisir le type de flotte</option>
-                                         <option value="légère">Légère</option>
-                                         <option value="lourde">Lourde</option>
-                                         <option value="mixte">Mixte</option>
-                                      </select>
-                                   </div>
-                                </div>
-
-                                <!-- Type de démo (centré ou sur toute la largeur) -->
-                                <div class="row">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="demo_type">Type de démo souhaitée :</label>
-                                      <select class="form-select" id="demo_type">
-                                         <option value="" selected disabled>Choisir le type de démo</option>
-                                         <option value="en ligne">En ligne</option>
-                                         <option value="sur site">Sur site</option>
-                                         <option value="autre">Autre</option>
-                                      </select>
-                                   </div>
-                                </div>
-
+                               
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
