@@ -1,4 +1,6 @@
-{{-- resources/views/accounts/edit.blade.php --}}
+
+<x-app-layout>
+    {{-- resources/views/accounts/edit.blade.php --}}
 @if(session('success'))
    <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ session('success') }}
@@ -30,7 +32,6 @@
     </div>
 @endif
 
-<x-app-layout>
     <div class="container-fluid">
         <div class="row">
            <div class="col-lg-12">
