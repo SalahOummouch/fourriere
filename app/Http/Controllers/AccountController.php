@@ -166,6 +166,10 @@ public function changePassword(Request $request, User $user)
 
     return redirect()->route('accounts.edit', $user)->with('success', 'Mot de passe mis à jour avec succès.');
 }
+public function create()
+{
+    return view('accounts.create');
+}
 
 
 }
