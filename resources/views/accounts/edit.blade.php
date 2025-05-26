@@ -17,8 +17,8 @@
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link" data-bs-toggle="pill" href="#emailandsms">
-                                Email et SMS
+                             <a class="nav-link" data-bs-toggle="pill" href="#company-info">
+                                Informations d'entreprises
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
@@ -153,6 +153,7 @@ Code Postal : 85001</textarea>
                           </div>
                        </div>
                     </div>
+
                     <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
@@ -181,38 +182,58 @@ Code Postal : 85001</textarea>
                           </div>
                        </div>
                     </div>
-                    <div class="tab-pane fade" id="emailandsms" role="tabpanel">
+
+                    <div class="tab-pane fade" id="company-info" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title">Email et SMS</h4>
+                                <h4 class="card-title">Informations d'entreprises</h4>
                              </div>
                           </div>
                           <div class="card-body">
                              <form>
-                                <div class="form-check form-switch">
-                                   <input type="checkbox" class="form-check-input" id="switch1">
-                                   <label class="form-check-label" for="switch1">Nouveau pour email</label>
+                                <div class="form-group">
+                                   <label class="form-label" for="company_name">Nom de l'entreprise :</label>
+                                   <input type="text" class="form-control" id="company_name" placeholder="Entrez le nom de l'entreprise">
                                 </div>
-                                <div class="form-check form-switch">
-                                   <input type="checkbox" class="form-check-input" id="switch2" checked>
-                                   <label class="form-check-label" for="switch2">Vérification pour email</label>
+                                <div class="form-group">
+                                   <label class="form-label" for="company_email">Adresse email :</label>
+                                   <input type="email" class="form-control" id="company_email" placeholder="Entrez l'adresse email">
                                 </div>
-                                <div class="form-check form-switch">
-                                   <input type="checkbox" class="form-check-input" id="switch3" checked>
-                                   <label class="form-check-label" for="switch3">Offre pour email</label>
+                                <div class="form-group">
+                                   <label class="form-label" for="company_phone">Téléphone :</label>
+                                   <input type="text" class="form-control" id="company_phone" placeholder="Entrez le numéro de téléphone">
                                 </div>
-                                <div class="form-check form-switch">
-                                   <input type="checkbox" class="form-check-input" id="switch4">
-                                   <label class="form-check-label" for="switch4">Newsletter pour email</label>
+                                <div class="form-group">
+                                   <label class="form-label" for="company_status">Statut :</label>
+                                   <select class="form-select" id="company_status">
+                                      <option value="" selected disabled>Choisir le statut</option>
+                                      <option value="actif">Actif</option>
+                                      <option value="inactif">Inactif</option>
+                                      <option value="suspendu">Suspendu</option>
+                                   </select>
                                 </div>
-                                <div class="form-check form-switch">
-                                   <input type="checkbox" class="form-check-input" id="switch5" checked>
-                                   <label class="form-check-label" for="switch5">Notifications pour SMS</label>
+                                <div class="form-group">
+                                   <label class="form-label" for="vehicles_count">Nombre de véhicules gérés :</label>
+                                   <input type="number" class="form-control" id="vehicles_count" min="0" placeholder="Entrez le nombre de véhicules">
                                 </div>
-                                <div class="form-check form-switch">
-                                   <input type="checkbox" class="form-check-input" id="switch6" checked>
-                                   <label class="form-check-label" for="switch6">Rapports pour SMS</label>
+                                <div class="form-group">
+                                   <label class="form-label" for="fleet_type">Type de flotte :</label>
+                                   <select class="form-select" id="fleet_type">
+                                      <option value="" selected disabled>Choisir le type de flotte</option>
+                                      <option value="légère">Légère</option>
+                                      <option value="lourde">Lourde</option>
+                                      <option value="mixte">Mixte</option>
+                                   </select>
+                                </div>
+                                <div class="form-group">
+                                   <label class="form-label" for="demo_type">Type de démo souhaitée :</label>
+                                   <select class="form-select" id="demo_type">
+                                      <option value="" selected disabled>Choisir le type de démo</option>
+                                      <option value="en ligne">En ligne</option>
+                                      <option value="sur site">Sur site</option>
+                                      <option value="autre">Autre</option>
+                                   </select>
                                 </div>
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
@@ -220,6 +241,7 @@ Code Postal : 85001</textarea>
                           </div>
                        </div>
                     </div>
+
                     <div class="tab-pane fade" id="manage-contact" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
@@ -247,6 +269,7 @@ Code Postal : 85001</textarea>
                           </div>
                        </div>
                     </div>
+
                  </div>
               </div>
            </div>
