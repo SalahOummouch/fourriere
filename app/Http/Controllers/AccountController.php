@@ -136,7 +136,7 @@ public function admin(Request $request)
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'user_type' => "admin",
+            'user_type' => "Admin",
             'password' => bcrypt($request->password),
             'company_id' => 1,
         ]);
