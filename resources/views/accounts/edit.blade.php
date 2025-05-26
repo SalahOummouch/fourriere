@@ -43,130 +43,30 @@
                           </div>
                           <div class="card-body">
                              <form>
-                                <div class="form-group row align-items-center">
-                                   <div class="col-md-12">
-                                      <div class="profile-img-edit">
-                                         <div class="crm-profile-img-edit">
-                                            <img class="crm-profile-pic rounded-circle avatar-100"
-                                               src="{{asset('images/user/1.jpg')}}" alt="photo de profil">
-                                            <div class="crm-p-image bg-primary">
-                                               <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
-                                                  viewBox="0 0 24 24" stroke="currentColor">
-                                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                     d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                               </svg>
-                                               <input class="file-upload" type="file" accept="image/*">
-                                            </div>
-                                         </div>
-                                      </div>
-                                   </div>
-                                </div>
+                                
                                 
                                 <!-- Nom, Prénom, Username -->
                                 <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="lname">Nom :</label>
-                                      <input type="text" class="form-control" id="lname" value="{{$user->last_name ?? 'Collot'}}">
+                                      <input type="text" class="form-control" id="lname" value="{{ $user['last_name'] }}">
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="fname">Prénom :</label>
-                                      <input type="text" class="form-control" id="fname" value="{{$user->first_name ?? 'Alexandre'}}">
+                                      <input type="text" class="form-control" id="fname" value="{{ $user['first_name'] }}">
                                    </div>
                                 </div>
                                 <div class="row align-items-center">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="uname">Nom d'utilisateur :</label>
-                                      <input type="text" class="form-control" id="uname" value="{{$user->username ?? 'Administaration Alerte Fourriere'}}">
+                                      <input type="text" class="form-control" id="uname" value="{{ $user['username'] }}">
                                    </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="user_type">Type d'utilisateur :</label>
-                                      <input type="text" class="form-control" id="user_type" value="{{$user->user_type ?? 'admin'}}" readonly>
-                                   </div>
+                                  
                                 </div>
 
-                                <!-- Genre et Date de naissance -->
-                                <div class="row align-items-center">
-                                   <div class="col-sm-6">
-                                      <label class="form-label" for="gender">Genre :</label><br>
-                                      <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios1" value="option1" checked>
-                                         <label class="form-check-label" for="exampleRadios1">
-                                            Homme
-                                         </label>
-                                      </div>
-                                      <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios2" value="option1">
-                                         <label class="form-check-label" for="exampleRadios2">
-                                            Femme
-                                         </label>
-                                      </div>
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="dob">Date de Naissance :</label>
-                                      <input class="form-control" id="dob" value="1984-01-24">
-                                   </div>
-                                </div>
-
-                                <!-- État Civil et Âge -->
-                                <div class="row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">État Civil :</label>
-                                      <select class="form-select" id="exampleFormControlSelect1">
-                                         <option selected="">Célibataire</option>
-                                         <option>Marié(e)</option>
-                                         <option>Veuf(ve)</option>
-                                         <option>Divorcé(e)</option>
-                                         <option>Séparé(e)</option>
-                                      </select>
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">Âge :</label>
-                                      <select class="form-select" id="exampleFormControlSelect2">
-                                         <option>12-18</option>
-                                         <option>19-32</option>
-                                         <option selected="">33-45</option>
-                                         <option>46-62</option>
-                                         <option>63 et plus</option>
-                                      </select>
-                                   </div>
-                                </div>
-
-                                <!-- Pays et État/Région -->
-                                <div class="row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">Pays :</label>
-                                      <select class="form-select" id="exampleFormControlSelect3">
-                                         <option>Canada</option>
-                                         <option>Noida</option>
-                                         <option selected="">États-Unis</option>
-                                         <option>Inde</option>
-                                         <option>Afrique</option>
-                                      </select>
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">État / Région :</label>
-                                      <select class="form-select" id="exampleFormControlSelect4">
-                                         <option>Californie</option>
-                                         <option>Floride</option>
-                                         <option selected="">Géorgie</option>
-                                         <option>Connecticut</option>
-                                         <option>Louisiane</option>
-                                      </select>
-                                   </div>
-                                </div>
-
+                               
                                 <!-- Adresse sur toute la largeur -->
-                                <div class="row">
-                                   <div class="form-group col-sm-12">
-                                      <label class="form-label">Adresse :</label>
-                                      <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">37 Cardinal Lane
-Petersburg, VA 23803
-États-Unis d'Amérique
-Code Postal : 85001</textarea>
-                                   </div>
-                                </div>
+                               
 
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
@@ -217,11 +117,11 @@ Code Postal : 85001</textarea>
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_name">Nom de l'entreprise :</label>
-                                      <input type="text" class="form-control" id="company_name" placeholder="Entrez le nom de l'entreprise">
+                                      <input type="text" class="form-control" id="company_name" value="{{ $company['name'] }}">
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_email">Adresse email :</label>
-                                      <input type="email" class="form-control" id="company_email" placeholder="Entrez l'adresse email">
+                                      <input type="email" class="form-control" id="company_email" value="{{ $user['email'] }}">
                                    </div>
                                 </div>
 
@@ -229,49 +129,20 @@ Code Postal : 85001</textarea>
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_phone">Téléphone :</label>
-                                      <input type="text" class="form-control" id="company_phone" placeholder="Entrez le numéro de téléphone">
+                                      <input type="text" class="form-control" id="company_phone" value="{{ $company['phone'] }}">
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_status">Statut :</label>
                                       <select class="form-select" id="company_status">
-                                         <option value="" selected disabled>Choisir le statut</option>
-                                         <option value="actif">Actif</option>
-                                         <option value="inactif">Inactif</option>
-                                         <option value="suspendu">Suspendu</option>
+                                         <option value="" disabled>Choisir le statut</option>
+                                         <option value="active" {{ $company['status'] == 'active' ? 'selected' : '' }}>Actif</option>
+                                         <option value="inactive" {{ $company['status'] == 'inactive' ? 'selected' : '' }}>Inactif</option>
+                                         <option value="suspended" {{ $company['status'] == 'suspended' ? 'selected' : '' }}>Suspendu</option>
                                       </select>
                                    </div>
                                 </div>
 
-                                <!-- Nombre de véhicules et Type de flotte -->
-                                <div class="row">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="vehicles_count">Nombre de véhicules gérés :</label>
-                                      <input type="number" class="form-control" id="vehicles_count" min="0" placeholder="Entrez le nombre de véhicules">
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="fleet_type">Type de flotte :</label>
-                                      <select class="form-select" id="fleet_type">
-                                         <option value="" selected disabled>Choisir le type de flotte</option>
-                                         <option value="légère">Légère</option>
-                                         <option value="lourde">Lourde</option>
-                                         <option value="mixte">Mixte</option>
-                                      </select>
-                                   </div>
-                                </div>
-
-                                <!-- Type de démo (centré ou sur toute la largeur) -->
-                                <div class="row">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="demo_type">Type de démo souhaitée :</label>
-                                      <select class="form-select" id="demo_type">
-                                         <option value="" selected disabled>Choisir le type de démo</option>
-                                         <option value="en ligne">En ligne</option>
-                                         <option value="sur site">Sur site</option>
-                                         <option value="autre">Autre</option>
-                                      </select>
-                                   </div>
-                                </div>
-
+                               
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
@@ -292,11 +163,11 @@ Code Postal : 85001</textarea>
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="cphone">Téléphone :</label>
-                                      <input type="text" class="form-control" id="cphone" value="{{$user->phone_number ?? '+33 6 17 09 41 01'}}">
+                                      <input type="text" class="form-control" id="cphone" value="{{ $user['phone_number'] }}">
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="cemail">Email :</label>
-                                      <input type="email" class="form-control" id="cemail" value="{{$user->email ?? 'alexandre.collot@europe-convoyage.com'}}">
+                                      <input type="email" class="form-control" id="cemail" value="{{ $user['email'] }}">
                                    </div>
                                 </div>
 
@@ -304,22 +175,15 @@ Code Postal : 85001</textarea>
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_email_contact">Email entreprise :</label>
-                                      <input type="email" class="form-control" id="company_email_contact" placeholder="Email professionnel">
+                                      <input type="email" class="form-control" id="company_email_contact" value="{{ $user['email'] }}">
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_phone_contact">Téléphone entreprise :</label>
-                                      <input type="text" class="form-control" id="company_phone_contact" placeholder="Téléphone professionnel">
+                                      <input type="text" class="form-control" id="company_phone_contact" value="{{ $company['phone'] }}">
                                    </div>
                                 </div>
 
-                                <!-- Site Web (sur toute la largeur) -->
-                                <div class="row">
-                                   <div class="form-group col-sm-12">
-                                      <label class="form-label" for="cwebsite">Site Web :</label>
-                                      <input type="text" class="form-control" id="cwebsite" value="https://www.barrytech.com">
-                                   </div>
-                                </div>
-
+                              
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
