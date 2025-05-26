@@ -33,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'password',
         'frequence_verification_status',
         'company_id',
+        'user_type',
     ];
 
     /**
