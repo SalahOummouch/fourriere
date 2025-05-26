@@ -7,23 +7,23 @@
                     <div class="iq-edit-list usr-edit">
                        <ul class="iq-edit-profile d-flex nav nav-tabs mb-0">
                           <li class="col-md-3 p-0">
-                             <a class="nav-link active" data-bs-toggle="pill" href="#personal-information">
-                                Personal Information
+                             <a class="nav-link active text-primary" data-bs-toggle="pill" href="#personal-information">
+                                Informations personnelles
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link" data-bs-toggle="pill" href="#chang-pwd">
-                                Change Password
+                             <a class="nav-link text-primary" data-bs-toggle="pill" href="#chang-pwd">
+                                Modifier le mot de passe
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link" data-bs-toggle="pill" href="#emailandsms">
-                                Email and SMS
+                             <a class="nav-link text-primary" data-bs-toggle="pill" href="#emailandsms">
+                                Email et SMS
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link" data-bs-toggle="pill" href="#manage-contact">
-                                Manage Contact
+                             <a class="nav-link text-primary" data-bs-toggle="pill" href="#manage-contact">
+                                Gérer les contacts
                              </a>
                           </li>
                        </ul>
@@ -38,7 +38,7 @@
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title">Personal Information</h4>
+                                <h4 class="card-title text-primary">Informations personnelles</h4>
                              </div>
                           </div>
                           <div class="card-body">
@@ -48,7 +48,7 @@
                                       <div class="profile-img-edit">
                                          <div class="crm-profile-img-edit">
                                             <img class="crm-profile-pic rounded-circle avatar-100"
-                                               src="{{asset('images/user/1.jpg')}}" alt="profile-pic">
+                                               src="{{asset('images/user/1.jpg')}}" alt="photo-profil">
                                             <div class="crm-p-image bg-primary">
                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
                                                   viewBox="0 0 24 24" stroke="currentColor">
@@ -63,54 +63,54 @@
                                 </div>
                                 <div class=" row align-items-center">
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="fname">First Name:</label>
+                                      <label class="form-label text-primary" for="fname">Prénom :</label>
                                       <input type="text" class="form-control" id="fname" value="Barry">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="lname">Last Name:</label>
+                                      <label class="form-label text-primary" for="lname">Nom :</label>
                                       <input type="text" class="form-control" id="lname" value="Tech">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="uname">User Name:</label>
+                                      <label class="form-label text-primary" for="uname">Nom d'utilisateur :</label>
                                       <input type="text" class="form-control" id="uname" value="Barry@01">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="cname">City:</label>
+                                      <label class="form-label text-primary" for="cname">Ville :</label>
                                       <input type="text" class="form-control" id="cname" value="Atlanta">
                                    </div>
                                    <div class="col-sm-6">
-                                      <label class="form-label" for="gender">Gender:</label><br>
+                                      <label class="form-label text-primary" for="gender">Sexe :</label><br>
                                       <div class="form-check form-check-inline">
                                          <input class="form-check-input" type="radio" name="exampleRadios"
                                             id="exampleRadios1" value="option1" checked>
                                          <label class="form-check-label" for="exampleRadios1">
-                                            Male
+                                            Homme
                                          </label>
                                       </div>
                                       <div class="form-check form-check-inline">
                                          <input class="form-check-input" type="radio" name="exampleRadios"
                                             id="exampleRadios2" value="option1">
                                          <label class="form-check-label" for="exampleRadios2">
-                                            FeMale
+                                            Femme
                                          </label>
                                       </div>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="dob">Date Of Birth:</label>
+                                      <label class="form-label text-primary" for="dob">Date de naissance :</label>
                                       <input class="form-control" id="dob" value="1984-01-24">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label">Marital Status:</label>
+                                      <label class="form-label text-primary">Statut marital :</label>
                                       <select class="form-select" id="exampleFormControlSelect1">
-                                         <option selected="">Single</option>
-                                         <option>Married</option>
-                                         <option>Widowed</option>
-                                         <option>Divorced</option>
-                                         <option>Separated </option>
+                                         <option selected="">Célibataire</option>
+                                         <option>Marrié(e)</option>
+                                         <option>Veuf(ve)</option>
+                                         <option>Divorcé(e)</option>
+                                         <option>Séparé(e)</option>
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label">Age:</label>
+                                      <label class="form-label text-primary">Âge :</label>
                                       <select class="form-select" id="exampleFormControlSelect2">
                                          <option>12-18</option>
                                          <option>19-32</option>
@@ -120,176 +120,122 @@
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label">Country:</label>
+                                      <label class="form-label text-primary">Pays :</label>
                                       <select class="form-select" id="exampleFormControlSelect3">
-                                         <option>Caneda</option>
+                                         <option>Canada</option>
                                          <option>Noida</option>
-                                         <option selected="">USA</option>
-                                         <option>India</option>
-                                         <option>Africa</option>
+                                         <option selected="">États-Unis</option>
+                                         <option>Inde</option>
+                                         <option>Afrique</option>
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label">State:</label>
+                                      <label class="form-label text-primary">État :</label>
                                       <select class="form-select" id="exampleFormControlSelect4">
-                                         <option>California</option>
-                                         <option>Florida</option>
-                                         <option selected="">Georgia</option>
+                                         <option>Californie</option>
+                                         <option>Floride</option>
+                                         <option selected="">Géorgie</option>
                                          <option>Connecticut</option>
-                                         <option>Louisiana</option>
+                                         <option>Louisiane</option>
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-12">
-                                      <label class="form-label">Address:</label>
-                                      <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">37 Cardinal Lane
+                                      <label class="form-label text-primary">Adresse :</label>
+                                      <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">
+37 Cardinal Lane
 Petersburg, VA 23803
-United States of America
-Zip Code: 85001</textarea>
+États-Unis d'Amérique
+Code postal : 85001</textarea>
                                    </div>
                                 </div>
-                                <button type="reset" class="btn btn-outline-primary me-2">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
                           </div>
                        </div>
                     </div>
+
                     <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title">Change Password</h4>
+                                <h4 class="card-title text-primary">Modifier le mot de passe</h4>
                              </div>
                           </div>
                           <div class="card-body">
                              <form>
                                 <div class="form-group">
-                                   <label class="form-label" for="cpass">Current Password:</label>
-                                   <a href="{{route('recovers')}}" class="float-end">Forgot Password</a>
+                                   <label class="form-label text-primary" for="cpass">Mot de passe actuel :</label>
+                                   <a href="{{route('recovers')}}" class="float-end text-primary">Mot de passe oublié ?</a>
                                    <input type="Password" class="form-control" id="cpass" value="">
                                 </div>
                                 <div class="form-group">
-                                   <label class="form-label" for="npass">New Password:</label>
+                                   <label class="form-label text-primary" for="npass">Nouveau mot de passe :</label>
                                    <input type="Password" class="form-control" id="npass" value="">
                                 </div>
                                 <div class="form-group">
-                                   <label class="form-label" for="vpass">Verify Password:</label>
+                                   <label class="form-label text-primary" for="vpass">Vérifier le mot de passe :</label>
                                    <input type="Password" class="form-control" id="vpass" value="">
                                 </div>
-                                <button type="reset" class="btn btn-outline-primary me-2">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
                           </div>
                        </div>
                     </div>
+
                     <div class="tab-pane fade" id="emailandsms" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title">Email and SMS</h4>
+                                <h4 class="card-title text-primary">Email et SMS</h4>
                              </div>
                           </div>
                           <div class="card-body">
                              <form>
                                 <div class="form-group row align-items-center">
-                                   <label class="col-md-3 form-label" for="emailnotification">Email Notification:</label>
-                                   <div class="col-md-9 ">
+                                   <label class="col-md-3 form-label text-primary" for="emailnotification">Notification par email :</label>
+                                   <div class="col-md-9">
                                       <div class="form-check form-check-inline form-switch">
-                                         <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox1"
-                                            value="option1" checked>
+                                         <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox1" value="option1" checked>
                                       </div>
                                    </div>
                                 </div>
                                 <div class="form-group row align-items-center">
-                                   <label class="col-md-3 form-label" for="smsnotification">SMS Notification:</label>
-                                   <div class="col-md-9 ">
+                                   <label class="col-md-3 form-label text-primary" for="smsnotification">Notification par SMS :</label>
+                                   <div class="col-md-9">
                                       <div class="form-check form-check-inline form-switch">
-                                         <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox2"
-                                            value="option1" checked>
+                                         <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox2" value="option1" checked>
                                       </div>
                                    </div>
                                 </div>
                                 <div class="form-group row align-items-center">
-                                   <label class="col-md-3" for="npass">When To Email</label>
+                                   <label class="col-md-3 text-primary" for="npass">Quand envoyer un email :</label>
                                    <div class="col-md-9">
                                       <div class="form-check">
                                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck11">
                                          <label class="form-check-label" for="defaultCheck11">
-                                            You have new notifications.
+                                            Vous avez de nouvelles notifications.
                                          </label>
                                       </div>
                                       <div class="form-check">
                                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck12">
                                          <label class="form-check-label" for="defaultCheck12">
-                                            You're sent a direct message
-                                         </label>
-                                      </div>
-                                      <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck13">
-                                         <label class="form-check-label" for="defaultCheck13">
-                                            Someone adds you as a connection
+                                            ...
                                          </label>
                                       </div>
                                    </div>
                                 </div>
-                                <div class="form-group row align-items-center">
-                                   <label class="col-md-3" for="npass">When To Escalate Emails</label>
-                                   <div class="col-md-9">
-                                      <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck14">
-                                         <label class="form-check-label" for="defaultCheck14">
-                                            Upon new order.
-                                         </label>
-                                      </div>
-                                      <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck15">
-                                         <label class="form-check-label" for="defaultCheck15">
-                                            New membership approval
-                                         </label>
-                                      </div>
-                                      <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck16">
-                                         <label class="form-check-label" for="defaultCheck16">
-                                            Member registration
-                                         </label>
-                                      </div>
-                                   </div>
-                                </div>
-                                <button type="reset" class="btn btn-outline-primary me-2">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
                              </form>
                           </div>
                        </div>
                     </div>
-                    <div class="tab-pane fade" id="manage-contact" role="tabpanel">
-                       <div class="card">
-                          <div class="card-header d-flex justify-content-between">
-                             <div class="header-title">
-                                <h4 class="card-title">Manage Contact</h4>
-                             </div>
-                          </div>
-                          <div class="card-body">
-                             <form>
-                                <div class="form-group">
-                                   <label class="form-label" for="cno">Contact Number:</label>
-                                   <input type="text" class="form-control" id="cno" value="001 2536 123 458">
-                                </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="email">Email:</label>
-                                   <input type="text" class="form-control" id="email" value="Barryjone@demo.com">
-                                </div>
-                                <div class="form-group">
-                                   <label class="form-label" for="url">Url:</label>
-                                   <input type="text" class="form-control" id="url" value="https://getbootstrap.com">
-                                </div>
-                                <button type="reset" class="btn btn-outline-primary me-2">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                             </form>
-                          </div>
-                       </div>
-                    </div>
+
+                    <!-- Gérer les contacts peut être ajouté ici -->
+                    
                  </div>
               </div>
            </div>
         </div>
-     </div>
+    </div>
 </x-app-layout>
