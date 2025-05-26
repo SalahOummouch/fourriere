@@ -78,95 +78,12 @@
                                       <label class="form-label" for="uname">Nom d'utilisateur :</label>
                                       <input type="text" class="form-control" id="uname" value="Barry@01">
                                    </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="cname">Ville :</label>
-                                      <input type="text" class="form-control" id="cname" value="Atlanta">
-                                   </div>
+                                  
                                 </div>
 
-                                <!-- Genre et Date de naissance -->
-                                <div class="row align-items-center">
-                                   <div class="col-sm-6">
-                                      <label class="form-label" for="gender">Genre :</label><br>
-                                      <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios1" value="option1" checked>
-                                         <label class="form-check-label" for="exampleRadios1">
-                                            Homme
-                                         </label>
-                                      </div>
-                                      <div class="form-check form-check-inline">
-                                         <input class="form-check-input" type="radio" name="exampleRadios"
-                                            id="exampleRadios2" value="option1">
-                                         <label class="form-check-label" for="exampleRadios2">
-                                            Femme
-                                         </label>
-                                      </div>
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="dob">Date de Naissance :</label>
-                                      <input class="form-control" id="dob" value="1984-01-24">
-                                   </div>
-                                </div>
-
-                                <!-- État Civil et Âge -->
-                                <div class="row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">État Civil :</label>
-                                      <select class="form-select" id="exampleFormControlSelect1">
-                                         <option selected="">Célibataire</option>
-                                         <option>Marié(e)</option>
-                                         <option>Veuf(ve)</option>
-                                         <option>Divorcé(e)</option>
-                                         <option>Séparé(e)</option>
-                                      </select>
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">Âge :</label>
-                                      <select class="form-select" id="exampleFormControlSelect2">
-                                         <option>12-18</option>
-                                         <option>19-32</option>
-                                         <option selected="">33-45</option>
-                                         <option>46-62</option>
-                                         <option>63 et plus</option>
-                                      </select>
-                                   </div>
-                                </div>
-
-                                <!-- Pays et État/Région -->
-                                <div class="row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">Pays :</label>
-                                      <select class="form-select" id="exampleFormControlSelect3">
-                                         <option>Canada</option>
-                                         <option>Noida</option>
-                                         <option selected="">États-Unis</option>
-                                         <option>Inde</option>
-                                         <option>Afrique</option>
-                                      </select>
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label">État / Région :</label>
-                                      <select class="form-select" id="exampleFormControlSelect4">
-                                         <option>Californie</option>
-                                         <option>Floride</option>
-                                         <option selected="">Géorgie</option>
-                                         <option>Connecticut</option>
-                                         <option>Louisiane</option>
-                                      </select>
-                                   </div>
-                                </div>
-
+                               
                                 <!-- Adresse sur toute la largeur -->
-                                <div class="row">
-                                   <div class="form-group col-sm-12">
-                                      <label class="form-label">Adresse :</label>
-                                      <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">37 Cardinal Lane
-Petersburg, VA 23803
-États-Unis d'Amérique
-Code Postal : 85001</textarea>
-                                   </div>
-                                </div>
+                               
 
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
