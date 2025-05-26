@@ -43,24 +43,7 @@
                           </div>
                           <div class="card-body">
                              <form>
-                                <div class="form-group row align-items-center">
-                                   <div class="col-md-12">
-                                      <div class="profile-img-edit">
-                                         <div class="crm-profile-img-edit">
-                                            <img class="crm-profile-pic rounded-circle avatar-100"
-                                               src="{{asset('images/user/1.jpg')}}" alt="photo de profil">
-                                            <div class="crm-p-image bg-primary">
-                                               <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
-                                                  viewBox="0 0 24 24" stroke="currentColor">
-                                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                     d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                               </svg>
-                                               <input class="file-upload" type="file" accept="image/*">
-                                            </div>
-                                         </div>
-                                      </div>
-                                   </div>
-                                </div>
+                                
                                 
                                 <!-- Nom, Prénom, Username -->
                                 <div class="row align-items-center">
@@ -200,14 +183,7 @@
                                    </div>
                                 </div>
 
-                                <!-- Site Web (sur toute la largeur) -->
-                                <div class="row">
-                                   <div class="form-group col-sm-12">
-                                      <label class="form-label" for="cwebsite">Site Web :</label>
-                                      <input type="text" class="form-control" id="cwebsite" value="https://www.barrytech.com">
-                                   </div>
-                                </div>
-
+                              
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
