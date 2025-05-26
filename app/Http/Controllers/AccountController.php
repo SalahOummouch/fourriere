@@ -67,7 +67,8 @@ public function admin(Request $request)
         $user = Auth::user();
         $company = Company::where('id', $user->company_id)->first();
         // dd($user ,$company);
-        return view('accounts.edit', compact('user', 'company'));
+        $isCompanyAdmin = True;
+        return view('accounts.edit', compact('user', 'company', 'isCompanyAdmin'));
     }
 
     public function update(Request $request, User $user)

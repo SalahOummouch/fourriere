@@ -122,11 +122,11 @@
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_name">Nom de l'entreprise :</label>
-                                      <input type="text" class="form-control" id="company_name" value="{{ $company['name'] }}">
+                                      <input type="text" class="form-control" id="company_name" value="{{ $company['name'] }}" {{ !$isCompanyAdmin ? 'readonly' : '' }}>
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_address">Adresse :</label>
-                                      <input type="text" class="form-control" id="company_address" value="{{ $company['address'] }}">
+                                      <input type="text" class="form-control" id="company_address" value="{{ $company['address'] }}" {{ !$isCompanyAdmin ? 'readonly' : '' }}>
                                    </div>
                                 </div>
 
@@ -134,11 +134,11 @@
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_phone">Téléphone :</label>
-                                      <input type="text" class="form-control" id="company_phone" value="{{ $company['phone'] }}">
+                                      <input type="text" class="form-control" id="company_phone" value="{{ $company['phone'] }}" {{ !$isCompanyAdmin ? 'readonly' : '' }}>
                                    </div>
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_status">Statut :</label>
-                                      <select class="form-select" id="company_status">
+                                      <select class="form-select" id="company_status" {{ !$isCompanyAdmin ? 'disabled' : '' }}>
                                          <option value="" disabled>Choisir le statut</option>
                                          <option value="active" {{ $company['status'] == 'active' ? 'selected' : '' }}>Actif</option>
                                          <option value="inactive" {{ $company['status'] == 'inactive' ? 'selected' : '' }}>Inactif</option>
@@ -148,8 +148,8 @@
                                 </div>
 
                                
-                                <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
-                                <button type="submit" class="btn btn-primary">Valider</button>
+                                <button type="reset" class="btn btn-outline-primary me-2" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Annuler</button>
+                                <button type="submit" class="btn btn-primary" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Valider</button>
                              </form>
                           </div>
                        </div>
