@@ -7,23 +7,23 @@
                     <div class="iq-edit-list usr-edit">
                        <ul class="iq-edit-profile d-flex nav nav-tabs mb-0">
                           <li class="col-md-3 p-0">
-                             <a class="nav-link active text-primary" data-bs-toggle="pill" href="#personal-information">
-                                Informations personnelles
+                             <a class="nav-link active" data-bs-toggle="pill" href="#personal-information">
+                                Informations Personnelles
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link text-primary" data-bs-toggle="pill" href="#chang-pwd">
-                                Modifier le mot de passe
+                             <a class="nav-link" data-bs-toggle="pill" href="#chang-pwd">
+                                Changer le Mot de Passe
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link text-primary" data-bs-toggle="pill" href="#emailandsms">
+                             <a class="nav-link" data-bs-toggle="pill" href="#emailandsms">
                                 Email et SMS
                              </a>
                           </li>
                           <li class="col-md-3 p-0">
-                             <a class="nav-link text-primary" data-bs-toggle="pill" href="#manage-contact">
-                                Gérer les contacts
+                             <a class="nav-link" data-bs-toggle="pill" href="#manage-contact">
+                                Gérer les Contacts
                              </a>
                           </li>
                        </ul>
@@ -38,7 +38,7 @@
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title text-primary">Informations personnelles</h4>
+                                <h4 class="card-title">Informations Personnelles</h4>
                              </div>
                           </div>
                           <div class="card-body">
@@ -48,7 +48,7 @@
                                       <div class="profile-img-edit">
                                          <div class="crm-profile-img-edit">
                                             <img class="crm-profile-pic rounded-circle avatar-100"
-                                               src="{{asset('images/user/1.jpg')}}" alt="photo-profil">
+                                               src="{{asset('images/user/1.jpg')}}" alt="photo de profil">
                                             <div class="crm-p-image bg-primary">
                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" fill="none"
                                                   viewBox="0 0 24 24" stroke="currentColor">
@@ -63,23 +63,23 @@
                                 </div>
                                 <div class=" row align-items-center">
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary" for="fname">Prénom :</label>
+                                      <label class="form-label" for="fname">Prénom :</label>
                                       <input type="text" class="form-control" id="fname" value="Barry">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary" for="lname">Nom :</label>
+                                      <label class="form-label" for="lname">Nom :</label>
                                       <input type="text" class="form-control" id="lname" value="Tech">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary" for="uname">Nom d'utilisateur :</label>
+                                      <label class="form-label" for="uname">Nom d'utilisateur :</label>
                                       <input type="text" class="form-control" id="uname" value="Barry@01">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary" for="cname">Ville :</label>
+                                      <label class="form-label" for="cname">Ville :</label>
                                       <input type="text" class="form-control" id="cname" value="Atlanta">
                                    </div>
                                    <div class="col-sm-6">
-                                      <label class="form-label text-primary" for="gender">Sexe :</label><br>
+                                      <label class="form-label" for="gender">Genre :</label><br>
                                       <div class="form-check form-check-inline">
                                          <input class="form-check-input" type="radio" name="exampleRadios"
                                             id="exampleRadios1" value="option1" checked>
@@ -96,31 +96,31 @@
                                       </div>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary" for="dob">Date de naissance :</label>
+                                      <label class="form-label" for="dob">Date de Naissance :</label>
                                       <input class="form-control" id="dob" value="1984-01-24">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary">Statut marital :</label>
+                                      <label class="form-label">État Civil :</label>
                                       <select class="form-select" id="exampleFormControlSelect1">
                                          <option selected="">Célibataire</option>
-                                         <option>Marrié(e)</option>
+                                         <option>Marié(e)</option>
                                          <option>Veuf(ve)</option>
                                          <option>Divorcé(e)</option>
                                          <option>Séparé(e)</option>
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary">Âge :</label>
+                                      <label class="form-label">Âge :</label>
                                       <select class="form-select" id="exampleFormControlSelect2">
                                          <option>12-18</option>
                                          <option>19-32</option>
                                          <option selected="">33-45</option>
                                          <option>46-62</option>
-                                         <option>63 > </option>
+                                         <option>63 et plus</option>
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary">Pays :</label>
+                                      <label class="form-label">Pays :</label>
                                       <select class="form-select" id="exampleFormControlSelect3">
                                          <option>Canada</option>
                                          <option>Noida</option>
@@ -130,7 +130,7 @@
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label text-primary">État :</label>
+                                      <label class="form-label">État / Région :</label>
                                       <select class="form-select" id="exampleFormControlSelect4">
                                          <option>Californie</option>
                                          <option>Floride</option>
@@ -140,12 +140,11 @@
                                       </select>
                                    </div>
                                    <div class="form-group col-sm-12">
-                                      <label class="form-label text-primary">Adresse :</label>
-                                      <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">
-37 Cardinal Lane
+                                      <label class="form-label">Adresse :</label>
+                                      <textarea class="form-control" name="address" rows="5" style="line-height: 22px;">37 Cardinal Lane
 Petersburg, VA 23803
 États-Unis d'Amérique
-Code postal : 85001</textarea>
+Code Postal : 85001</textarea>
                                    </div>
                                 </div>
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
@@ -154,28 +153,27 @@ Code postal : 85001</textarea>
                           </div>
                        </div>
                     </div>
-
                     <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title text-primary">Modifier le mot de passe</h4>
+                                <h4 class="card-title">Changer le Mot de Passe</h4>
                              </div>
                           </div>
                           <div class="card-body">
                              <form>
                                 <div class="form-group">
-                                   <label class="form-label text-primary" for="cpass">Mot de passe actuel :</label>
-                                   <a href="{{route('recovers')}}" class="float-end text-primary">Mot de passe oublié ?</a>
-                                   <input type="Password" class="form-control" id="cpass" value="">
+                                   <label class="form-label" for="cpass">Mot de Passe Actuel :</label>
+                                   <a href="{{route('recovers')}}" class="float-end">Mot de passe oublié</a>
+                                   <input type="password" class="form-control" id="cpass" value="">
                                 </div>
                                 <div class="form-group">
-                                   <label class="form-label text-primary" for="npass">Nouveau mot de passe :</label>
-                                   <input type="Password" class="form-control" id="npass" value="">
+                                   <label class="form-label" for="npass">Nouveau Mot de Passe :</label>
+                                   <input type="password" class="form-control" id="npass" value="">
                                 </div>
                                 <div class="form-group">
-                                   <label class="form-label text-primary" for="vpass">Vérifier le mot de passe :</label>
-                                   <input type="Password" class="form-control" id="vpass" value="">
+                                   <label class="form-label" for="vpass">Vérifier le Mot de Passe :</label>
+                                   <input type="password" class="form-control" id="vpass" value="">
                                 </div>
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
@@ -183,59 +181,75 @@ Code postal : 85001</textarea>
                           </div>
                        </div>
                     </div>
-
                     <div class="tab-pane fade" id="emailandsms" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
                              <div class="header-title">
-                                <h4 class="card-title text-primary">Email et SMS</h4>
+                                <h4 class="card-title">Email et SMS</h4>
                              </div>
                           </div>
                           <div class="card-body">
                              <form>
-                                <div class="form-group row align-items-center">
-                                   <label class="col-md-3 form-label text-primary" for="emailnotification">Notification par email :</label>
-                                   <div class="col-md-9">
-                                      <div class="form-check form-check-inline form-switch">
-                                         <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox1" value="option1" checked>
-                                      </div>
-                                   </div>
+                                <div class="form-check form-switch">
+                                   <input type="checkbox" class="form-check-input" id="switch1">
+                                   <label class="form-check-label" for="switch1">Nouveau pour email</label>
                                 </div>
-                                <div class="form-group row align-items-center">
-                                   <label class="col-md-3 form-label text-primary" for="smsnotification">Notification par SMS :</label>
-                                   <div class="col-md-9">
-                                      <div class="form-check form-check-inline form-switch">
-                                         <input class="form-check-input" type="checkbox" role="switch" id="inlineCheckbox2" value="option1" checked>
-                                      </div>
-                                   </div>
+                                <div class="form-check form-switch">
+                                   <input type="checkbox" class="form-check-input" id="switch2" checked>
+                                   <label class="form-check-label" for="switch2">Vérification pour email</label>
                                 </div>
-                                <div class="form-group row align-items-center">
-                                   <label class="col-md-3 text-primary" for="npass">Quand envoyer un email :</label>
-                                   <div class="col-md-9">
-                                      <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck11">
-                                         <label class="form-check-label" for="defaultCheck11">
-                                            Vous avez de nouvelles notifications.
-                                         </label>
-                                      </div>
-                                      <div class="form-check">
-                                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck12">
-                                         <label class="form-check-label" for="defaultCheck12">
-                                            ...
-                                         </label>
-                                      </div>
-                                   </div>
+                                <div class="form-check form-switch">
+                                   <input type="checkbox" class="form-check-input" id="switch3" checked>
+                                   <label class="form-check-label" for="switch3">Offre pour email</label>
                                 </div>
+                                <div class="form-check form-switch">
+                                   <input type="checkbox" class="form-check-input" id="switch4">
+                                   <label class="form-check-label" for="switch4">Newsletter pour email</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                   <input type="checkbox" class="form-check-input" id="switch5" checked>
+                                   <label class="form-check-label" for="switch5">Notifications pour SMS</label>
+                                </div>
+                                <div class="form-check form-switch">
+                                   <input type="checkbox" class="form-check-input" id="switch6" checked>
+                                   <label class="form-check-label" for="switch6">Rapports pour SMS</label>
+                                </div>
+                                <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
                           </div>
                        </div>
                     </div>
-
-                    <!-- Gérer les contacts peut être ajouté ici -->
-                    
+                    <div class="tab-pane fade" id="manage-contact" role="tabpanel">
+                       <div class="card">
+                          <div class="card-header d-flex justify-content-between">
+                             <div class="header-title">
+                                <h4 class="card-title">Gérer les Contacts</h4>
+                             </div>
+                          </div>
+                          <div class="card-body">
+                             <form>
+                                <div class="form-group">
+                                   <label class="form-label" for="cemail">Email :</label>
+                                   <input type="email" class="form-control" id="cemail" value="barrytech@example.com">
+                                </div>
+                                <div class="form-group">
+                                   <label class="form-label" for="cphone">Numéro de Téléphone :</label>
+                                   <input type="text" class="form-control" id="cphone" value="+1 987 654 3210">
+                                </div>
+                                <div class="form-group">
+                                   <label class="form-label" for="cwebsite">Site Web :</label>
+                                   <input type="text" class="form-control" id="cwebsite" value="https://www.barrytech.com">
+                                </div>
+                                <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Valider</button>
+                             </form>
+                          </div>
+                       </div>
+                    </div>
                  </div>
               </div>
            </div>
         </div>
-    </div>
+     </div>
 </x-app-layout>
