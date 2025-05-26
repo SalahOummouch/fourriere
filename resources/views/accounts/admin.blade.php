@@ -3,9 +3,7 @@
     @php
         function format_phone_number($number) {
             if (!$number) return '';
-            // Supprimer les caractères non numériques
             $number = preg_replace('/\D/', '', $number);
-            // Formater si le numéro contient exactement 10 chiffres
             if (strlen($number) === 10) {
                 return preg_replace('/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/', '$1 $2 $3 $4 $5', $number);
             }
@@ -37,40 +35,20 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 my-schedule mb-4">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h4 class="fw-bold">Liste des utilisateurs</h4>
-                    </div>
-                    <div class="create-workform">
-                        <div class="d-flex flex-wrap align-items-center justify-content-between">
-                            <div class="modal-product-search d-flex flex-wrap">
-                                <form class="me-3 position-relative" method="GET" action="{{ route('accounts.index') }}">
-                                    <div class="form-group mb-0 d-flex">
-                                        <input type="text" class="form-control me-2" name="search" placeholder="Chercher un utilisateur">
-                                        <select class="form-select me-2" name="status">
-                                            <option value="">Tous les statuts</option>
-                                            <option value="pending">En attente</option>
-                                            <option value="active">Actif</option>
-                                            <option value="inactive">Désactivé</option>
-                                        </select>
-                                        <select class="form-select" name="user_type">
-                                            <option value="">Tous les types</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="editor">Entreprise</option>
-                                            <option value="user">Utilisateur</option>
-                                        </select>
-                                        <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
-                                    </div>
-                                </form>                              
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card card-block card-stretch">
                             <div class="card-body p-0">
+                                
+                                {{-- Bouton pour ajouter un administrateur --}}
+                                <div class="d-flex justify-content-between align-items-center p-3">
+                                    <h5 class="mb-0">Liste des administrateurs</h5>
+                                    <a href="{{ route('accounts.create') }}" class="btn btn-success">
+                                        <i class="bi bi-plus-circle me-1"></i> Ajouter un administrateur
+                                    </a>
+                                </div>
+
                                 <div class="table-responsive iq-invoice-table">
                                     <table class="table data-table mb-0">
                                         <thead class="table-color-heading">
@@ -148,13 +126,13 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                                </div> {{-- /.table-responsive --}}
+                            </div> {{-- /.card-body --}}
+                        </div> {{-- /.card --}}
+                    </div> {{-- /.col-lg-12 --}}
+                </div> {{-- /.row --}}
+            </div> {{-- /.col-lg-12 --}}
+        </div> {{-- /.row --}}
+    </div> {{-- /.container-fluid --}}
 
 </x-app-layout>
