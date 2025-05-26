@@ -36,34 +36,7 @@
                                     <label for="phone" class="form-label">Téléphone</label>
                                     <input type="text" name="phone" class="form-control" id="phone" placeholder="Téléphone" required>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="user_type" class="form-label">Type d'utilisateur</label>
-                                    <select name="user_type" class="form-control" id="user_type" required>
-                                        <option value="admin">Admin</option>
-                                        <option value="user">Individuel</option>
-                                        <option value="editor">Entreprise</option>
-                                    </select>
-                                </div>
 
-                                <!-- Champs conditionnels pour l'entreprise -->
-                                <div class="col-md-6 mb-3 company_fields" style="display: none;">
-                                    <label for="company_name" class="form-label">Nom de l'entreprise</label>
-                                    <input type="text" name="company_name" class="form-control" id="company_name" placeholder="Nom de l'entreprise">
-                                </div>
-                                <div class="col-md-6 mb-3 company_fields" style="display: none;">
-                                    <label for="company_phone" class="form-label">Téléphone de l'entreprise</label>
-                                    <input type="text" name="company_phone" class="form-control" id="company_phone" placeholder="Téléphone de l'entreprise">
-                                </div>
-                                <div class="col-md-6 mb-3 company_fields" style="display: none;">
-                                    <label for="company_address" class="form-label">Adresse de l'entreprise</label>
-                                    <input type="text" name="company_address" class="form-control" id="company_address" placeholder="Adresse de l'entreprise">
-                                </div>
-                                <div class="col-md-6 mb-3 company_fields" style="display: none;">
-                                </div>
-
-                                <!-- Mot de passe et confirmation -->
-                                <div class="col-md-6 mb-3">
-                                </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="password" class="form-label">Mot de passe</label>
                                     <input type="password" name="password" class="form-control" id="password" placeholder="Mot de passe" required>
@@ -73,13 +46,11 @@
                                     <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Confirmer le mot de passe" required>
                                 </div>
 
-                                <!-- Bouton de génération du mot de passe -->
                                 <div class="col-md-6 mb-3">
                                     <button type="button" class="btn btn-secondary" id="generatePassword">Générer mot de passe</button>
                                 </div>
                             </div>
 
-                            <!-- Zone pour afficher le mot de passe généré -->
                             <div class="col-md-12 mb-3" id="passwordDisplay" style="display:none;">
                                 <label for="display_password" class="form-label">Mot de passe généré</label>
                                 <div class="d-flex align-items-center">
@@ -102,22 +73,8 @@
     </div>
 
     <script>
-        // Afficher les champs relatifs à l'entreprise si "Entreprise" est sélectionné
-        document.getElementById('user_type').addEventListener('change', function() {
-            var companyFields = document.querySelectorAll('.company_fields');
-            if (this.value === 'editor') {
-                companyFields.forEach(function(field) {
-                    field.style.display = 'block'; // Afficher les champs entreprise
-                });
-            } else {
-                companyFields.forEach(function(field) {
-                    field.style.display = 'none'; // Cacher les champs entreprise
-                });
-            }
-        });
-
         document.getElementById('generatePassword').addEventListener('click', function() {
-            var length = 10; // Longueur du mot de passe
+            var length = 10;
             var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
             var password = '';
             for (var i = 0; i < length; i++) {
