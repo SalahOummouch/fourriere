@@ -93,7 +93,7 @@ public function admin(Request $request)
         $this->authorizeAdmin();
 
         $user->delete();
-        return redirect()->route('accounts.index')->with('success', 'Utilisateur supprimé.');
+        return redirect()->back()->with('success', 'Utilisateur supprimé.');
     }
 
     public function updateFrequence(Request $request, User $user)
