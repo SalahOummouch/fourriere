@@ -43,7 +43,7 @@ require __DIR__ . '/auth.php';
 
 Route::get('/dashboard', function () {
   return view('dashboard');
-})->middleware(['auth'])->name('index');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('userlist', [HomeController::class, 'userlist'])->name('userlist');
 Route::group(['middleware' => 'auth'], function () {
