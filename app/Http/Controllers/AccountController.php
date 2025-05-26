@@ -85,7 +85,7 @@ public function admin(Request $request)
 
         $user->update($request->all());
 
-        return redirect()->route('accounts.index')->with('success', 'Utilisateur mis à jour avec succès.');
+        return redirect()->back()->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     public function destroy(User $user)
