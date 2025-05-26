@@ -118,7 +118,7 @@
                              <h4 class="card-title">Changer le Mot de Passe</h4>
                           </div>
                           <div class="card-body">
-                             <form method="POST" action="{{ route('accounts.update', $user->id) }}">
+                            <form method="POST" action="{{ route('accounts.password.update', $user->id) }}">
                                 @csrf
                                 @method('PUT')
 
