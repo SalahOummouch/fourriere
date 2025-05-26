@@ -21,11 +21,7 @@
                                 Informations d'entreprises
                              </a>
                           </li>
-                          <li class="col-md-3 p-0">
-                             <a class="nav-link" data-bs-toggle="pill" href="#manage-contact">
-                                Gérer les Contacts
-                             </a>
-                          </li>
+
                        </ul>
                     </div>
                  </div>
@@ -61,7 +57,16 @@
                                       <label class="form-label" for="uname">Nom d'utilisateur :</label>
                                       <input type="text" class="form-control" id="uname" value="{{ $user['username'] }}">
                                    </div>
-                                  
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="cemail">Email :</label>
+                                      <input type="email" class="form-control" id="cemail" value="{{ $user['email'] }}">
+                                   </div>
+                                </div>
+                                <div class="row align-items-center">
+                                   <div class="form-group col-sm-6">
+                                      <label class="form-label" for="cphone">Téléphone :</label>
+                                      <input type="text" class="form-control" id="cphone" value="{{ $user['phone_number'] }}">
+                                   </div>
                                 </div>
 
                                
@@ -113,15 +118,15 @@
                           </div>
                           <div class="card-body">
                              <form>
-                                <!-- Nom de l'entreprise et Adresse email -->
+                                <!-- Nom de l'entreprise et Adresse -->
                                 <div class="row">
                                    <div class="form-group col-sm-6">
                                       <label class="form-label" for="company_name">Nom de l'entreprise :</label>
                                       <input type="text" class="form-control" id="company_name" value="{{ $company['name'] }}">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_email">Adresse email :</label>
-                                      <input type="email" class="form-control" id="company_email" value="{{ $user['email'] }}">
+                                      <label class="form-label" for="company_address">Adresse :</label>
+                                      <input type="text" class="form-control" id="company_address" value="{{ $company['address'] }}">
                                    </div>
                                 </div>
 
@@ -143,47 +148,6 @@
                                 </div>
 
                                
-                                <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
-                                <button type="submit" class="btn btn-primary">Valider</button>
-                             </form>
-                          </div>
-                       </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="manage-contact" role="tabpanel">
-                       <div class="card">
-                          <div class="card-header d-flex justify-content-between">
-                             <div class="header-title">
-                                <h4 class="card-title">Gérer les Contacts</h4>
-                             </div>
-                          </div>
-                          <div class="card-body">
-                             <form>
-                                <!-- Téléphone et Email -->
-                                <div class="row">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="cphone">Téléphone :</label>
-                                      <input type="text" class="form-control" id="cphone" value="{{ $user['phone_number'] }}">
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="cemail">Email :</label>
-                                      <input type="email" class="form-control" id="cemail" value="{{ $user['email'] }}">
-                                   </div>
-                                </div>
-
-                                <!-- Email entreprise et Téléphone entreprise -->
-                                <div class="row">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_email_contact">Email entreprise :</label>
-                                      <input type="email" class="form-control" id="company_email_contact" value="{{ $user['email'] }}">
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_phone_contact">Téléphone entreprise :</label>
-                                      <input type="text" class="form-control" id="company_phone_contact" value="{{ $company['phone'] }}">
-                                   </div>
-                                </div>
-
-                              
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
