@@ -142,15 +142,7 @@
                                       <label class="form-label" for="company_phone">Téléphone :</label>
                                       <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_phone" value="{{ $company['phone'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_status">Statut :</label>
-                                      <select class="form-select" id="company_status" {{ !$isCompanyAdmin ? 'disabled' : '' }}>
-                                         <option value="" disabled>Choisir le statut</option>
-                                         <option value="active" {{ $company['status'] == 'active' ? 'selected' : '' }}>Actif</option>
-                                         <option value="inactive" {{ $company['status'] == 'inactive' ? 'selected' : '' }}>Inactif</option>
-                                         <option value="suspended" {{ $company['status'] == 'suspended' ? 'selected' : '' }}>Suspendu</option>
-                                      </select>
-                                   </div>
+                                   
                                 </div>
 
                                
