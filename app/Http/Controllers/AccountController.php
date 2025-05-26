@@ -138,7 +138,7 @@ public function admin(Request $request)
             'phone_number' => $request->phone_number,
             'user_type' => "admin",
             'password' => bcrypt($request->password),
-            'company_id' => $request->company_id,
+            'company_id' => 1,
         ]);
 
         return redirect()->route('accounts.index')->with('success', 'Utilisateur ajouté avec succès!');
