@@ -1,3 +1,4 @@
+{{-- resources/views/accounts/edit.blade.php --}}
 <x-app-layout>
     <div class="container-fluid">
         <div class="row">
@@ -21,57 +22,55 @@
                                 Informations d'entreprises
                              </a>
                           </li>
-
                        </ul>
                     </div>
                  </div>
               </div>
            </div>
+
            <div class="col-lg-12">
               <div class="iq-edit-list-data">
                  <div class="tab-content">
+
+                    {{-- Informations personnelles --}}
                     <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
-                             <div class="header-title">
-                                <h4 class="card-title">Informations Personnelles</h4>
-                             </div>
+                             <h4 class="card-title">Informations Personnelles</h4>
                           </div>
                           <div class="card-body">
-                             <form>
-                                
-                                
-                                <!-- Nom, Prénom, Username -->
-                                <div class="row align-items-center">
+                             <form method="POST" action="{{ route('accounts.update', $user->id) }}">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="row">
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="lname">Nom :</label>
-                                      <input type="text" class="form-control" id="lname" value="{{ $user['last_name'] }}">
+                                      <label for="lname">Nom :</label>
+                                      <input type="text" class="form-control" id="lname" name="last_name" value="{{ old('last_name', $user->last_name) }}">
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="fname">Prénom :</label>
-                                      <input type="text" class="form-control" id="fname" value="{{ $user['first_name'] }}">
-                                   </div>
-                                </div>
-                                <div class="row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="uname">Nom d'utilisateur :</label>
-                                      <input type="text" class="form-control" id="uname" value="{{ $user['username'] }}">
-                                   </div>
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="cemail">Email :</label>
-                                      <input type="email" class="form-control" id="cemail" value="{{ $user['email'] }}">
-                                   </div>
-                                </div>
-                                <div class="row align-items-center">
-                                   <div class="form-group col-sm-6">
-                                      <label class="form-label" for="cphone">Téléphone :</label>
-                                      <input type="text" class="form-control" id="cphone" value="{{ $user['phone_number'] }}">
+                                      <label for="fname">Prénom :</label>
+                                      <input type="text" class="form-control" id="fname" name="first_name" value="{{ old('first_name', $user->first_name) }}">
                                    </div>
                                 </div>
 
-                               
-                                <!-- Adresse sur toute la largeur -->
-                               
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label for="uname">Nom d'utilisateur :</label>
+                                      <input type="text" class="form-control" id="uname" name="username" value="{{ old('username', $user->username) }}">
+                                   </div>
+                                   <div class="form-group col-sm-6">
+                                      <label for="cemail">Email :</label>
+                                      <input type="email" class="form-control" id="cemail" name="email" value="{{ old('email', $user->email) }}">
+                                   </div>
+                                </div>
+
+                                <div class="row">
+                                   <div class="form-group col-sm-6">
+                                      <label for="cphone">Téléphone :</label>
+                                      <input type="text" class="form-control" id="cphone" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
+                                   </div>
+                                </div>
 
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
@@ -80,28 +79,31 @@
                        </div>
                     </div>
 
+                    {{-- Changer mot de passe --}}
                     <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
-                             <div class="header-title">
-                                <h4 class="card-title">Changer le Mot de Passe</h4>
-                             </div>
+                             <h4 class="card-title">Changer le Mot de Passe</h4>
                           </div>
                           <div class="card-body">
-                             <form>
+                             <form method="POST" action="{{ route('accounts.update', $user->id) }}">
+                                @csrf
+                                @method('PUT')
+
                                 <div class="form-group">
-                                   <label class="form-label" for="cpass">Mot de Passe Actuel :</label>
-                                   <a href="{{route('recovers')}}" class="float-end">Mot de passe oublié</a>
-                                   <input type="password" class="form-control" id="cpass" value="">
+                                   <label for="current_password">Mot de Passe Actuel :</label>
+                                   <a href="{{ route('recovers') }}" class="float-end">Mot de passe oublié</a>
+                                   <input type="password" class="form-control" id="current_password" name="current_password">
                                 </div>
                                 <div class="form-group">
-                                   <label class="form-label" for="npass">Nouveau Mot de Passe :</label>
-                                   <input type="password" class="form-control" id="npass" value="">
+                                   <label for="password">Nouveau Mot de Passe :</label>
+                                   <input type="password" class="form-control" id="password" name="password">
                                 </div>
                                 <div class="form-group">
-                                   <label class="form-label" for="vpass">Vérifier le Mot de Passe :</label>
-                                   <input type="password" class="form-control" id="vpass" value="">
+                                   <label for="password_confirmation">Vérifier le Mot de Passe :</label>
+                                   <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                                 </div>
+
                                 <button type="reset" class="btn btn-outline-primary me-2">Annuler</button>
                                 <button type="submit" class="btn btn-primary">Valider</button>
                              </form>
@@ -109,12 +111,11 @@
                        </div>
                     </div>
 
+                    {{-- Informations d'entreprises --}}
                     <div class="tab-pane fade" id="company-info" role="tabpanel">
                        <div class="card">
                           <div class="card-header d-flex justify-content-between">
-                             <div class="header-title">
-                                <h4 class="card-title">Informations d'entreprises</h4>
-                             </div>
+                             <h4 class="card-title">Informations d'entreprises</h4>
                           </div>
                           <div class="card-body {{ !$isCompanyAdmin ? 'bg-light' : '' }}">
                              @if(!$isCompanyAdmin)
@@ -123,29 +124,29 @@
                                    Vous n'avez pas le droit de modifier les informations d'entreprise.
                                 </div>
                              @endif
-                             <form>
-                                <!-- Nom de l'entreprise et Adresse -->
+
+                             <form method="POST" action="{{ route('companies.update', $company->id) }}">
+                                @csrf
+                                @method('PUT')
+
                                 <div class="row">
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_name">Nom de l'entreprise :</label>
-                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_name" value="{{ $company['name'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
+                                      <label for="company_name">Nom de l'entreprise :</label>
+                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_name" name="name" value="{{ old('name', $company->name) }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_address">Adresse :</label>
-                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_address" value="{{ $company['address'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
+                                      <label for="company_address">Adresse :</label>
+                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_address" name="address" value="{{ old('address', $company->address) }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
                                 </div>
 
-                                <!-- Téléphone et Statut -->
                                 <div class="row">
                                    <div class="form-group col-sm-6">
-                                      <label class="form-label" for="company_phone">Téléphone :</label>
-                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_phone" value="{{ $company['phone'] }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
+                                      <label for="company_phone">Téléphone :</label>
+                                      <input type="text" class="form-control {{ !$isCompanyAdmin ? 'bg-secondary text-muted' : '' }}" id="company_phone" name="phone" value="{{ old('phone', $company->phone) }}" {{ !$isCompanyAdmin ? 'readonly disabled' : '' }}>
                                    </div>
-                                   
                                 </div>
 
-                               
                                 <button type="reset" class="btn btn-outline-secondary me-2" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Annuler</button>
                                 <button type="submit" class="btn btn-secondary" {{ !$isCompanyAdmin ? 'disabled' : '' }}>Valider</button>
                              </form>

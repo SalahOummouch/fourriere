@@ -76,10 +76,9 @@ public function admin(Request $request)
         $this->authorizeAdmin();
 
         $request->validate([
-            'first_name' => 'required|string',
-            'username' => 'required|string',
+            
             'email' => 'required|email',
-            'user_type' => 'required|in:admin,editor,user',
+    
         ]);
 
         $user->update($request->all());
