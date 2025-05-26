@@ -44,10 +44,11 @@
                                 {{-- Bouton pour ajouter un administrateur --}}
                                 <div class="d-flex justify-content-between align-items-center p-3">
                                     <h5 class="mb-0">Liste des administrateurs</h5>
-                                    <a href="{{ route('accounts.create') }}" class="btn btn-success">
+                                    <a href="{{ route('accounts.create') }}" class="btn btn-primary">
                                         <i class="bi bi-plus-circle me-1"></i> Ajouter un administrateur
                                     </a>
                                 </div>
+
 
                                 <div class="table-responsive iq-invoice-table">
                                     <table class="table data-table mb-0">
