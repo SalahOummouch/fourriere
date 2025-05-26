@@ -18,6 +18,7 @@
                         <span class="ms-2">Tableau de bord</span>
                     </a>
                 </li>
+
                 <li class="px-3 pt-3 pb-2">
                     <span class="text-uppercase small fw-bold">Gestion des plaques</span>
                 </li>
@@ -54,6 +55,7 @@
                         <span class="ms-2">Ajouter une plaque</span>
                     </a>
                 </li>
+
                 <li class="px-3 pt-3 pb-2">
                     <span class="text-uppercase small fw-bold">Alertes & Notifications</span>
                 </li>
@@ -68,11 +70,12 @@
                         <span class="ms-2">Historique des alertes</span>
                     </a>
                 </li>
-                
+
                 @if(auth()->check() && auth()->user()->user_type == 'admin')
                     <li class="px-3 pt-3 pb-2">
                         <span class="text-uppercase small fw-bold">Gestion des utilisateurs</span>
                     </li>
+
                     <li class="sidebar-layout">
                         <a href="/companies" class="svg-icon">
                             <i>
@@ -84,6 +87,7 @@
                             <span class="ms-2">Entreprises clientes</span>
                         </a>
                     </li>
+
                     <li class="sidebar-layout">
                         <a href="/accounts" class="svg-icon">
                             <i>
@@ -95,7 +99,20 @@
                             <span class="ms-2">Utilisateurs</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-layout">
+                        <a href="{{ route('accounts.admin') }}" class="svg-icon">
+                            <i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </i>
+                            <span class="ms-2">Gestion des admins</span>
+                        </a>
+                    </li>
                 @endif
+
             </ul>
         </nav>
     </div>

@@ -58,6 +58,7 @@ Route::get('plaques/relance/{plaque}', [PlaqueController::class, 'relance'])->na
 Route::get('historiques/{plaque}', [HistoriqueController::class, 'index']);
 
 Route::get('/accounts', [AccountController::class, 'index'])->name('accounts.index');
+Route::get('/accounts/admins', [AccountController::class, 'admin'])->name('accounts.admin');
 Route::get('/accounts/create', [AccountController::class, 'create'])->name('accounts.create');
 Route::put('/accounts/{user}/toggle-status', [AccountController::class, 'toggleStatus'])->name('accounts.toggleStatus');
 Route::get('/accounts/{user}/edit', [AccountController::class, 'edit'])->name('accounts.edit');
