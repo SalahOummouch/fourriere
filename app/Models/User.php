@@ -20,6 +20,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
      *
      * @var array
      */
+    const TYPE_ADMIN = 'admin';
+    const TYPE_USER = 'user';
     protected $fillable = [
         'username',
         'first_name',
