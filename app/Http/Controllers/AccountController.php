@@ -152,18 +152,24 @@ public function admin(Request $request)
 
         return redirect()->route('accounts.index')->with('success', 'Le statut de l\'utilisateur a été mis à jour.');
     }
-public function changePassword(Request $request, User $user)
+public function updatePassword(Request $request, User $user)
 {
     $this->authorizeAdmin();
 
     $request->validate([
-        'password' => 'required|string|min:8|confirmed',
+        'current_password' => ['required', 'string'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
     ]);
+
+    // Vérification du mot de passe actuel
+    if (!Hash::check($request->current_password, $user->password)) {
+        return back()->withErrors(['current_password' => 'Le mot de passe actuel est incorrect.']);
+    }
 
     $user->password = Hash::make($request->password);
     $user->save();
 
-    return redirect()->route('accounts.index', $user)->with('success', 'Mot de passe mis à jour avec succès.');
+    return redirect()->route('accounts.index')->with('success', 'Mot de passe mis à jour avec succès.');
 }
 public function create()
 {
