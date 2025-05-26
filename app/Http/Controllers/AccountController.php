@@ -64,7 +64,8 @@ public function admin(Request $request)
     public function edit(User $user)
     {
         $this->authorizeAdmin();
-                $user = Auth::user();
+        $user = Auth::user();
+        dd($user);
         return view('accounts.edit', compact('user'));
     }
 
