@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\Hash; 
+
 
 class AccountController extends Controller
 {
@@ -151,5 +153,19 @@ public function admin(Request $request)
 
         return redirect()->route('accounts.index')->with('success', 'Le statut de l\'utilisateur a été mis à jour.');
     }
+public function changePassword(Request $request, User $user)
+{
+    $this->authorizeAdmin();
+
+    $request->validate([
+        'password' => 'required|string|min:8|confirmed',
+    ]);
+
+    $user->password = Hash::make($request->password);
+    $user->save();
+
+    return redirect()->route('accounts.edit', $user)->with('success', 'Mot de passe mis à jour avec succès.');
+}
+
 
 }
